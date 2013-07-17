@@ -33,9 +33,7 @@ $(function(){
              * Your drawings need to be inside this function otherwise they will be reset when 
              * you resize the browser window and the canvas goes will be cleared.
              */
-            drawStuff(); 
     }
-    function drawStuff() {
     
 	socket.on('moving', function (data) {
 		
@@ -127,6 +125,6 @@ $(function(){
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
 	}
-	}
+	
 
 });
