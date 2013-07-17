@@ -12,8 +12,10 @@
 /*-------------------------
 	General Styles
 --------------------------*/
+* { margin:0; padding:0; } /* to remove the top and left whitespace */
 
-
+html, body { width:100%; height:100%; }
+canvas { display:block; }
 html{
 	background:url('../img/bg.png') repeat #e4e4e4;
 		
