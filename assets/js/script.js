@@ -91,7 +91,6 @@ $(function(){
 			
 			prev.x = e.pageX;
 			prev.y = e.pageY;
-			console.log(e.pageX);
 		}
 	});
 
