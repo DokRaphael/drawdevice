@@ -7,7 +7,7 @@ $(function(){
 	}
 
 	// The URL of your web server (the port is set in app.js)
-	var url = 'http://localhost';
+	var url = 'http://ec2-54-229-1-195.eu-west-1.compute.amazonaws.com/';
 
 	var doc = $(document),
 		win = $(window),
