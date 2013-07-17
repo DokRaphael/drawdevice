@@ -25,7 +25,18 @@ $(function(){
 	var cursors = {};
 
 	var socket = io.connect(url);
-	
+	function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            /**
+             * Your drawings need to be inside this function otherwise they will be reset when 
+             * you resize the browser window and the canvas goes will be cleared.
+             */
+            drawStuff(); 
+    }
+    function drawStuff() {
+    
 	socket.on('moving', function (data) {
 		
 		if(! (data.id in clients)){
@@ -115,6 +126,7 @@ $(function(){
 		ctx.moveTo(fromx, fromy);
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
+	}
 	}
 
 });
