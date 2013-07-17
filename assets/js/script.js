@@ -25,6 +25,7 @@ $(function(){
 	var cursors = {};
 
 	var socket = io.connect(url);
+	resizeCanvas() ;
 	function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
