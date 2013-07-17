@@ -2,6 +2,8 @@ $(function(){
 
 	// This demo depends on the canvas element
 	if(!('getContext' in document.createElement('canvas'))){
+	canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
@@ -25,16 +27,7 @@ $(function(){
 	var cursors = {};
 
 	var socket = io.connect(url);
-	resizeCanvas() ;
-	function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
 
-            /**
-             * Your drawings need to be inside this function otherwise they will be reset when 
-             * you resize the browser window and the canvas goes will be cleared.
-             */
-    }
     
 	socket.on('moving', function (data) {
 		
