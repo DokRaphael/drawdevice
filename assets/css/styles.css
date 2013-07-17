@@ -13,7 +13,15 @@
 	General Styles
 --------------------------*/
 
+#paper
+{
+	position : aboslute;
+	left:0;
+	top:O;
+	width : 100%;
+	height: 100%;
 
+}
 html{
 	background:url('../img/bg.png') repeat #e4e4e4;
 		
@@ -53,7 +61,6 @@ hgroup{
 	height: 78px;
 	top: 50%;
 	left: 50%;
-	margin: -120px 0 0 -225px;
 	text-align: center;
 	padding: 25px;
 	border-radius: 10px;
