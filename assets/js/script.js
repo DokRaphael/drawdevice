@@ -26,7 +26,7 @@ $(function(){
 
 	var socket = io.connect(url);
 	
-	socket.on('moving touchmove', function (data) {
+	socket.on('moving', function (data) {
 		
 		if(! (data.id in clients)){
 			// a new user has come online. create a cursor for them
@@ -55,7 +55,7 @@ $(function(){
 
 	var prev = {};
 	
-	canvas.on('mousedown touchstart',function(e){
+	canvas.on('mousedown',function(e){
 		e.preventDefault();
 		drawing = true;
 		prev.x = e.pageX;
@@ -65,15 +65,15 @@ $(function(){
 		instructions.fadeOut();
 	});
 	
-	doc.bind('mouseup mouseleave touchend',function(){
+	doc.bind('mouseup mouseleave',function(){
 		drawing = false;
 	});
 
 	var lastEmit = $.now();
 
-	doc.on('mousemove touchmove',function(e){
+	doc.on('mousemove',function(e){
 		if($.now() - lastEmit > 30){
-			socket.emit('mousemove touchmove',{
+			socket.emit('mousemove',{
 				'x': e.pageX,
 				'y': e.pageY,
 				'drawing': drawing,
