@@ -20,7 +20,7 @@ $(function(){
 	
 	// A flag for drawing activity
 	var drawing = false;
-
+	var drawingTouch = false;
 	var clients = {};
 	var cursors = {};
 
@@ -77,7 +77,7 @@ $(function(){
 		e.preventDefault();
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
-		drawing = true;
+		drawingTouch = true;
 
 		// Hide the instructions
 		instructions.fadeOut();
@@ -87,15 +87,14 @@ $(function(){
 		drawing = false;
 	});
 	doc.bind('touchend',function(){
-		drawing = false;
+		drawingTouch = false;
 	});
 
 	var lastEmit = $.now();
 
 	doc.on('mousemove',function(e)
 	{
-			if(drawing)
-		{
+
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('mousemove',
@@ -112,7 +111,8 @@ $(function(){
 		// not received in the socket.on('moving') event above
 		
 
-			
+		if(drawing)
+		{		
 			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
 			prev.x = e.pageX;
@@ -128,15 +128,14 @@ $(function(){
 	doc.on('touchmove',function(e)
 	{
 			e.preventDefault();
-		if(drawing)
-		{
+		
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('mousemove',
 			{
 				'x': e.originalEvent.touches[0].pageX,
 				'y': e.originalEvent.touches[0].pageY,
-				'drawing': drawing,
+				'drawing': drawingTouch,
 				'id': id
 			});
 			lastEmit = $.now();
@@ -146,7 +145,8 @@ $(function(){
 		// not received in the socket.on('moving') event above
 		
 
-			
+		if(drawingTouch)
+		{	
 			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
 			prev.x = e.originalEvent.touches[0].pageX;
