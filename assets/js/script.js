@@ -63,17 +63,12 @@ $(function(){
 		}
 		
 		
-			if(data.drawing)
-			{
-				clients[data.id] = data;
-			}
-
-		
 	
+	
+		clients[data.id] = data;
 		
 		// Saving the current client state
-		
-				clients[data.id].updated = $.now();
+		clients[data.id].updated = $.now();
 
 		
 	});
@@ -96,13 +91,16 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		socket.emit('move',
+		clients[data.id].x = prev.x;
+		clients[data.id].y = prev.y;
+
+		/*socket.emit('move',
 			{
 				'x': prev.x,
 				'y': prev.y,
 				'drawing': false,
 				'id': id
-			});
+			});*/
 		// Hide the instructions
 		instructions.fadeOut();
 	});
