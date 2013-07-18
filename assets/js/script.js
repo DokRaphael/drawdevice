@@ -143,7 +143,7 @@ $(function(){
 			{
 				'x': e.originalEvent.touches[0].pageX,
 				'y': e.originalEvent.touches[0].pageY,
-				'drawing': drawingTouch,
+				'drawingTouch': drawingTouch,
 				'id': id
 			});
 			lastEmit = $.now();
