@@ -131,7 +131,7 @@ $(function(){
 		
 		if($.now() - lastEmit > 3)
 		{
-			socket.emit('mousemove',
+			socket.emit('touchmove',
 			{
 				'x': e.originalEvent.touches[0].pageX,
 				'y': e.originalEvent.touches[0].pageY,
