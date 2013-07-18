@@ -23,10 +23,10 @@ $(function(){
 	var clients = {};
 	var cursors = {};
 	var lastEmit = $.now();
-var down = false;
+	var down = false;
 	var socket = io.connect(url);
 	var up = false;
-	var prev = {};
+	var prev = {0,0};
 	doc.ready(function() {
     			var canvas = document.getElementById('paper');
 				canvas.width = window.innerWidth;
