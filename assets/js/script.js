@@ -94,7 +94,7 @@ $(function(){
 
 	doc.on('mousemove',function(e)
 	{
-		if($.now() - lastEmit > 30)
+		if($.now() - lastEmit > 3)
 		{
 			socket.emit('mousemove',
 			{
@@ -128,7 +128,7 @@ $(function(){
 	{
 			e.preventDefault();
 
-		if($.now() - lastEmit > 30)
+		/*if($.now() - lastEmit > 30)
 		{
 			socket.emit('mousemove',
 			{
@@ -138,7 +138,7 @@ $(function(){
 				'id': id
 			});
 			lastEmit = $.now();
-		}
+		}*/
 		
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
