@@ -23,6 +23,7 @@ $(function(){
 	var drawingTouch = false;
 	var clients = {};
 	var cursors = {};
+	var lastEmit = $.now();
 
 	var socket = io.connect(url);
 
@@ -51,7 +52,9 @@ $(function(){
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
 			
-			//drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+			
+			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+		
 		}
 		
 		if(data.drawingTouch && clients[data.id] && !data.drawing ){
@@ -59,7 +62,7 @@ $(function(){
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
 			
-			//drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
 		}
 		
 		// Saving the current client state
@@ -78,6 +81,18 @@ $(function(){
 		// Hide the instructions
 		instructions.fadeOut();
 
+		if($.now() - lastEmit > 3)
+		{
+			socket.emit('mousemove',
+			{
+				'x': e.pageX,
+				'y': e.pageY,
+				'drawing': drawing,
+				'id': id
+			});
+			lastEmit = $.now();
+		}
+
 	});
 	
 	
@@ -86,7 +101,17 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawingTouch = true;
-
+		if($.now() - lastEmit > 3)
+		{
+			socket.emit('touchmove',
+			{
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
+				'drawingTouch': drawingTouch,
+				'id': id
+			});
+			lastEmit = $.now();
+		}
 		// Hide the instructions
 		instructions.fadeOut();
 	});
@@ -98,7 +123,6 @@ $(function(){
 		drawingTouch = false;
 	});
 
-	var lastEmit = $.now();
 
 	doc.on('mousemove',function(e)
 	{
