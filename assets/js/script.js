@@ -51,7 +51,6 @@ $(function(){
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
 			
-			
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
 		
 		}
@@ -74,7 +73,13 @@ $(function(){
 		// Hide the instructions
 		instructions.fadeOut();
 
-		
+		socket.emit('mousemove',
+			{
+				'x': e.pageX,
+				'y': e.pageY,
+				'drawing': drawing,
+				'id': id
+			});
 
 	});
 	
@@ -84,16 +89,24 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		
+		socket.emit('touchmove',
+			{
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
+				'drawing': drawing,
+				'id': id
+			});
 		// Hide the instructions
 		instructions.fadeOut();
 	});
 	
 	doc.bind('mouseup mouseleave',function(){
 		drawing = false;
+		
 	});
 	doc.bind('touchend',function(){
 		drawing = false;
+		
 	});
 
 
