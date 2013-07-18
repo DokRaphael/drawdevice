@@ -52,7 +52,7 @@ var down = false;
 		});
 		
 		// Is the user drawing?
-		if(touchdown)
+		if(down)
 		{
 			clients[data.id] = data;
 		}
