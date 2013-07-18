@@ -69,20 +69,18 @@ $(function(){
 		
 		// Hide the instructions
 		instructions.fadeOut();
-				alert("click");
 
 	});
 	
 	
 	canvas.on('touchstart',function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		drawing = true;
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		
 		// Hide the instructions
 		instructions.fadeOut();
-		alert("touchstarted");
 	});
 	
 	doc.bind('mouseup mouseleave',function(){
