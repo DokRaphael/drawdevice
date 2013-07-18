@@ -65,11 +65,10 @@ $(function(){
 	
 		
 		// Saving the current client state
-		if(data.drawing)
-		{
+		
 		clients[data.id] = data;
 		clients[data.id].updated = $.now();
-		}
+		
 	});
 
 	var prev = {};
@@ -82,15 +81,6 @@ $(function(){
 
 		// Hide the instructions
 		instructions.fadeOut();
-
-		socket.emit('mousemove',
-			{
-				'x': e.pageX,
-				'y': e.pageY,
-				'drawing': drawing,
-				'id': id
-			});
-
 	});
 	
 	
@@ -99,13 +89,7 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		socket.emit('touchmove',
-			{
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
-				'drawing': drawing,
-				'id': id
-			});
+		
 		// Hide the instructions
 		instructions.fadeOut();
 	});
@@ -125,7 +109,7 @@ $(function(){
 
 		if($.now() - lastEmit > 3)
 		{
-			socket.emit('mousemove',
+			socket.emit('move',
 			{
 				'x': e.pageX,
 				'y': e.pageY,
@@ -159,7 +143,7 @@ $(function(){
 		
 		if($.now() - lastEmit > 3)
 		{
-			socket.emit('touchmove',
+			socket.emit('move',
 			{
 				'x': e.originalEvent.touches[0].pageX,
 				'y': e.originalEvent.touches[0].pageY,

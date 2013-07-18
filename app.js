@@ -50,19 +50,12 @@ io.sockets.on('connection', function (socket)
 {
 
 	// Start listening for mouse move events
-	socket.on('mousemove', function (data) 
+	socket.on('move', function (data) 
 	{
 		
 		// This line sends the event (broadcasts it)
 		// to everyone except the originating client.
 		socket.broadcast.emit('moving', data);
 	});
-	
-	socket.on('touchmove', function (data) 
-	{
-		
-		// This line sends the event (broadcasts it)
-		// to everyone except the originating client.
-		socket.broadcast.emit('moving', data);
-	});
+
 });
