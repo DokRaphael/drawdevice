@@ -122,6 +122,8 @@ $(function(){
 	
 	doc.on('touchmove',function(e)
 	{
+			e.preventDefault();
+
 		if($.now() - lastEmit > 30)
 		{
 			socket.emit('mousemove',
