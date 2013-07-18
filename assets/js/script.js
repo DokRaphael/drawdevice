@@ -25,8 +25,8 @@ $(function(){
 	var lastEmit = $.now();
 
 	var socket = io.connect(url);
-
-
+	var up = false;
+	var prev = {};
 	doc.ready(function() {
     			var canvas = document.getElementById('paper');
 				canvas.width = window.innerWidth;
@@ -62,18 +62,24 @@ $(function(){
 
 		}
 		
-		
+		if(up)
+		{
+			clients[data.id].x = prev.x;
+			clients[data.id].y = prev.y;
+
+		} 
+		else
+		{
 	
-	
-		clients[data.id] = data;
-		
+			clients[data.id] = data;
+		}
 		// Saving the current client state
 		clients[data.id].updated = $.now();
 
 		
 	});
 
-	var prev = {};
+
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
@@ -87,12 +93,12 @@ $(function(){
 	
 	
 	canvas.on("touchstart", function(e){
+		up = false;
 		e.preventDefault();
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		clients[data.id].x = prev.x;
-		clients[data.id].y = prev.y;
+		
 
 		/*socket.emit('move',
 			{
@@ -110,6 +116,7 @@ $(function(){
 
 	doc.on('mousemove',function(e)
 	{
+		
 
 		if($.now() - lastEmit > 3)
 		{
@@ -143,7 +150,8 @@ $(function(){
 	
 	doc.on('touchmove',function(e)
 	{
-			e.preventDefault();
+		up = false;
+		e.preventDefault();
 		
 		if($.now() - lastEmit > 3)
 		{
@@ -176,6 +184,7 @@ $(function(){
 		
 	});
 	doc.bind('touchend',function(){
+		up = true;
 		drawing = false;
 		/*socket.emit('move',
 			{
