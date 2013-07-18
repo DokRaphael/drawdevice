@@ -71,15 +71,32 @@ $(function(){
 		instructions.fadeOut();
 	});
 	
+	
+	canvas.on('touchstart',function(e){
+		e.preventDefault();
+		drawing = true;
+		prev.x = e.touches[0].pageX;
+		prev.y = e.touches[0].pageY;
+		
+		// Hide the instructions
+		instructions.fadeOut();
+	});
+	
 	doc.bind('mouseup mouseleave',function(){
+		drawing = false;
+	});
+	doc.bind('touchend',function(){
 		drawing = false;
 	});
 
 	var lastEmit = $.now();
 
-	doc.on('mousemove',function(e){
-		if($.now() - lastEmit > 30){
-			socket.emit('mousemove',{
+	doc.on('mousemove',function(e)
+	{
+		if($.now() - lastEmit > 30)
+		{
+			socket.emit('mousemove',
+			{
 				'x': e.pageX,
 				'y': e.pageY,
 				'drawing': drawing,
@@ -91,12 +108,40 @@ $(function(){
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
 		
-		if(drawing){
+		if(drawing)
+		{
 			
 			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
 			prev.x = e.pageX;
 			prev.y = e.pageY;
+		}
+	});
+	
+	doc.on('touchmove',function(e)
+	{
+		if($.now() - lastEmit > 30)
+		{
+			socket.emit('mousemove',
+			{
+				'x': e.touches[0].pageX,
+				'y': e.touches[0].pageY,
+				'drawing': drawing,
+				'id': id
+			});
+			lastEmit = $.now();
+		}
+		
+		// Draw a line for the current user's movement, as it is
+		// not received in the socket.on('moving') event above
+		
+		if(drawing)
+		{
+			
+			drawLine(prev.x, prev.y, e.touches[0].pageX, e.touches[0].pageY);
+			
+			prev.x = e.touches[0].pageX;
+			prev.y = e.touches[0].pageY;
 		}
 	});
 
