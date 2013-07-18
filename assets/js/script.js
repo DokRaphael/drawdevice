@@ -94,20 +94,7 @@ $(function(){
 		instructions.fadeOut();
 	});
 	
-	doc.bind('mouseup mouseleave',function(){
-		drawing = false;
-		
-	});
-	doc.bind('touchend',function(){
-		drawing = false;
-		socket.emit('move',
-			{
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
-				'drawing': drawing,
-				'id': id
-			});
-	});
+
 
 
 	doc.on('mousemove',function(e)
@@ -171,6 +158,21 @@ $(function(){
 			prev.y = e.originalEvent.touches[0].pageY;
 			
 		}
+	});
+	
+	doc.bind('mouseup mouseleave',function(){
+	drawing = false;
+		
+	});
+	doc.bind('touchend',function(){
+		drawing = false;
+		socket.emit('move',
+			{
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
+				'drawing': drawing,
+				'id': id
+			});
 	});
 
 	// Remove inactive clients after 10 seconds of inactivity
