@@ -59,9 +59,15 @@ $(function(){
 			// the previous position of this user's mouse pointer
 			
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
-					clients[data.id] = data;
 
 		}
+		
+		
+			if(data.drawing)
+			{
+				clients[data.id] = data;
+			}
+
 		
 	
 		
