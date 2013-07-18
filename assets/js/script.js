@@ -73,7 +73,7 @@ $(function(){
 	});
 	
 	
-	canvas.ontouchstart = function(e){
+	canvas.on("touchstart", function(e){
 		e.preventDefault();
 		drawing = true;
 		prev.x = e.originalEvent.touches[0].pageX;
@@ -81,8 +81,7 @@ $(function(){
 		
 		// Hide the instructions
 		instructions.fadeOut();
-		alert("ok");
-	}
+	});
 	
 	doc.bind('mouseup mouseleave',function(){
 		drawing = false;
