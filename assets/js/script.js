@@ -89,7 +89,14 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		
+		socket.emit('move',
+			{
+				'x': prev.x,
+				'y': prev.y,
+				'drawing': drawing,
+				'id': id
+			});
+			lastEmit = $.now();
 		// Hide the instructions
 		instructions.fadeOut();
 	});
