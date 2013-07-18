@@ -59,8 +59,8 @@ $(function(){
 			// the previous position of this user's mouse pointer
 			
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
-			clients[data.id] = data;
-		
+					clients[data.id] = data;
+
 		}
 		
 	
@@ -90,13 +90,13 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		/*socket.emit('move',
+		socket.emit('move',
 			{
 				'x': prev.x,
 				'y': prev.y,
-				'drawing': drawing,
+				'drawing': false,
 				'id': id
-			});*/
+			});
 		// Hide the instructions
 		instructions.fadeOut();
 	});
