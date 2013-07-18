@@ -73,15 +73,16 @@ $(function(){
 	});
 	
 	
-	canvas.on('touchstart',function(e){
-		//e.preventDefault();
+	canvas.ontouchstart = function(e){
+		e.preventDefault();
 		drawing = true;
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		
 		// Hide the instructions
 		instructions.fadeOut();
-	});
+		alert("ok");
+	}
 	
 	doc.bind('mouseup mouseleave',function(){
 		drawing = false;
