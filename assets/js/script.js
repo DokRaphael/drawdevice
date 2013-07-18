@@ -26,11 +26,13 @@ $(function(){
 	var down = false;
 	var socket = io.connect(url);
 	var up = false;
-	var prev = {0,0};
+	var prev = {};
 	doc.ready(function() {
     			var canvas = document.getElementById('paper');
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
+				prev.x = 0;
+				prev.y = 0;
     		});
     		
     		
