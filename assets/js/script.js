@@ -132,8 +132,10 @@ $(function(){
 		{
 			socket.emit('mousemove',
 			{
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
+				'x':prev.x,
+				'y': prev.y,
+				/*'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,*/
 				'drawing': drawing,
 				'id': id
 			});
