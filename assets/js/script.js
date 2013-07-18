@@ -60,7 +60,6 @@ $(function(){
 			
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
 			clients[data.id] = data;
-		clients[data.id].updated = $.now();
 		
 		}
 		
@@ -68,7 +67,8 @@ $(function(){
 		
 		// Saving the current client state
 		
-		
+				clients[data.id].updated = $.now();
+
 		
 	});
 
@@ -90,14 +90,13 @@ $(function(){
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		socket.emit('move',
+		/*socket.emit('move',
 			{
 				'x': prev.x,
 				'y': prev.y,
 				'drawing': drawing,
 				'id': id
-			});
-			lastEmit = $.now();
+			});*/
 		// Hide the instructions
 		instructions.fadeOut();
 	});
@@ -174,13 +173,13 @@ $(function(){
 	});
 	doc.bind('touchend',function(){
 		drawing = false;
-		socket.emit('move',
+		/*socket.emit('move',
 			{
 				'x': e.originalEvent.touches[0].pageX,
 				'y': e.originalEvent.touches[0].pageY,
 				'drawing': drawing,
 				'id': id
-			});
+			});*/
 	});
 
 	// Remove inactive clients after 10 seconds of inactivity
