@@ -75,10 +75,10 @@ $(function(){
 	
 	canvas.on("touchstart", function(e){
 		e.preventDefault();
-		drawing = true;
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
-		
+				drawing = true;
+
 		// Hide the instructions
 		instructions.fadeOut();
 	});
@@ -146,7 +146,7 @@ $(function(){
 		if(drawing)
 		{
 			
-						drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
 			prev.x = e.originalEvent.touches[0].pageX;
 			prev.y = e.originalEvent.touches[0].pageY;
