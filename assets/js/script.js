@@ -112,10 +112,11 @@ $(function(){
 		if(drawing)
 		{
 			
-			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
 			prev.x = e.pageX;
 			prev.y = e.pageY;
+					drawLine(prev.x, prev.y, e.pageX, e.pageY);
+
 		}
 	});
 	
@@ -146,10 +147,11 @@ $(function(){
 		if(drawing)
 		{
 			
-			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
 			prev.x = e.originalEvent.touches[0].pageX;
 			prev.y = e.originalEvent.touches[0].pageY;
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+
 			
 		}
 	});
