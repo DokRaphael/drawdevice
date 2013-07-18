@@ -23,7 +23,7 @@ $(function(){
 	var clients = {};
 	var cursors = {};
 	var lastEmit = $.now();
-
+var down = false;
 	var socket = io.connect(url);
 	var up = false;
 	var prev = {};
@@ -52,6 +52,10 @@ $(function(){
 		});
 		
 		// Is the user drawing?
+		if(touchdown)
+		{
+			clients[data.id] = data;
+		}
 		if(data.drawing && clients[data.id])
 		{
 			
@@ -92,6 +96,7 @@ $(function(){
 	
 	
 	canvas.on("touchstart", function(e){
+		down = true;
 		up = false;
 		e.preventDefault();
 		prev.x = e.originalEvent.touches[0].pageX;
@@ -99,13 +104,13 @@ $(function(){
 		drawing = true;
 		
 
-		/*socket.emit('move',
+		socket.emit('move',
 			{
 				'x': prev.x,
 				'y': prev.y,
 				'drawing': false,
 				'id': id
-			});*/
+			});
 		// Hide the instructions
 		instructions.fadeOut();
 	});
@@ -116,7 +121,6 @@ $(function(){
 	doc.on('mousemove',function(e)
 	{
 		
-
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('move',
@@ -149,6 +153,8 @@ $(function(){
 	
 	doc.on('touchmove',function(e)
 	{
+	down = false;
+
 		up = false;
 		e.preventDefault();
 		
@@ -183,6 +189,8 @@ $(function(){
 		
 	});
 	doc.bind('touchend',function(){
+	down = false;
+
 		up = true;
 		drawing = false;
 		/*socket.emit('move',
