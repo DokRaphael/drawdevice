@@ -94,6 +94,8 @@ $(function(){
 
 	doc.on('mousemove',function(e)
 	{
+			if(drawing)
+		{
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('mousemove',
@@ -109,8 +111,7 @@ $(function(){
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
 		
-		if(drawing)
-		{
+
 			
 			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
@@ -127,15 +128,14 @@ $(function(){
 	doc.on('touchmove',function(e)
 	{
 			e.preventDefault();
-
+		if(drawing)
+		{
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('mousemove',
 			{
-				'x':prev.x,
-				'y': prev.y,
-				/*'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,*/
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
 				'drawing': drawing,
 				'id': id
 			});
@@ -145,8 +145,7 @@ $(function(){
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
 		
-		if(drawing)
-		{
+
 			
 			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
