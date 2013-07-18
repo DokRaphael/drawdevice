@@ -46,7 +46,7 @@ $(function(){
 		});
 		
 		// Is the user drawing?
-		if(data.drawing && clients[data.id] && !data.drawingTouch){
+		if(data.drawing && clients[data.id]){
 			
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
@@ -83,7 +83,7 @@ $(function(){
 		e.preventDefault();
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
-		drawingTouch = true;
+		drawing = true;
 		
 		// Hide the instructions
 		instructions.fadeOut();
