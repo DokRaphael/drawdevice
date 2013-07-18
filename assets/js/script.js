@@ -100,7 +100,13 @@ $(function(){
 	});
 	doc.bind('touchend',function(){
 		drawing = false;
-		
+		socket.emit('move',
+			{
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
+				'drawing': drawing,
+				'id': id
+			});
 	});
 
 
