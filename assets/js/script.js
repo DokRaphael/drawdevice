@@ -85,8 +85,8 @@ $(function(){
 		{
 			socket.emit('mousemove',
 			{
-				'x': e.pageX,
-				'y': e.pageY,
+				'x': prev.x,
+				'y': prev.y,
 				'drawing': drawing,
 				'id': id
 			});
@@ -105,8 +105,8 @@ $(function(){
 		{
 			socket.emit('touchmove',
 			{
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
+				'x': prev.x,
+				'y': prev.y,
 				'drawingTouch': drawingTouch,
 				'id': id
 			});
