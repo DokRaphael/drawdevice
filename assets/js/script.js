@@ -46,7 +46,15 @@ $(function(){
 		});
 		
 		// Is the user drawing?
-		if(data.drawing && clients[data.id]){
+		if(data.drawing && clients[data.id] && !data.drawingTouch){
+			
+			// Draw a line on the canvas. clients[data.id] holds
+			// the previous position of this user's mouse pointer
+			
+			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+		}
+		
+		if(data.drawingTouch && clients[data.id] && !data.drawing ){
 			
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer

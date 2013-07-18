@@ -57,4 +57,12 @@ io.sockets.on('connection', function (socket)
 		// to everyone except the originating client.
 		socket.broadcast.emit('moving', data);
 	});
+	
+	socket.on('touchmove', function (data) 
+	{
+		
+		// This line sends the event (broadcasts it)
+		// to everyone except the originating client.
+		socket.broadcast.emit('moving', data);
+	});
 });
