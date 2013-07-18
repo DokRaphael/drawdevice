@@ -77,7 +77,6 @@ $(function(){
 		e.preventDefault();
 		prev.x = e.pageX;
 		prev.y = e.pageY;
-		drawing = true;
 
 		// Hide the instructions
 		instructions.fadeOut();
@@ -88,7 +87,6 @@ $(function(){
 		e.preventDefault();
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
-		drawing = true;
 		
 		// Hide the instructions
 		instructions.fadeOut();
@@ -112,6 +110,7 @@ $(function(){
 
 	doc.on('mousemove',function(e)
 	{
+		drawing = true;
 
 		if($.now() - lastEmit > 3)
 		{
@@ -145,6 +144,8 @@ $(function(){
 	
 	doc.on('touchmove',function(e)
 	{
+			drawing = true;
+
 			e.preventDefault();
 		
 		if($.now() - lastEmit > 3)
