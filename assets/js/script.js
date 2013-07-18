@@ -63,10 +63,10 @@ $(function(){
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		drawing = true;
 		prev.x = e.pageX;
 		prev.y = e.pageY;
-		
+		drawing = true;
+
 		// Hide the instructions
 		instructions.fadeOut();
 
@@ -146,10 +146,11 @@ $(function(){
 		if(drawing)
 		{
 			
-			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
-			
+						drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+
 			prev.x = e.originalEvent.touches[0].pageX;
 			prev.y = e.originalEvent.touches[0].pageY;
+			
 		}
 	});
 
