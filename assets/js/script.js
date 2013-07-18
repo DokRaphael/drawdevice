@@ -32,21 +32,28 @@ $(function(){
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
     		});
-	socket.on('moving', function (data) {
+    		
+    		
+    		
+	socket.on('moving', function (data) 
+	{
 		
-		if(! (data.id in clients)){
+		if(! (data.id in clients))
+		{
 			// a new user has come online. create a cursor for them
 			cursors[data.id] = $('<div class="cursor">').appendTo('#cursors');
 		}
 		
 		// Move the mouse pointer
-		cursors[data.id].css({
+		cursors[data.id].css(
+		{
 			'left' : data.x,
 			'top' : data.y
 		});
 		
 		// Is the user drawing?
-		if(data.drawing && clients[data.id]){
+		if(data.drawing && clients[data.id])
+		{
 			
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
@@ -58,8 +65,11 @@ $(function(){
 	
 		
 		// Saving the current client state
+		if(data.drawing)
+		{
 		clients[data.id] = data;
 		clients[data.id].updated = $.now();
+		}
 	});
 
 	var prev = {};
