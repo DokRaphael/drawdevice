@@ -1,9 +1,4 @@
 $(function(){
-
-
-
-
-
 	// This demo depends on the canvas element
 	if(!('getContext' in document.createElement('canvas'))){
 	c
@@ -12,7 +7,7 @@ $(function(){
 	}
 
 	// The URL of your web server (the port is set in app.js)
-	var url = 'http://ec2-54-229-1-195.eu-west-1.compute.amazonaws.com/';
+	var url = 'ec2-54-229-104-174.eu-west-1.compute.amazonaws.com:8333';
 
 	var doc = $(document),
 		win = $(window),
@@ -33,21 +28,6 @@ $(function(){
 
 
 
-   window.addEventListener('resize', resizeCanvas, false);
-
-    function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            /**
-             * Your drawings need to be inside this function otherwise they will be reset when 
-             * you resize the browser window and the canvas goes will be cleared.
-             */
-    }
-    resizeCanvas();
-
-
-    
 	socket.on('moving', function (data) {
 		
 		if(! (data.id in clients)){
