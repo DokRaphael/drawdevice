@@ -120,6 +120,11 @@ $(function(){
 		}
 	});
 	
+	
+	$('body').on('touchmove', function(evt) {
+    evt.preventDefault(); 
+	})
+	
 	doc.on('touchmove',function(e)
 	{
 			e.preventDefault();
