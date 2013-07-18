@@ -74,7 +74,7 @@ $(function(){
 	});
 	
 	
-	canvas.on('touchstart',function(e){
+	canvas.addEventListener('touchstart',function(e){
 		e.preventDefault();
 		drawing = true;
 		prev.x = e.touches[0].pageX;
@@ -88,7 +88,7 @@ $(function(){
 	doc.bind('mouseup mouseleave',function(){
 		drawing = false;
 	});
-	doc.bind('touchend',function(){
+	doc.addEventListener('touchend',function(){
 		drawing = false;
 	});
 
@@ -121,7 +121,7 @@ $(function(){
 		}
 	});
 	
-	doc.on('touchmove',function(e)
+	doc.addEventListener('touchmove',function(e)
 	{
 		if($.now() - lastEmit > 30)
 		{
