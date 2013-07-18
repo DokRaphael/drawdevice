@@ -74,11 +74,11 @@ $(function(){
 	});
 	
 	
-	canvas.addEventListener('touchstart',function(e){
+	canvas.on('touchstart',function(e){
 		e.preventDefault();
 		drawing = true;
-		prev.x = e.touches[0].pageX;
-		prev.y = e.touches[0].pageY;
+		prev.x = e.originalEvent.touches[0].pageX;
+		prev.y = e.originalEvent.touches[0].pageY;
 		
 		// Hide the instructions
 		instructions.fadeOut();
@@ -88,7 +88,7 @@ $(function(){
 	doc.bind('mouseup mouseleave',function(){
 		drawing = false;
 	});
-	doc.addEventListener('touchend',function(){
+	doc.bind('touchend',function(){
 		drawing = false;
 	});
 
@@ -121,14 +121,14 @@ $(function(){
 		}
 	});
 	
-	doc.addEventListener('touchmove',function(e)
+	doc.on('touchmove',function(e)
 	{
 		if($.now() - lastEmit > 30)
 		{
 			socket.emit('mousemove',
 			{
-				'x': e.touches[0].pageX,
-				'y': e.touches[0].pageY,
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
 				'drawing': drawing,
 				'id': id
 			});
@@ -141,10 +141,10 @@ $(function(){
 		if(drawing)
 		{
 			
-			drawLine(prev.x, prev.y, e.touches[0].pageX, e.touches[0].pageY);
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 			
-			prev.x = e.touches[0].pageX;
-			prev.y = e.touches[0].pageY;
+			prev.x = e.originalEvent.touches[0].pageX;
+			prev.y = e.originalEvent.touches[0].pageY;
 		}
 	});
 
