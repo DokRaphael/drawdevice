@@ -7,7 +7,7 @@ $(function(){
 	}
 
 	// The URL of your web server (the port is set in app.js)
-	var url = 'http://ec2-54-229-66-146.eu-west-1.compute.amazonaws.com';
+	var url = '127.0.0.1';
 
 	var doc = $(document),
 		win = $(window),
@@ -27,7 +27,11 @@ $(function(){
 	var socket = io.connect(url);
 
 
-
+	doc.ready(function() {
+    			var canvas = document.getElementById('paper');
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+    		});
 	socket.on('moving', function (data) {
 		
 		if(! (data.id in clients)){

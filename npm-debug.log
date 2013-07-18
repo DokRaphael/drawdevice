@@ -1,0 +1,166 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'iptables', '-g' ]
+2 info using npm@1.3.2
+3 info using node@v0.10.13
+4 verbose cache add [ 'iptables', null ]
+5 verbose cache add name=undefined spec="iptables" args=["iptables",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'iptables',
+6 verbose parsed url   path: 'iptables',
+6 verbose parsed url   href: 'iptables' }
+7 silly lockFile 5776a205-iptables iptables
+8 verbose lock iptables /Users/dook0/.npm/5776a205-iptables.lock
+9 silly lockFile 5776a205-iptables iptables
+10 silly lockFile 5776a205-iptables iptables
+11 verbose addNamed [ 'iptables', '' ]
+12 verbose addNamed [ null, '*' ]
+13 silly lockFile 52cbf989-iptables iptables@
+14 verbose lock iptables@ /Users/dook0/.npm/52cbf989-iptables.lock
+15 silly addNameRange { name: 'iptables', range: '*', hasData: false }
+16 verbose url raw iptables
+17 verbose url resolving [ 'https://registry.npmjs.org/', './iptables' ]
+18 verbose url resolved https://registry.npmjs.org/iptables
+19 info trying registry request attempt 1 at 11:10:51
+20 http GET https://registry.npmjs.org/iptables
+21 http 200 https://registry.npmjs.org/iptables
+22 silly registry.get cb [ 200,
+22 silly registry.get   { vary: 'Accept',
+22 silly registry.get     server: 'CouchDB/1.3.0 (Erlang OTP/R15B03)',
+22 silly registry.get     etag: '"1CX25CO4E1USH0AZY4AK7XCEH"',
+22 silly registry.get     date: 'Thu, 18 Jul 2013 09:10:53 GMT',
+22 silly registry.get     'content-type': 'application/json',
+22 silly registry.get     'content-length': '4065' } ]
+23 silly addNameRange number 2 { name: 'iptables', range: '*', hasData: true }
+24 silly addNameRange versions [ 'iptables', [ '0.0.1', '0.0.2', '0.0.3', '0.0.4' ] ]
+25 verbose addNamed [ 'iptables', '0.0.4' ]
+26 verbose addNamed [ '0.0.4', '0.0.4' ]
+27 silly lockFile 8073a228-iptables-0-0-4 iptables@0.0.4
+28 verbose lock iptables@0.0.4 /Users/dook0/.npm/8073a228-iptables-0-0-4.lock
+29 silly lockFile 73e31301--org-iptables-iptables-0-0-4-tgz https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz
+30 verbose lock https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz /Users/dook0/.npm/73e31301--org-iptables-iptables-0-0-4-tgz.lock
+31 verbose addRemoteTarball [ 'https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz',
+31 verbose addRemoteTarball   'dedc1e680fc909a7ab5ef14da5b6da9392b21aaf' ]
+32 info retry fetch attempt 1 at 11:10:52
+33 verbose fetch to= /var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/tmp.tgz
+34 http GET https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz
+35 http 200 https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz
+36 verbose tar unpack /var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/tmp.tgz
+37 silly lockFile 02d6e204-52701-0-9893296849913895-package tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+38 verbose lock tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package /Users/dook0/.npm/02d6e204-52701-0-9893296849913895-package.lock
+39 silly lockFile 2ddce562-52701-0-9893296849913895-tmp-tgz tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/tmp.tgz
+40 verbose lock tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/tmp.tgz /Users/dook0/.npm/2ddce562-52701-0-9893296849913895-tmp-tgz.lock
+41 silly gunzTarPerm modes [ '755', '644' ]
+42 silly gunzTarPerm extractEntry readme.txt
+43 silly gunzTarPerm extractEntry package.json~
+44 silly gunzTarPerm extractEntry index.js
+45 silly gunzTarPerm extractEntry package.json
+46 silly lockFile 02d6e204-52701-0-9893296849913895-package tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+47 silly lockFile 02d6e204-52701-0-9893296849913895-package tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+48 silly lockFile 2ddce562-52701-0-9893296849913895-tmp-tgz tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/tmp.tgz
+49 silly lockFile 2ddce562-52701-0-9893296849913895-tmp-tgz tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/tmp.tgz
+50 verbose tar pack [ '/Users/dook0/.npm/iptables/0.0.4/package.tgz',
+50 verbose tar pack   '/var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package' ]
+51 verbose tarball /Users/dook0/.npm/iptables/0.0.4/package.tgz
+52 verbose folder /var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+53 silly lockFile 02d6e204-52701-0-9893296849913895-package tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+54 verbose lock tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package /Users/dook0/.npm/02d6e204-52701-0-9893296849913895-package.lock
+55 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+56 verbose lock tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz /Users/dook0/.npm/d701e15d-0-npm-iptables-0-0-4-package-tgz.lock
+57 silly lockFile 02d6e204-52701-0-9893296849913895-package tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+58 silly lockFile 02d6e204-52701-0-9893296849913895-package tar:///var/folders/r0/l1my244x7497y4q73bw_5dkw0000gn/T/npm-1346/1374138652701-0.9893296849913895/package
+59 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+60 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+61 silly lockFile 8edf177f-dook0-npm-iptables-0-0-4-package /Users/dook0/.npm/iptables/0.0.4/package
+62 verbose lock /Users/dook0/.npm/iptables/0.0.4/package /Users/dook0/.npm/8edf177f-dook0-npm-iptables-0-0-4-package.lock
+63 silly lockFile 8edf177f-dook0-npm-iptables-0-0-4-package /Users/dook0/.npm/iptables/0.0.4/package
+64 silly lockFile 8edf177f-dook0-npm-iptables-0-0-4-package /Users/dook0/.npm/iptables/0.0.4/package
+65 verbose tar unpack /Users/dook0/.npm/iptables/0.0.4/package.tgz
+66 silly lockFile bc19bd9e-dook0-npm-iptables-0-0-4-package tar:///Users/dook0/.npm/iptables/0.0.4/package
+67 verbose lock tar:///Users/dook0/.npm/iptables/0.0.4/package /Users/dook0/.npm/bc19bd9e-dook0-npm-iptables-0-0-4-package.lock
+68 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+69 verbose lock tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz /Users/dook0/.npm/d701e15d-0-npm-iptables-0-0-4-package-tgz.lock
+70 silly gunzTarPerm modes [ '755', '644' ]
+71 silly gunzTarPerm extractEntry package.json
+72 silly gunzTarPerm extractEntry index.js
+73 silly gunzTarPerm extractEntry package.json~
+74 silly gunzTarPerm extractEntry readme.txt
+75 silly lockFile bc19bd9e-dook0-npm-iptables-0-0-4-package tar:///Users/dook0/.npm/iptables/0.0.4/package
+76 silly lockFile bc19bd9e-dook0-npm-iptables-0-0-4-package tar:///Users/dook0/.npm/iptables/0.0.4/package
+77 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+78 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+79 verbose chmod /Users/dook0/.npm/iptables/0.0.4/package.tgz 644
+80 verbose chown /Users/dook0/.npm/iptables/0.0.4/package.tgz [ 501, 20 ]
+81 silly lockFile 73e31301--org-iptables-iptables-0-0-4-tgz https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz
+82 silly lockFile 73e31301--org-iptables-iptables-0-0-4-tgz https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz
+83 silly lockFile 8073a228-iptables-0-0-4 iptables@0.0.4
+84 silly lockFile 8073a228-iptables-0-0-4 iptables@0.0.4
+85 silly lockFile 52cbf989-iptables iptables@
+86 silly lockFile 52cbf989-iptables iptables@
+87 silly resolved [ { name: 'iptables',
+87 silly resolved     version: '0.0.4',
+87 silly resolved     description: 'Run iptables commands from node.js',
+87 silly resolved     main: './index.js',
+87 silly resolved     repository:
+87 silly resolved      { type: 'git',
+87 silly resolved        url: 'https://github.com/pkrumins/node-iptables.git' },
+87 silly resolved     keywords: [ 'iptables', 'firewall', 'linux' ],
+87 silly resolved     author:
+87 silly resolved      { name: 'Peteris Krumins',
+87 silly resolved        email: 'peteris.krumins@gmail.com',
+87 silly resolved        url: 'http://www.catonmat.net' },
+87 silly resolved     dependencies: { lazy: '>= 1.0.6' },
+87 silly resolved     license: 'MIT',
+87 silly resolved     engine: { node: '>=0.4.0' },
+87 silly resolved     readme: 'This is a node.js module for controlling iptables. It\'s very basic just for\r\nwhat we need at http://browserling.com.\r\n\r\nIt was written by Peteris Krumins (peter@catonmat.net, @pkrumins on twitter).\r\nHis blog is at http://www.catonmat.net  --  good coders code, great reuse.\r\n\r\n------------------------------------------------------------------------------\r\n\r\nHere is an example usage:\r\n\r\n    var iptables = require(\'iptables\');\r\n\r\n    iptables.allow({\r\n        protocol : tcp,\r\n        src : \'10.1.1.5\',\r\n        dport : 34567,\r\n        sudo : true\r\n    });\r\n\r\n    iptables.drop({\r\n        protocol : \'tcp\',\r\n        dport : 34567,\r\n        sudo : true\r\n    });\r\n\r\nThis allows connections to port 34567 from 10.1.1.5 and drops connections from\r\nthe same port from everyone else.\r\n\r\n------------------------------------------------------------------------------\r\n\r\nPs. I once wrote an article on iptables on my blog, check it out:\r\n\r\nhttp://www.catonmat.net/blog/traffic-accounting-with-iptables\r\n\r\n\r\nSincerely,\r\nPeteris Krumins (twitter: @pkrumins)\r\nhttp://www.catonmat.net\r\n\r\n',
+87 silly resolved     readmeFilename: 'readme.txt',
+87 silly resolved     bugs: { url: 'https://github.com/pkrumins/node-iptables/issues' },
+87 silly resolved     _id: 'iptables@0.0.4',
+87 silly resolved     dist: { shasum: '72068a77fb2b7cfe7ac898672f2f48ee567760da' },
+87 silly resolved     _from: 'iptables@',
+87 silly resolved     _resolved: 'https://registry.npmjs.org/iptables/-/iptables-0.0.4.tgz' } ]
+88 info install iptables@0.0.4 into /usr/local/lib
+89 info installOne iptables@0.0.4
+90 info /usr/local/lib/node_modules/iptables unbuild
+91 verbose tar unpack /Users/dook0/.npm/iptables/0.0.4/package.tgz
+92 silly lockFile 3b5bb069--local-lib-node-modules-iptables tar:///usr/local/lib/node_modules/iptables
+93 verbose lock tar:///usr/local/lib/node_modules/iptables /Users/dook0/.npm/3b5bb069--local-lib-node-modules-iptables.lock
+94 silly lockFile d701e15d-0-npm-iptables-0-0-4-package-tgz tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz
+95 verbose lock tar:///Users/dook0/.npm/iptables/0.0.4/package.tgz /Users/dook0/.npm/d701e15d-0-npm-iptables-0-0-4-package-tgz.lock
+96 silly gunzTarPerm modes [ '755', '644' ]
+97 error Error: EACCES, mkdir '/usr/local/lib/node_modules/iptables'
+97 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/iptables']
+97 error   errno: 3,
+97 error   code: 'EACCES',
+97 error   path: '/usr/local/lib/node_modules/iptables',
+97 error   fstream_type: 'Directory',
+97 error   fstream_path: '/usr/local/lib/node_modules/iptables',
+97 error   fstream_class: 'DirWriter',
+97 error   fstream_stack:
+97 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+97 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53',
+97 error      'Object.oncomplete (fs.js:107:15)' ] }
+98 error Please try running this command again as root/Administrator.
+99 error System Darwin 12.4.0
+100 error command "node" "/usr/local/bin/npm" "install" "iptables" "-g"
+101 error cwd /Users/dook0/Desktop/Saatchi/Draw
+102 error node -v v0.10.13
+103 error npm -v 1.3.2
+104 error path /usr/local/lib/node_modules/iptables
+105 error fstream_path /usr/local/lib/node_modules/iptables
+106 error fstream_type Directory
+107 error fstream_class DirWriter
+108 error code EACCES
+109 error errno 3
+110 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/iptables'
+111 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+111 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:37:53
+111 error fstream_stack Object.oncomplete (fs.js:107:15)
+112 verbose exit [ 3, true ]
