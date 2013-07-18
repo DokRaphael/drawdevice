@@ -80,6 +80,7 @@ $(function(){
 		
 		// Hide the instructions
 		instructions.fadeOut();
+		console.log("touch started");
 	});
 	
 	doc.bind('mouseup mouseleave',function(){
