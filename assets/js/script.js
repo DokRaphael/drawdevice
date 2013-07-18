@@ -69,6 +69,8 @@ $(function(){
 		
 		// Hide the instructions
 		instructions.fadeOut();
+				alert("click");
+
 	});
 	
 	
