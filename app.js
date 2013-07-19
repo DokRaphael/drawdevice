@@ -36,6 +36,7 @@ for( var i=0; i < 5; i++ )
         
 server.listen(process.env.C9_PORT || 8333); 
 
+url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', '/one')  ;
 
 
 app.get('/', function (req, res) 
@@ -47,7 +48,6 @@ app.get('/one', function(req, res) {
 
 });
 app.use(express.static(path.join(__dirname, 'assets')));
-url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', '/one')  ;
 
 //app.use(express.static(path.join(__dirname, randurl)));
 
