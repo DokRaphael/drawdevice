@@ -9,6 +9,7 @@ var randurl = "";
 var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 for( var i=0; i < 5; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
+        
 	// The URL of your web server (the port is set in app.js)
 	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/'+ randurl;
 

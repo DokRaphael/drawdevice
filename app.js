@@ -15,8 +15,6 @@ var mimeTypes = {
     "js": "text/javascript",
     "css": "text/css"};
     
-var randurl = "";
-var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
 
 /*var app = require('http').createServer(handler),
@@ -29,10 +27,14 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 	
 // This is the port for our web server. you will need to go to http://localhost:8080 to see it
 //app.listen(8080);
-
-server.listen(process.env.C9_PORT || 8333); 
+var randurl = "";
+var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 for( var i=0; i < 5; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
+        
+        
+server.listen(process.env.C9_PORT || 8333); 
+
 
 
 app.get('/', function (req, res) 
@@ -41,6 +43,9 @@ app.get('/', function (req, res)
     
 }); 
 app.use(express.static(path.join(__dirname, 'assets')));
+
+app.use(express.static(path.join(__dirname, 'randurl')));
+
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
 {
