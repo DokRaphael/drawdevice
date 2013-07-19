@@ -36,14 +36,14 @@ for( var i=0; i < 5; i++ )
         
 server.listen(process.env.C9_PORT || 8333); 
 
-url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', '/one')  ;
+url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', randurl)  ;
 
 
 app.get('/', function (req, res) 
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
 }); 
-app.get('/one', function(req, res) {
+app.get(randurl, function(req, res) {
         res.sendfile(__dirname + '/assets/index.html' );    
 
 });
