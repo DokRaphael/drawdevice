@@ -47,7 +47,7 @@ app.get(randurl, function(req, res) {
 
 });
 app.use(express.static(path.join(__dirname, 'assets')));
-	url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', randurl)  
+url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', '/one')  ;
 
 //app.use(express.static(path.join(__dirname, randurl)));
 
