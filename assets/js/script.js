@@ -8,8 +8,8 @@ $(function(){
 
         
 	// The URL of your web server (the port is set in app.js)
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
