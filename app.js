@@ -35,9 +35,9 @@ for( var i=0; i < 5; i++ )
         
         
 server.listen(process.env.C9_PORT || 8333); 
-
-url.set(__dirname,randurl)  ;
-
+ app.configure(function(){
+this.set(__dirname,randurl)  ;
+});
 
 app.get('/', function (req, res) 
 { 
