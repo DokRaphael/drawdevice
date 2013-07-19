@@ -35,7 +35,7 @@ var urlparsed='';
 // This is the port for our web server. you will need to go to http://localhost:8080 to see it
 //app.listen(8080);
 var randurl = "";
-var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
 var requestedurl = ''
         
 server.listen(process.env.C9_PORT || 8333); 
@@ -75,32 +75,14 @@ app.get('/', function (req, res)
         data = JSON.parse(data);
         //console.dir(data);
     });
-    
+        res.sendfile(__dirname + '/assets/index.html' );    
+
 	servernb+=1;
     roomhandler ();  
 }); 
 
 
 
-
-
-
-app.get('/', function (req, res)
-{ 
-    res.sendfile(__dirname + '/assets/index.html' );    
-});
-
-function roomhandler ()
-{
-	var i =0;
-	for(i = 0; i<servernb;i++)
-	{
-		//roomname = JSON.parse(myData[i]);
-		//console.log(myData[i]);
-
-	}
-
-}
 app.use(function(req, res, next){
     console.log(req.url);
 });
@@ -127,7 +109,17 @@ app.use(express.static(path.join(__dirname, 'assets')));
         fileServer.serve(request, response);
     });
 }*/
+function roomhandler ()
+{
+	var i =0;
+	for(i = 0; i<servernb;i++)
+	{
+		//roomname = JSON.parse(myData[i]);
+		//console.log(myData[i]);
 
+	}
+
+}
 // Delete this row if you want to see debug messages
 io.set('log level', 1);
 
