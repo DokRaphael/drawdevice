@@ -47,6 +47,7 @@ app.get(randurl, function(req, res) {
 
 });
 app.use(express.static(path.join(__dirname, 'assets')));
+	url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', randurl)  
 
 //app.use(express.static(path.join(__dirname, randurl)));
 
@@ -65,7 +66,6 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-	url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', randurl)  
 	
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
