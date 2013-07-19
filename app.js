@@ -6,7 +6,7 @@ var express = require('express'),
 	server = http.createServer(app),
 	path = require('path'),
     io = require('socket.io').listen(server); 
-
+	
 var mimeTypes = {
     "html": "text/html",
     "jpeg": "image/jpeg",
@@ -41,7 +41,10 @@ app.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
 }); 
-
+app.get('/sous-sol', function(req, res) {
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Vous êtes dans la cave à vins, ces bouteilles sont à moi !');
+});
 app.use(express.static(path.join(__dirname, 'assets')));
 
 //app.use(express.static(path.join(__dirname, 'randurl')));
