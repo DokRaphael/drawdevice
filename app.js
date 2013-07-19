@@ -18,7 +18,7 @@ var mimeTypes = {
     "css": "text/css"};
     
 
-var outputFilename = '/tmp/my.json';
+var outputFilename = 'my.json';
 var myData = {
   name:'test',
   version:'1.0'
