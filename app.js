@@ -36,7 +36,7 @@ for( var i=0; i < 5; i++ )
         
 server.listen(process.env.C9_PORT || 8333); 
 
-url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', randurl)  ;
+url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/','/'+randurl)  ;
 
 
 app.get('/', function (req, res) 
