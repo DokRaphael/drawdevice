@@ -68,7 +68,8 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-	
+	for( var i=0; i < 5; i++ )
+        randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
 	{
