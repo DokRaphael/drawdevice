@@ -69,15 +69,16 @@ app.get('/', function (req, res)
         console.dir(data);
     });
         
-        
-        
+ 
         
 }); 
 
 app.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
-}
+});
+
+
 /*app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
