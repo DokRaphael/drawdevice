@@ -42,7 +42,7 @@ app.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
 }); 
-app.get(randurl, function(req, res) {
+app.get('/one', function(req, res) {
         res.sendfile(__dirname + '/assets/index.html' );    
 
 });
