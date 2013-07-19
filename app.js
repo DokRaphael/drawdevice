@@ -45,7 +45,7 @@ server.listen(process.env.C9_PORT || 8333);
 app.get('/', function (req, res)
 { 
 	res.redirect( '/' +randurl);
-	fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
+	fs.writeFile(outputFilename, JSON.stringify(randurl, null, 4), function(err) {
     	if(err) {
       	console.log(err);
     	} else {
