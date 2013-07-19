@@ -80,8 +80,6 @@ app.get('/', function (req, res)
     roomhandler ();  
 });
 
-
-
 app.use(function(req, res, next){
     console.log(req.url);
 });
