@@ -31,7 +31,12 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 //app.listen(8080);
 
 server.listen(process.env.C9_PORT || 8333); 
-
+app.get('/', function (req, res) 
+{ 
+    res.sendfile(__dirname + '/assets/index.html/'); 
+    
+}); 
+app.use(express.static(path.join(__dirname, 'assets')));
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
 {
@@ -62,9 +67,3 @@ io.sockets.on('connection', function (socket)
 	});
 
 });
-app.get('/', function (req, res) 
-{ 
-    res.sendfile(__dirname + '/assets/index.html/'); 
-    
-}); 
-app.use(express.static(path.join(__dirname, 'assets')));
