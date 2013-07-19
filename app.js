@@ -43,7 +43,8 @@ server.listen(process.env.C9_PORT || 8333);
 app.get('/:id',function (req, res)
 {
 	console.log(req.url);
-	
+		res.redirect( '/' +randurl);
+
 	//requestedurl = req.url;
 });
 
