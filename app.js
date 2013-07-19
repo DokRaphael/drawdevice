@@ -34,10 +34,10 @@ server.listen(process.env.C9_PORT || 8333);
 for( var i=0; i < 5; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    return randurl;
+
 app.get('/', function (req, res) 
 { 
-    res.sendfile(__dirname + '/assets/index.html' + '?'+ randurl); 
+    res.sendfile(__dirname + '/assets/index.html' + '/'+ randurl); 
     
 }); 
 app.use(express.static(path.join(__dirname, 'assets')));
