@@ -81,10 +81,7 @@ app.get('/', function (req, res)
     roomhandler ();  
 })
 
-.get('/', function (req, res)
-{
-	res.sendfile(__dirname + '/assets/index.html' );    
-})
+
 
 .use(function(req, res, next){
     console.log(req.url);
@@ -99,6 +96,10 @@ app.get('/'+myData[newserver], function(req, res) {
 });
 */
 
+app.get('/', function (req, res)
+{
+	res.sendfile(__dirname + '/assets/index.html' );    
+});
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
