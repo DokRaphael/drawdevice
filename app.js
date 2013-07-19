@@ -5,6 +5,7 @@ var express = require('express'),
 	app = express(),
 	server = http.createServer(app),
 	path = require('path'),
+	url = require('url'),
     io = require('socket.io').listen(server); 
 	
 var mimeTypes = {
@@ -64,7 +65,7 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-	url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', '/one')  
+	url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', randurl)  
 	
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
