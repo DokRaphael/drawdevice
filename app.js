@@ -35,11 +35,11 @@ for( var i=0; i < 5; i++ )
         
         
 server.listen(process.env.C9_PORT || 8333); 
-app.configure(function(){
-app.set(__dirname+randurl)  ;
-});
 
-app.get('/', function (req, res) 
+
+req.redirect(__dirname + '/' +randurl);
+
+app.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
 }); 
