@@ -14,6 +14,10 @@ var mimeTypes = {
     "png": "image/png",
     "js": "text/javascript",
     "css": "text/css"};
+    
+var randurl = "";
+var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
 
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
@@ -29,7 +33,7 @@ var mimeTypes = {
 server.listen(process.env.C9_PORT || 8333); 
 app.get('/', function (req, res) 
 { 
-    res.sendfile(__dirname + '/assets/index.html'); 
+    res.sendfile(__dirname + '/assets/index.html'+randurl); 
     
 }); 
 app.use(express.static(path.join(__dirname, 'assets')));
@@ -48,6 +52,10 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
+	for( var i=0; i < 5; i++ )
+        randurl += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return randurl;
 
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
