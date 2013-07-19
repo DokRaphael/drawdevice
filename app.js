@@ -45,9 +45,9 @@ app.get(randurl, function(req, res) {
         res.sendfile(__dirname + '/assets/index.html' );    
 
 });
-//app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'assets')));
 
-app.use(express.static(path.join(__dirname, randurl)));
+//app.use(express.static(path.join(__dirname, randurl)));
 
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
@@ -64,7 +64,7 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-	
+	url.resolve('http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/', '/one')  
 	
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
