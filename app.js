@@ -37,15 +37,17 @@ for( var i=0; i < 5; i++ )
 server.listen(process.env.C9_PORT || 8333); 
 
 
-req.redirect(__dirname + '/' +randurl);
+app.get('/', function (req, res)
+{ 
+	res.redirect( '/' +randurl);
+}); 
 
 app.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
 }); 
-app.get(randurl, function(req, res) {
-        res.sendfile(__dirname + '/assets/index.html' );    
-
+app.get('/'+randurl, function(req, res) {
+    res.sendfile(__dirname + '/assets/index.html' );    
 });
 app.use(express.static(path.join(__dirname, 'assets')));
 
