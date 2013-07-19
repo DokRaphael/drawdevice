@@ -64,11 +64,11 @@ app.get('/', function (req, res)
 /*app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
-
+*/
 app.get('/'+myData[newserver], function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
-*/
+
 //LIRE JSONFILE
 fs.readFile(myData, 'utf8', function (err, data) 
 {
