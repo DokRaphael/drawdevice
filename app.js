@@ -54,6 +54,7 @@ app.get('/', function (req, res)
 	}); 
 	
 	myData[newserver] = randurl;
+	servernb+=1;
         
     //LIRE JSONFILE
     fs.readFile(outputFilename, 'utf8', function (err, data)
