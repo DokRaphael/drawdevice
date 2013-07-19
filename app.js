@@ -82,14 +82,16 @@ app.get('/', function (req, res)
 
 
 
-/*app.use(function(req, res, next){
+app.get(function(req, res, next){
     console.log(req.url);
-});*/
+});
+
 /*app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
 */
-        /*
+
+/*
 app.get('/'+myData[newserver], function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
@@ -102,7 +104,6 @@ app.get('/:randurl', function (req, res)
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
-//app.use(express.static(path.join(__dirname, randurl)));
 
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
