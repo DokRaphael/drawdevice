@@ -95,7 +95,7 @@ app.get('/'+myData[newserver], function(req, res) {
 });
 */
 
-app.get('/'+randurl, function (req, res)
+app.get('/:randurl', function (req, res)
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
 });
