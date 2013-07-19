@@ -64,7 +64,7 @@ io.sockets.on('connection', function (socket)
 });
 app.get('/', function (req, res) 
 { 
-    res.sendfile(__dirname + '/assets/index.html/'+randurl); 
+    res.sendfile(__dirname + '/assets/index.html/'); 
     
 }); 
 app.use(express.static(path.join(__dirname, 'assets')));
