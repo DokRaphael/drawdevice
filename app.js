@@ -33,7 +33,7 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 server.listen(process.env.C9_PORT || 8333); 
 app.get('/', function (req, res) 
 { 
-    res.sendfile(__dirname + '/assets/index.html'); 
+    res.sendfile(__dirname + '/assets/index.html' + '?'+ randurl); 
     
 }); 
 app.use(express.static(path.join(__dirname, 'assets')));
