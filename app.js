@@ -20,7 +20,6 @@ var mimeTypes = {
 var servernb = 0;
 var outputFilename = 'my.json';
 var myData = {
-  server:'test'
 }
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
