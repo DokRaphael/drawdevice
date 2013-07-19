@@ -17,11 +17,10 @@ var mimeTypes = {
     "js": "text/javascript",
     "css": "text/css"};
     
-
+var servernb = 0;
 var outputFilename = 'my.json';
 var myData = {
-  name:'test',
-  version:'1.0'
+  server:'test'
 }
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
@@ -44,14 +43,18 @@ server.listen(process.env.C9_PORT || 8333);
 
 app.get('/', function (req, res)
 { 
+	var newserver = "server"+servernb;
 	res.redirect( '/' +randurl);
-	fs.writeFile(outputFilename, JSON.stringify(randurl, null, 4), function(err) {
+	fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
     	if(err) {
       	console.log(err);
     	} else {
       	console.log("JSON saved to ");
     	}
 	}); 
+	
+	myData[newserver] = randurl;
+	servernb+=1;
 }); 
 
 app.get('/', function (req, res)
