@@ -45,9 +45,9 @@ app.get(randurl, function(req, res) {
         res.sendfile(__dirname + '/assets/index.html' );    
 
 });
-app.use(express.static(path.join(__dirname, 'assets')));
+//app.use(express.static(path.join(__dirname, 'assets')));
 
-//app.use(express.static(path.join(__dirname, 'randurl')));
+app.use(express.static(path.join(__dirname, randurl)));
 
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
