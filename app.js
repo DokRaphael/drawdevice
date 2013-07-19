@@ -82,7 +82,7 @@ app.get('/', function (req, res)
 
 
 
-app.get(function(req, res, next){
+app2.use(function(req, res, next){
     console.log(req.url);
 });
 
