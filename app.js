@@ -22,6 +22,8 @@ var outputFilename = 'my.json';
 var myData = {
 }
 var roomname='';
+var urlparsed='';
+
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
 	static = require('node-static'); // for serving files*/
@@ -34,27 +36,36 @@ var roomname='';
 //app.listen(8080);
 var randurl = "";
 var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
+var requestedurl = ''
         
 server.listen(process.env.C9_PORT || 8333); 
 
 
+	/*app.get('/:id',function (req, res)
+	{
+		console.log(req.url);
+		requestedurl = req.url;
+	});*/
+
+  
 app.get('/', function (req, res)
 { 
-	randurl = '';
+
+  	randurl = '';
 	for( var i=0; i < 10; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
-	var newserver = "server"+servernb;
-	res.redirect( '/' +randurl);
 	
-	 	myData[newserver] = randurl;
+	var newserver = servernb;
+	res.redirect( '/' +randurl);
+
+	myData[newserver] = randurl;
 
 	//ECRIRE JSONFILE
      fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
     	if(err) {
       	console.log(err);
     	} else {
-      	console.log("JSON saved to ");
+      		//console.log("JSON saved to ");
     	}
 	}); 
     //LIRE JSONFILE
@@ -69,11 +80,18 @@ app.get('/', function (req, res)
         data = JSON.parse(data);
         //console.dir(data);
     });
-       roomhandler ();
+    
 	servernb+=1;
-        
+    roomhandler ();  
 }); 
 
+
+app.get('/:id',function (req, res)
+{
+	console.log(req.url);
+	requestedurl = req.url;
+	
+});
 
 
 
@@ -84,11 +102,14 @@ app.get('/'+roomname, function (req, res)
 
 function roomhandler ()
 {
-	for(var i = 0; i<servernb-1;i++)
+	var i =0;
+	for(i = 0; i<servernb;i++)
 	{
-		roomname = JSON.parse(myData["server"+i]);
+		//roomname = JSON.parse(myData[i]);
+		//console.log(myData[i]);
+
 	}
-	console.log('is ' + roomname);
+
 }
 
 /*app.get('/'+randurl, function(req, res) {
