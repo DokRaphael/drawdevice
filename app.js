@@ -6,6 +6,7 @@ var express = require('express'),
 	server = http.createServer(app),
 	path = require('path'),
 	url = require('url'),
+	fs = require('fs'),
     io = require('socket.io').listen(server); 
 	
 var mimeTypes = {
@@ -17,7 +18,11 @@ var mimeTypes = {
     "css": "text/css"};
     
 
-
+var outputFilename = '/tmp/my.json';
+var myData = {
+  name:'test',
+  version:'1.0'
+}
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
 	static = require('node-static'); // for serving files*/
@@ -40,6 +45,13 @@ server.listen(process.env.C9_PORT || 8333);
 app.get('/', function (req, res)
 { 
 	res.redirect( '/' +randurl);
+	fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
+    	if(err) {
+      	console.log(err);
+    	} else {
+      	console.log("JSON saved to ");
+    	}
+	}); 
 }); 
 
 app.get('/', function (req, res)
