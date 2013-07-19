@@ -60,17 +60,28 @@ app.get('/', function (req, res)
 app.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
-}); 
-app.get('/'+randurl, function(req, res) {
+}
+/*app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
 
-app.get('/1', function(req, res) {
+app.get('/'+myData[newserver], function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
-app.get('/2', function(req, res) {
-    res.sendfile(__dirname + '/assets/index.html' );    
+*/
+//LIRE JSONFILE
+fs.readFile(myData, 'utf8', function (err, data) 
+{
+  if (err) {
+    console.log('Error: ' + err);
+    return;
+  }
+ 
+  data = JSON.parse(data);
+ 
+  console.dir(data);
 });
+
 app.use(express.static(path.join(__dirname, 'assets')));
 
 //app.use(express.static(path.join(__dirname, randurl)));
