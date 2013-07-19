@@ -41,10 +41,7 @@ var requestedurl = ''
 server.listen(process.env.C9_PORT || 8333); 
 
 
-app.use(function(req, res, next){
-    console.log(req.url);
 
-});
   
 app.get('/', function (req, res)
 { 
@@ -104,7 +101,9 @@ function roomhandler ()
 	}
 
 }
-
+app.use(function(req, res, next){
+    console.log(req.url);
+});
 /*app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
