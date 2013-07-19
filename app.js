@@ -40,9 +40,10 @@ var requestedurl = ''
         
 server.listen(process.env.C9_PORT || 8333); 
 
-app.get(':id',function (req, res)
+app.get('/:id',function (req, res)
 {
 	console.log(req.url);
+	
 	//requestedurl = req.url;
 });
 
