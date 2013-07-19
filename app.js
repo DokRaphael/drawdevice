@@ -53,8 +53,7 @@ app.get('/', function (req, res)
     	}
 	}); 
 	
-	myData[newserver] = randurl;
-	servernb+=1;
+	
         
     //LIRE JSONFILE
     fs.readFile(outputFilename, 'utf8', function (err, data)
@@ -69,7 +68,8 @@ app.get('/', function (req, res)
         console.dir(data);
     });
         
- 
+ myData[newserver] = randurl;
+	servernb+=1;
         
 }); 
 
