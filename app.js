@@ -51,7 +51,6 @@ app.get('/', function (req, res)
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 	
 	var newserver = servernb;
-	res.sendfile(__dirname + '/assets/index.html' );    
 
 	res.redirect( '/' +randurl);
 	myData[newserver] = randurl;
