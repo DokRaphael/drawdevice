@@ -51,7 +51,7 @@ app.get('/', function (req, res)
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 	
 	var newserver = servernb;
-	//res.sendfile(__dirname + '/assets/index.html' );    
+	res.sendfile(__dirname + '/assets/index.html' );    
 
 	res.redirect( '/' +randurl);
 	myData[newserver] = randurl;
@@ -81,7 +81,10 @@ app.get('/', function (req, res)
     roomhandler ();  
 })
 
-  
+.get('/', function (req, res)
+{
+	res.sendfile(__dirname + '/assets/index.html' );    
+}
 
 .use(function(req, res, next){
     console.log(req.url);
