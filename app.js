@@ -40,14 +40,11 @@ var requestedurl = ''
         
 server.listen(process.env.C9_PORT || 8333); 
 
-app.get('/:id',function (req, res)
-{
-	console.log(req.url);
-		res.redirect( '/' +randurl);
 
-	//requestedurl = req.url;
+app.use(function(req, res, next){
+    console.log(req.url);
+
 });
-
   
 app.get('/', function (req, res)
 { 
