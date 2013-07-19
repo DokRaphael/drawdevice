@@ -39,12 +39,12 @@ server.listen(process.env.C9_PORT || 8333);
 
 app.get('/', function (req, res) 
 { 
-    res.sendfile(__dirname + '/assets/index.html' ); 
-    
+    res.sendfile(__dirname + '/assets/index.html' );    
 }); 
-//app.use(express.static(path.join(__dirname, 'assets')));
 
-app.use(express.static(path.join(__dirname, 'randurl')));
+app.use(express.static(path.join(__dirname, 'assets')));
+
+//app.use(express.static(path.join(__dirname, 'randurl')));
 
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
@@ -62,7 +62,7 @@ io.set('log level', 1);
 io.sockets.on('connection', function (socket) 
 {
 	
-
+	
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
 	{
