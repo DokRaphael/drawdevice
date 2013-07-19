@@ -40,6 +40,7 @@ server.listen(process.env.C9_PORT || 8333);
 
 app.get('/', function (req, res)
 { 
+	randurl = NULL;
 	for( var i=0; i < 10; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 	var newserver = "server"+servernb;
