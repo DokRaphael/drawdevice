@@ -31,6 +31,10 @@ var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 //app.listen(8080);
 
 server.listen(process.env.C9_PORT || 8333); 
+for( var i=0; i < 5; i++ )
+        randurl += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return randurl;
 app.get('/', function (req, res) 
 { 
     res.sendfile(__dirname + '/assets/index.html' + '?'+ randurl); 
@@ -52,10 +56,7 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-	for( var i=0; i < 5; i++ )
-        randurl += possible.charAt(Math.floor(Math.random() * possible.length));
-
-    return randurl;
+	
 
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
