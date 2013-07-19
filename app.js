@@ -78,13 +78,13 @@ app.get('/', function (req, res)
 
 	servernb+=1;
     roomhandler ();  
-})
-
-
-
-.use(function(req, res, next){
-    console.log(req.url);
 });
+
+
+
+/*app.use(function(req, res, next){
+    console.log(req.url);
+});*/
 /*app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
