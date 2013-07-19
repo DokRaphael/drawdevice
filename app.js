@@ -54,7 +54,6 @@ app.get('/', function (req, res)
 	res.redirect( '/' +randurl);
 
 	myData[newserver] = randurl;
-    res.sendfile(__dirname + '/assets/index.html' );    
 
 	//ECRIRE JSONFILE
      fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
@@ -81,8 +80,12 @@ app.get('/', function (req, res)
     roomhandler ();  
 }); 
 
+  
+app.get('/', function (req, res)
+{ 
+    res.sendfile(__dirname + '/assets/index.html' );    
 
-
+}); 
 app.use(function(req, res, next){
     console.log(req.url);
 });
