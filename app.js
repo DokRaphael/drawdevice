@@ -56,18 +56,18 @@ app.get('/', function (req, res)
 	myData[newserver] = randurl;
 	servernb+=1;
         
-        //LIRE JSONFILE
-        fs.readFile(myData, 'utf8', function (err, data)
-                    {
-                    if (err) {
-                    console.log('Error: ' + err);
-                    return;
-                    }
-                    
-                    data = JSON.parse(data);
-                    
-                    console.dir(data);
-                    });
+    //LIRE JSONFILE
+    fs.readFile(outputFilename, 'utf8', function (err, data)
+    {
+        if (err)
+        {
+            console.log('Error: ' + err);
+            return;
+        }
+                
+        data = JSON.parse(data);
+        console.dir(data);
+    });
         
         
         
