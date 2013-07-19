@@ -49,6 +49,13 @@ app.get('/', function (req, res)
 app.get('/'+randurl, function(req, res) {
     res.sendfile(__dirname + '/assets/index.html' );    
 });
+
+app.get('/1', function(req, res) {
+    res.sendfile(__dirname + '/assets/index.html' );    
+});
+app.get('/2', function(req, res) {
+    res.sendfile(__dirname + '/assets/index.html' );    
+});
 app.use(express.static(path.join(__dirname, 'assets')));
 
 //app.use(express.static(path.join(__dirname, randurl)));
