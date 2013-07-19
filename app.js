@@ -81,12 +81,12 @@ app.get('/', function (req, res)
 }); 
 
   
-app.get('/', function (req, res)
+.get('/', function (req, res)
 { 
     res.sendfile(__dirname + '/assets/index.html' );    
 
 }); 
-app.use(function(req, res, next){
+.use(function(req, res, next){
     console.log(req.url);
 });
 /*app.get('/'+randurl, function(req, res) {
