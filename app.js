@@ -29,11 +29,11 @@ var mimeTypes = {
 // This is the port for our web server. you will need to go to http://localhost:8080 to see it
 //app.listen(8080);
 var randurl = "";
-var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-for( var i=0; i < 5; i++ )
+//var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+/*for( var i=0; i < 5; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
-        
-        
+        */
+randurl= Math.floor((Math.random()*10)+1);    
 server.listen(process.env.C9_PORT || 8333); 
 
 
@@ -68,8 +68,7 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-	for( var i=0; i < 5; i++ )
-        randurl += possible.charAt(Math.floor(Math.random() * possible.length));
+randurl= Math.floor((Math.random()*10)+1);    
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
 	{
