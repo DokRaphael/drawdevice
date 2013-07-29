@@ -55,6 +55,8 @@ $(function()
 				canvas.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
+				doOnOrientationChange();
+
     		});
     		
 	function doOnOrientationChange()
@@ -63,12 +65,10 @@ $(function()
     	{  
 			case -90:
 			case 90:
-			alert("paysage");
 			canvas.width = windowsSizeY*0.8;
 			canvas.height = windowsSizeX*0.8;            
 			break; 	
 			default:
-			alert("portrait");
 			canvas.width = windowsSizeX*0.8;
 			canvas.height = windowsSizeY*0.8;     
 			break; 
@@ -224,7 +224,6 @@ $(function()
 	// Remove inactive clients after 10 seconds of inactivity
 	setInterval(function()
 	{
-		doOnOrientationChange();
 		for(ident in clients)
 		{
 			if($.now() - clients[ident].updated > 10000)
