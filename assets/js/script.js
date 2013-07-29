@@ -1,4 +1,3 @@
-@import /img;
 $(function()
 {
 	// This demo depends on the canvas element
