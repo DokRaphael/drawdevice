@@ -23,6 +23,7 @@ overflow-x:hidden;
 }
 #paper {
   display: block;
+  position : absolute;
 
 
 }

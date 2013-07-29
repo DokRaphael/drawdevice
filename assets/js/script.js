@@ -40,7 +40,7 @@ $(function()
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
     			var canvas = document.getElementById('paper');
-    			switch(window.orientation) 
+    			/*switch(window.orientation) 
 				{  
 				  case -90:
 				  case 90:
@@ -51,7 +51,10 @@ $(function()
 					canvas.width = windowsSizeX*0.8;
 					canvas.height = windowsSizeY*0.8;          
 					break; 
-				}
+				}*/
+				canvas.style.width = window.innerWidth*0.8 +"px";
+				canvas.style.height = canvas.offsetWidth * 0.7;
+				canvas.style.left = (window.innerWidth-this.offsetWidth)/2 +"px";
 				canvas.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
