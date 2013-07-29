@@ -99,9 +99,13 @@ app.get('/'+myData[newserver], function(req, res) {
 	res.sendfile(__dirname + '/assets/index.html' );    
 });*/
 
-app.get('/draw', function (req, res)
+app.get('/', function (req, res)
 {
 	res.sendfile(__dirname + '/draw/assets/index.html' );    
+});
+app.get('/draw', function (req, res)
+{
+	res.sendfile(__dirname + '/assets/index.html' );    
 });
 
 app.use(express.static(path.join(__dirname, 'assets')));
