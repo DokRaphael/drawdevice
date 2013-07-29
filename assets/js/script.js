@@ -32,36 +32,24 @@ $(function()
 	var prev = {};
 	var windowsSizeX ;
 	var windowsSizeY ;
-function doOnOrientationChange()
-{
-    switch(window.orientation) 
-    {  
-      case -90:
-      case 90:
 
-		windowsSizeY = window.screen.availWidth;
-		windowsSizeX = window.screen.availHeight;
-		canvas.width = windowsSizeX*0.8;
-		canvas.height = windowsSizeY*0.8;          
-		break; 
-      default:
-		windowsSizeX = window.screen.availWidth;
-		windowsSizeY = window.screen.availHeight;
-		canvas.width = windowsSizeX*0.8;
-		canvas.height = windowsSizeY*0.8;          
-        break; 
-    }
-}
-
-  window.addEventListener('onorientationchange', doOnOrientationChange);
 	doc.ready(function() {
 
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
-
     			var canvas = document.getElementById('paper');
-				canvas.width = windowsSizeX*0.8;
-				canvas.height = windowsSizeY*0.8;
+    			switch(window.orientation) 
+				{  
+				  case -90:
+				  case 90:
+					canvas.width = windowsSizeY*0.8;
+					canvas.height = windowsSizeX*0.8;          
+					break; 
+				  default:
+					canvas.width = windowsSizeX*0.8;
+					canvas.height = windowsSizeY*0.8;          
+					break; 
+				}
 				canvas.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
