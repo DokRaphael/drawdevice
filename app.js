@@ -106,6 +106,7 @@ app.get('/'+myData[newserver], function(req, res) {
 app.get('/draw', function (req, res)
 {
 	res.sendfile(__dirname + '/draw/assets/index.html' );    
+	console.log(__dirname);
 });
 
 app.use(express.static(path.join(__dirname, 'assets')));
