@@ -49,7 +49,6 @@ $(function()
     		
 	socket.on('moving', function (data) 
 	{
-		console.log(" //ID : "+id + " // X : " + data.x + " // Y : " +data.y );
 		if(! (data.id in clients))
 		{
 			// a new user has come online. create a cursor for them
@@ -93,6 +92,7 @@ $(function()
 		prev.x = e.pageX;
 		prev.y = e.pageY;
 		drawing = true;
+		console.log(" //ID : "+id + " // X : " + data.x + " // Y : " +data.y );
 
 		// Hide the instructions
 		instructions.fadeOut();
@@ -105,7 +105,8 @@ $(function()
 		prev.x = e.originalEvent.touches[0].pageX;
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
-		
+		console.log(" //ID : "+id + " // X : " + data.x + " // Y : " +data.y );
+
 		socket.emit('move',
 			{
 				'x': prev.x,
