@@ -32,13 +32,13 @@ $(function()
 	var prev = {};
 	var windowsSizeX ;
 	var windowsSizeY ;
+    var canvas = document.getElementById('paper');
 
 	doc.ready(function() 
 	{
 
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
-    			var canvas = document.getElementById('paper');
     			/*switch(window.orientation) 
 				{  
 				  case -90:
