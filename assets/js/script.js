@@ -115,12 +115,14 @@ $(function()
 		instructions.fadeOut();
 	});
 	
-	canvas.on("touchstart", function(e){
+	canvas.on("touchstart", function(e)
+	{
 		down = true;
 		up = false;
 		e.preventDefault();
 		prev.x = e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft;
 		prev.y = e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop;
+		console.log(prev.x);
 		drawing = true;
 
 		socket.emit('move',
