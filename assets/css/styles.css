@@ -13,10 +13,13 @@ html, body {
 width:100%; 
 height:100%; 
 overflow-x:hidden;
-background-color:#C96;
 }
 
+body
+{
+	background-color:#C96;
 
+}
 #paper {
   display: block;
   	background:url('../img/bg.png') repeat #e4e4e4;
