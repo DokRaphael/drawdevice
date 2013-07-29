@@ -120,8 +120,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x = e.originalEvent.touches[0].pageX + canvas.offsetLeft;
-		prev.y = e.originalEvent.touches[0].pageY + canvas.offsetTop;
+		prev.x = e.originalEvent.touches[0].pageX - canvas.offsetLeft;
+		prev.y = e.originalEvent.touches[0].pageY - canvas.offsetTop;
 		drawing = true;
 
 		socket.emit('move',
@@ -142,8 +142,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': e.pageX + canvas.offsetLeft,
-				'y': e.pageY + canvas.offsetTop,
+				'x': e.pageX - canvas.offsetLeft,
+				'y': e.pageY - canvas.offsetTop,
 				'drawing': drawing,
 				'id': id
 			});
@@ -155,10 +155,10 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, e.pageX+ canvas.offsetLeft, e.pageY+ canvas.offsetTop);
+			drawLine(prev.x, prev.y, e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
 			
-			prev.x = e.pageX + canvas.offsetLeft;
-			prev.y = e.pageY + canvas.offsetTop;
+			prev.x = e.pageX - canvas.offsetLeft;
+			prev.y = e.pageY - canvas.offsetTop;
 		}
 	});
 		
