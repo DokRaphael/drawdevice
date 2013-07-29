@@ -99,7 +99,7 @@ app.get('/'+myData[newserver], function(req, res) {
 	res.sendfile(__dirname + '/assets/index.html' );    
 });*/
 
-app.get('/', function (req, res)
+app.get('/draw', function (req, res)
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
 });
