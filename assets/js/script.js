@@ -30,10 +30,17 @@ $(function()
 	var socket = io.connect(url);
 	var up = false;
 	var prev = {};
+	var windowsSizeX ;
+	var windowsSizeY ;
+	
 	doc.ready(function() {
+
+				windowsSizeX = window.screen.availWidth;
+				windowsSizeY = window.screen.availHeight;
+
     			var canvas = document.getElementById('paper');
-				canvas.width = window.innerWidth;
-				canvas.height = window.innerHeight;
+				canvas.width = windowsSizeX;
+				canvas.height = windowsSizeY;
 				prev.x = 0;
 				prev.y = 0;
     		});
