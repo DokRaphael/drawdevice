@@ -155,10 +155,10 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, 100*(e.pageX - document.getElementById('paper').offsetLeft)/ $(window).width(), 100*(e.pageY - document.getElementById('paper').offsetTop)/ $(window).height());
+			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
-			prev.x = 100*(e.pageX - document.getElementById('paper').offsetLeft)/ $(window).width();
-			prev.y = 100*(e.pageY - document.getElementById('paper').offsetTop)/ $(window).height();
+			prev.x = e.pageX;
+			prev.y =e.pageY;
 		}
 	});
 		
@@ -191,10 +191,10 @@ $(function()
 
 		if(drawing)
 		{	
-			drawLine(prev.x, prev.y, 100*(e.originalEvent.touches[0].pageX-document.getElementById('paper').offsetLeft)/ $(window).width(), 100*(e.originalEvent.touches[0].pageY-document.getElementById('paper').offsetTop)/ $(window).height());
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
-			prev.x = 100*(e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft)/ $(window).width();
-			prev.y = 100*(e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop)/ $(window).height();
+			prev.x = e.originalEvent.touches[0].pageX;
+			prev.y = e.originalEvent.touches[0].pageY;
 			
 		}
 	});
