@@ -142,8 +142,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': e.pageX,
-				'y': e.pageY,
+				'x': e.pageX + canvas.offsetLeft,
+				'y': e.pageY + canvas.offsetTop,
 				'drawing': drawing,
 				'id': id
 			});
@@ -155,10 +155,10 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, e.pageX, e.pageY);
+			drawLine(prev.x, prev.y, e.pageX+ canvas.offsetLeft, e.pageY+ canvas.offsetTop);
 			
-			prev.x = e.pageX;
-			prev.y = e.pageY;
+			prev.x = e.pageX + canvas.offsetLeft;
+			prev.y = e.pageY + canvas.offsetTop;
 		}
 	});
 		
