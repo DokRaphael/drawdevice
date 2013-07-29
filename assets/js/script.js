@@ -61,10 +61,12 @@ $(function()
     	{  
 			case -90:
 			case 90:
+			alert("paysage");
 			canvas.width = windowsSizeY*0.8;
 			canvas.height = windowsSizeX*0.8;            
 			break; 	
 			default:
+			alert("portrait");
 			canvas.width = windowsSizeX*0.8;
 			canvas.height = windowsSizeY*0.8;     
 			break; 
