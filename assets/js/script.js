@@ -32,22 +32,26 @@ $(function()
 	var prev = {};
 	var windowsSizeX ;
 	var windowsSizeY ;
-	function doOnOrientationChange()
-  {
+function doOnOrientationChange()
+{
     switch(window.orientation) 
     {  
       case -90:
       case 90:
 
 		windowsSizeY = window.screen.availWidth;
-		windowsSizeX = window.screen.availHeight;          
+		windowsSizeX = window.screen.availHeight;
+		canvas.width = windowsSizeX*0.8;
+		canvas.height = windowsSizeY*0.8;          
 		break; 
       default:
 		windowsSizeX = window.screen.availWidth;
-		windowsSizeY = window.screen.availHeight;          
+		windowsSizeY = window.screen.availHeight;
+		canvas.width = windowsSizeX*0.8;
+		canvas.height = windowsSizeY*0.8;          
         break; 
     }
-  }
+}
 
   window.addEventListener('onorientationchange', doOnOrientationChange);
 	doc.ready(function() {
