@@ -51,8 +51,8 @@ $(function()
 					canvas.height = windowsSizeY*0.8;          
 					break; 
 				}*/
-				canvas.width = window.innerWidth*0.8 +"px";
-				canvas.height = canvas.offsetWidth * 0.7 +"px";
+				canvas.width = window.innerWidth*0.8;
+				canvas.height = canvas.width * 0.7;
 				canvas.style.left = (window.innerWidth-this.offsetWidth)/2 +"px";
 				canvas.style.top = (window.innerHeight-this.offsetHeight)/2 +"px";
 
