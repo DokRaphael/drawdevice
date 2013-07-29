@@ -1,7 +1,7 @@
 $(function(){
 	// This demo depends on the canvas element
 	if(!('getContext' in document.createElement('canvas'))){
-	c
+	
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
@@ -33,6 +33,8 @@ $(function(){
     			var canvas = document.getElementById('paper');
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;
+				canvas.style.backgroundImage="url('../img/bg.png')";
+
 				prev.x = 0;
 				prev.y = 0;
     		});
