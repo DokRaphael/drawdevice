@@ -52,7 +52,7 @@ app.get('/', function (req, res)
 	
 	var newserver = servernb;
 
-	res.redirect( '/' +randurl);
+	//res.redirect( '/' +randurl);
 	myData[newserver] = randurl;
 
 	//ECRIRE JSONFILE
@@ -95,10 +95,10 @@ app.get('/'+myData[newserver], function(req, res) {
 });
 */
 
-app.get('/:randurl', function (req, res)
+/*app.get('/:randurl', function (req, res)
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
-});
+});*/
 
 app.get('/', function (req, res)
 {
