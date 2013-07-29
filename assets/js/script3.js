@@ -1,8 +1,7 @@
-$(function()
-{
+$(function(){
 	// This demo depends on the canvas element
-	if(!('getContext' in document.createElement('canvas')))
-	{
+	if(!('getContext' in document.createElement('canvas'))){
+	
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
@@ -10,8 +9,8 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
+	//var url = 'http://localhost/';
 	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -30,43 +29,22 @@ $(function()
 	var socket = io.connect(url);
 	var up = false;
 	var prev = {};
-	var windowsSizeX ;
-	var windowsSizeY ;
-
 	doc.ready(function() 
 	{
     			var canvas = document.getElementById('paper');
-				windowsSizeX = window.screen.availWidth;
-				windowsSizeY = window.screen.availHeight;
-    			/*switch(window.orientation) 
-				{  
-				  case -90:
-				  case 90:
-					canvas.width = windowsSizeY*0.8;
-					canvas.height = windowsSizeX*0.8;          
-					break; 
-				  default:
-					canvas.width = windowsSizeX*0.8;
-					canvas.height = windowsSizeY*0.8;          
-					break; 
-				}*/
-				canvas.width = window.innerWidth*0.9;
-				canvas.height = canvas.width * 0.8;
-				canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
-				canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
-
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
 				canvas.style.backgroundImage="url('../img/bg.png')";
+
 				prev.x = 0;
 				prev.y = 0;
-
     		});
     		
-	
-
     		
     		
 	socket.on('moving', function (data) 
 	{
+		
 		if(! (data.id in clients))
 		{
 			// a new user has come online. create a cursor for them
@@ -94,41 +72,49 @@ $(function()
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
 
 		}
+		
 		/*if(up)
 		{
 			clients[data.id].x = prev.x;
 			clients[data.id].y = prev.y;
 
 		} */
-		clients[data.id] = data;
+	
+	
+			clients[data.id] = data;
+		
 		// Saving the current client state
 		clients[data.id].updated = $.now();
+
+		
 	});
+
+
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x = e.pageX - document.getElementById('paper').offsetLeft;
-		prev.y = e.pageY - document.getElementById('paper').offsetTop;
+		prev.x = e.pageX;
+		prev.y = e.pageY;
 		drawing = true;
 
 		// Hide the instructions
 		instructions.fadeOut();
 	});
 	
-	canvas.on("touchstart", function(e)
-	{
+	
+	canvas.on("touchstart", function(e){
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x = e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft;
-		prev.y = e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop;
-		console.log(prev.x);
+		prev.x = e.originalEvent.touches[0].pageX;
+		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
+		
 
 		socket.emit('move',
 			{
-				'x': prev.x- document.getElementById('paper').offsetLeft,
-				'y': prev.y- document.getElementById('paper').offsetTop,
+				'x': prev.x,
+				'y': prev.y,
 				'drawing': false,
 				'id': id
 			});
@@ -136,6 +122,9 @@ $(function()
 		instructions.fadeOut();
 	});
 	
+
+
+
 	doc.on('mousemove',function(e)
 	{
 		
@@ -143,8 +132,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.pageX - document.getElementById('paper').offsetLeft),
-				'y': (e.pageY - document.getElementById('paper').offsetTop),
+				'x': e.pageX,
+				'y': e.pageY,
 				'drawing': drawing,
 				'id': id
 			});
@@ -154,15 +143,17 @@ $(function()
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
 		
+
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, e.pageX - document.getElementById('paper').offsetLeft, e.pageY - document.getElementById('paper').offsetTop);
+			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
-			prev.x = e.pageX - document.getElementById('paper').offsetLeft;
-			prev.y = e.pageY - document.getElementById('paper').offsetTop;
+			prev.x = e.pageX;
+			prev.y = e.pageY;
 		}
 	});
-		
+	
+	
 	$('body').on('touchmove', function(evt) {
     evt.preventDefault(); 
 	})
@@ -178,8 +169,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft,
-				'y': e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop,
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
 				'drawing': drawing,
 				'id': id
 			});
@@ -192,32 +183,37 @@ $(function()
 
 		if(drawing)
 		{	
-			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX-document.getElementById('paper').offsetLeft, e.originalEvent.touches[0].pageY-document.getElementById('paper').offsetTop);
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
-			prev.x = e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft;
-			prev.y = e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop;
+			prev.x = e.originalEvent.touches[0].pageX;
+			prev.y = e.originalEvent.touches[0].pageY;
 			
 		}
 	});
 	
-	doc.bind('mouseup mouseleave',function()
-	{
-		drawing = false;	
+	doc.bind('mouseup mouseleave',function(){
+	drawing = false;
+		
 	});
-	doc.bind('touchend',function()
-	{
-		down = false;
+	doc.bind('touchend',function(){
+	down = false;
+
 		up = true;
 		drawing = false;
+		/*socket.emit('move',
+			{
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
+				'drawing': drawing,
+				'id': id
+			});*/
 	});
 
 	// Remove inactive clients after 10 seconds of inactivity
-	setInterval(function()
-	{
-		for(ident in clients)
-		{
-			if($.now() - clients[ident].updated > 10000)
-			{
+	setInterval(function(){
+		
+		for(ident in clients){
+			if($.now() - clients[ident].updated > 10000){
 				
 				// Last update was more than 10 seconds ago. 
 				// This user has probably closed the page
@@ -227,12 +223,14 @@ $(function()
 				delete cursors[ident];
 			}
 		}
+		
 	},10000);
 
-	function drawLine(fromx, fromy, tox, toy)
-	{
+	function drawLine(fromx, fromy, tox, toy){
 		ctx.moveTo(fromx, fromy);
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
 	}
+	
+
 });
