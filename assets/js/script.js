@@ -126,8 +126,8 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': prev.x- document.getElementById('paper').offsetLeft,
-				'y': prev.y- document.getElementById('paper').offsetTop,
+				'x': prev.x,
+				'y': prev.y,
 				'drawing': false,
 				'id': id
 			});
