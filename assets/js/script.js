@@ -29,7 +29,8 @@ $(function(){
 	var socket = io.connect(url);
 	var up = false;
 	var prev = {};
-	doc.ready(function() {
+	doc.ready(function() 
+	{
     			var canvas = document.getElementById('paper');
 				canvas.width = window.innerWidth;
 				canvas.height = window.innerHeight;

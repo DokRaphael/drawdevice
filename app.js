@@ -109,7 +109,7 @@ app.get('/draw', function (req, res,next)
 	
 });
 
-app.use(express.static(path.join(__dirname, 'assets')));
+//app.use(express.static(path.join(__dirname, 'assets')));
 
 
 // If the URL of the socket server is opened in a browser
