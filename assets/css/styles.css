@@ -19,10 +19,11 @@ background-color:#C96;
 
 #paper {
   display: block;
+  	background:url('../img/bg.png') repeat #e4e4e4;
+
 
 }
 html{
-	background:url('../img/bg.png') repeat #e4e4e4;
 		
 	/* This will hide the extra canvas if the screen is small */
 	
