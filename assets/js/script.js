@@ -108,8 +108,8 @@ $(function()
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x = e.pageX + canvas.offsetLeft;
-		prev.y = e.pageY + canvas.offsetTop;
+		prev.x = e.pageX - canvas.offsetLeft;
+		prev.y = e.pageY - canvas.offsetTop;
 		drawing = true;
 
 		// Hide the instructions
@@ -177,8 +177,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
+				'x': e.originalEvent.touches[0].pageX- canvas.offsetLeft,
+				'y': e.originalEvent.touches[0].pageY- canvas.offsetTop,
 				'drawing': drawing,
 				'id': id
 			});
@@ -193,8 +193,8 @@ $(function()
 		{	
 			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
-			prev.x = e.originalEvent.touches[0].pageX;
-			prev.y = e.originalEvent.touches[0].pageY;
+			prev.x = e.originalEvent.touches[0].pageX- canvas.offsetLeft;
+			prev.y = e.originalEvent.touches[0].pageY- canvas.offsetTop;
 			
 		}
 	});
