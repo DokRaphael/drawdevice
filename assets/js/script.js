@@ -41,6 +41,7 @@ $(function()
     			var canvas = document.getElementById('paper');
 				canvas.width = windowsSizeX;
 				canvas.height = windowsSizeY;
+				canvas.style.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
     		});
