@@ -35,6 +35,7 @@ $(function()
 
 	doc.ready(function() 
 	{
+ 				window.addEventListener('onorientationchange', doOnOrientationChange);	
 
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
@@ -55,6 +56,7 @@ $(function()
 				prev.x = 0;
 				prev.y = 0;
     		});
+    		
 	function doOnOrientationChange()
   	{
     	switch(window.orientation) 
@@ -73,7 +75,6 @@ $(function()
     	}
   	}
 
-  window.addEventListener('onorientationchange', doOnOrientationChange);	
     		
     		
 	socket.on('moving', function (data) 
@@ -223,7 +224,7 @@ $(function()
 	// Remove inactive clients after 10 seconds of inactivity
 	setInterval(function()
 	{
-		
+		doOnOrientationChange();
 		for(ident in clients)
 		{
 			if($.now() - clients[ident].updated > 10000)
