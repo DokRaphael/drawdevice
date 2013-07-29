@@ -108,8 +108,8 @@ $(function()
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x = e.pageX;
-		prev.y = e.pageY;
+		prev.x = e.pageX + canvas.offsetLeft;
+		prev.y = e.pageY + canvas.offsetTop;
 		drawing = true;
 
 		// Hide the instructions
@@ -120,8 +120,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x = e.originalEvent.touches[0].pageX;
-		prev.y = e.originalEvent.touches[0].pageY;
+		prev.x = e.originalEvent.touches[0].pageX + canvas.offsetLeft;
+		prev.y = e.originalEvent.touches[0].pageY + canvas.offsetTop;
 		drawing = true;
 
 		socket.emit('move',
