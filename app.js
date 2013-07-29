@@ -36,28 +36,26 @@ var urlparsed='';
 //app.listen(8080);
 var randurl = "";
 var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
-var requestedurl = ''
+var requestedurl = '';
         
 server.listen(process.env.C9_PORT || 8333); 
-
-
 
   
 app.get('/', function (req, res)
 { 
 
-  	randurl = '';
+/*  	randurl = '';
 	for( var i=0; i < 10; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 	
 	var newserver = servernb;
-
+*/
 	//res.redirect( '/' +randurl);
-	myData[newserver] = randurl;
+	//myData[newserver] = randurl;
 	res.sendfile(__dirname + '/assets/index.html' );    
 
 	//ECRIRE JSONFILE
-     fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
+ /*    fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
     	if(err) {
       	console.log(err);
     	} else {
@@ -78,7 +76,7 @@ app.get('/', function (req, res)
     });
 
 	servernb+=1;
-    //roomhandler ();  
+    roomhandler ();  */
 });
 
 /*app.use(function(req, res, next){
@@ -117,7 +115,7 @@ app.use(express.static(path.join(__dirname, 'assets')));
         fileServer.serve(request, response);
     });
 }*/
-function roomhandler ()
+/*function roomhandler ()
 {
 	var i =0;
 	for(i = 0; i<servernb;i++)
@@ -127,7 +125,7 @@ function roomhandler ()
 
 	}
 
-}
+}*/
 // Delete this row if you want to see debug messages
 io.set('log level', 1);
 
