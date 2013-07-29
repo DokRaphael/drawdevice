@@ -106,8 +106,8 @@ $(function()
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x =e.pageX * $(window).width()/100;
-		prev.y =e.pageY * $(window).height()/100;
+		prev.x =e.pageX - document.getElementById('paper').offsetLeft;
+		prev.y =e.pageY - document.getElementById('paper').offsetTop;
 		drawing = true;
 
 		// Hide the instructions
@@ -119,8 +119,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x =e.originalEvent.touches[0].pageX * $(window).width()/100;
-		prev.y =e.originalEvent.touches[0].pageY * $(window).height()/100;
+		prev.x = e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft;
+		prev.y = e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop;
 		console.log(prev.x);
 		drawing = true;
 
@@ -142,8 +142,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': e.pageX* $(window).width()/100,
-				'y': e.pageY* $(window).height()/100,
+				'x': 100*(e.pageX - document.getElementById('paper').offsetLeft)/ $(window).width(),
+				'y': 100*(e.pageY - document.getElementById('paper').offsetTop)/ $(window).height(),
 				'drawing': drawing,
 				'id': id
 			});
@@ -155,7 +155,7 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, e.pageX* $(window).width()/100, e.pageY* $(window).height()/100);
+			drawLine(prev.x, prev.y, e.pageX, e.pageY);
 			
 			prev.x = e.pageX;
 			prev.y =e.pageY;
@@ -177,8 +177,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x':e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft* $(window).width()/100,
-				'y':e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop * $(window).height()/100,
+				'x': 100*(e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft)/ $(window).width(),
+				'y': 100*(e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop)/ $(window).height(),
 				'drawing': drawing,
 				'id': id
 			});
@@ -191,10 +191,10 @@ $(function()
 
 		if(drawing)
 		{	
-			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX *$(window).width()/100, e.originalEvent.touches[0].pageY * $(window).height()/100);
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
-			prev.x = e.originalEvent.touches[0].pageX * $(window).width()/100;
-			prev.y = e.originalEvent.touches[0].pageY* $(window).height()/100;
+			prev.x = e.originalEvent.touches[0].pageX;
+			prev.y = e.originalEvent.touches[0].pageY;
 			
 		}
 	});
