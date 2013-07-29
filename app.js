@@ -41,21 +41,21 @@ var requestedurl = '';
 server.listen(process.env.C9_PORT || 8333); 
 
   
-app.get('/', function (req, res)
+/*app.get('/', function (req, res)
 { 
 
-/*  	randurl = '';
+  	randurl = '';
 	for( var i=0; i < 10; i++ )
         randurl += possible.charAt(Math.floor(Math.random() * possible.length));
 	
 	var newserver = servernb;
-*/
+
 	//res.redirect( '/' +randurl);
 	//myData[newserver] = randurl;
 	res.sendfile(__dirname + '/assets/index.html' );    
 
 	//ECRIRE JSONFILE
- /*    fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
+     fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
     	if(err) {
       	console.log(err);
     	} else {
@@ -76,8 +76,8 @@ app.get('/', function (req, res)
     });
 
 	servernb+=1;
-    roomhandler ();  */
-});
+    roomhandler ();  
+});*/
 
 /*app.use(function(req, res, next){
     console.log(req.url);
@@ -98,11 +98,11 @@ app.get('/'+myData[newserver], function(req, res) {
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
 });*/
-/*
+
 app.get('/', function (req, res)
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
-});*/
+});
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
