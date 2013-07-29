@@ -34,7 +34,7 @@ var urlparsed='';
 	
 // This is the port for our web server. you will need to go to http://localhost:8080 to see it
 //app.listen(8080);
-var randurl = "";
+var randurl = '';
 var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
 var requestedurl = '';
         
@@ -132,7 +132,7 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-randurl= Math.floor((Math.random()*10)+1);    
+//randurl= Math.floor((Math.random()*10)+1);    
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
 	{

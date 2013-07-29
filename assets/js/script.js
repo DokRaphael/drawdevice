@@ -1,7 +1,6 @@
 $(function(){
 	// This demo depends on the canvas element
 	if(!('getContext' in document.createElement('canvas'))){
-	c
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
