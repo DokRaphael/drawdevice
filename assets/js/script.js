@@ -35,7 +35,6 @@ $(function()
 
 	doc.ready(function() 
 	{
- 				window.addEventListener('onorientationchange', doOnOrientationChange);	
 
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
@@ -60,25 +59,10 @@ $(function()
 				canvas.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
-				doOnOrientationChange();
 
     		});
     		
-	function doOnOrientationChange()
-  	{
-    	switch(window.orientation) 
-    	{  
-			case -90:
-			case 90:
-			canvas.width = windowsSizeY*0.8;
-			canvas.height = windowsSizeX*0.8;            
-			break; 	
-			default:
-			canvas.width = windowsSizeX*0.8;
-			canvas.height = windowsSizeY*0.8;     
-			break; 
-    	}
-  	}
+	
 
     		
     		
