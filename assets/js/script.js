@@ -39,8 +39,8 @@ $(function()
 				windowsSizeY = window.screen.availHeight;
 
     			var canvas = document.getElementById('paper');
-				canvas.width = windowsSizeX;
-				canvas.height = windowsSizeY;
+				canvas.width = windowsSizeX - '100px';
+				canvas.height = windowsSizeY - '100px';
 				canvas.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
