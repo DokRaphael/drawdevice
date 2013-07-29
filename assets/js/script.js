@@ -50,8 +50,8 @@ $(function()
 					canvas.height = windowsSizeY*0.8;          
 					break; 
 				}*/
-				canvas.width = window.innerWidth*0.8;
-				canvas.height = canvas.width * 0.7;
+				canvas.width = window.innerWidth*0.9;
+				canvas.height = canvas.width * 0.8;
 				canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
 				canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
 
@@ -125,8 +125,8 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': prev.x/5,
-				'y': prev.y/5,
+				'x': prev.x,
+				'y': prev.y,
 				'drawing': false,
 				'id': id
 			});
@@ -141,8 +141,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.pageX - document.getElementById('paper').offsetLeft)*5,
-				'y': (e.pageY - document.getElementById('paper').offsetTop)*5,
+				'x': (e.pageX - document.getElementById('paper').offsetLeft),
+				'y': (e.pageY - document.getElementById('paper').offsetTop),
 				'drawing': drawing,
 				'id': id
 			});
