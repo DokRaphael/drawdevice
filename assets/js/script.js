@@ -1,3 +1,4 @@
+@import /img;
 $(function()
 {
 	// This demo depends on the canvas element
@@ -54,7 +55,7 @@ $(function()
 				canvas.height = canvas.width * 0.9;
 				canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
 				canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
-				canvas.style.backgroundImage = "url('../../img/bg.png')";
+				canvas.style.backgroundImage = "url('img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
 
