@@ -1,6 +1,8 @@
-$(function(){
+$(function()
+{
 	// This demo depends on the canvas element
-	if(!('getContext' in document.createElement('canvas'))){
+	if(!('getContext' in document.createElement('canvas')))
+	{
 		alert('Sorry, it looks like your browser does not support canvas!');
 		return false;
 	}
@@ -68,24 +70,16 @@ $(function(){
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
 
 		}
-		
 		/*if(up)
 		{
 			clients[data.id].x = prev.x;
 			clients[data.id].y = prev.y;
 
 		} */
-	
-	
-			clients[data.id] = data;
-		
+		clients[data.id] = data;
 		// Saving the current client state
 		clients[data.id].updated = $.now();
-
-		
 	});
-
-
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
@@ -97,7 +91,6 @@ $(function(){
 		instructions.fadeOut();
 	});
 	
-	
 	canvas.on("touchstart", function(e){
 		down = true;
 		up = false;
@@ -106,7 +99,6 @@ $(function(){
 		prev.y = e.originalEvent.touches[0].pageY;
 		drawing = true;
 		
-
 		socket.emit('move',
 			{
 				'x': prev.x,
@@ -118,9 +110,6 @@ $(function(){
 		instructions.fadeOut();
 	});
 	
-
-
-
 	doc.on('mousemove',function(e)
 	{
 		
@@ -139,7 +128,6 @@ $(function(){
 		// Draw a line for the current user's movement, as it is
 		// not received in the socket.on('moving') event above
 		
-
 		if(drawing)
 		{		
 			drawLine(prev.x, prev.y, e.pageX, e.pageY);
@@ -148,8 +136,7 @@ $(function(){
 			prev.y = e.pageY;
 		}
 	});
-	
-	
+		
 	$('body').on('touchmove', function(evt) {
     evt.preventDefault(); 
 	})
@@ -187,29 +174,25 @@ $(function(){
 		}
 	});
 	
-	doc.bind('mouseup mouseleave',function(){
-	drawing = false;
-		
+	doc.bind('mouseup mouseleave',function()
+	{
+		drawing = false;	
 	});
-	doc.bind('touchend',function(){
-	down = false;
-
+	doc.bind('touchend',function()
+	{
+		down = false;
 		up = true;
 		drawing = false;
-		/*socket.emit('move',
-			{
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
-				'drawing': drawing,
-				'id': id
-			});*/
 	});
 
 	// Remove inactive clients after 10 seconds of inactivity
-	setInterval(function(){
+	setInterval(function()
+	{
 		
-		for(ident in clients){
-			if($.now() - clients[ident].updated > 10000){
+		for(ident in clients)
+		{
+			if($.now() - clients[ident].updated > 10000)
+			{
 				
 				// Last update was more than 10 seconds ago. 
 				// This user has probably closed the page
@@ -219,14 +202,12 @@ $(function(){
 				delete cursors[ident];
 			}
 		}
-		
 	},10000);
 
-	function drawLine(fromx, fromy, tox, toy){
+	function drawLine(fromx, fromy, tox, toy)
+	{
 		ctx.moveTo(fromx, fromy);
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
 	}
-	
-
 });
