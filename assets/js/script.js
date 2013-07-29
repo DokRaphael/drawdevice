@@ -53,8 +53,8 @@ $(function()
 				}*/
 				canvas.width = window.innerWidth*0.8;
 				canvas.height = canvas.width * 0.7;
-				canvas.style.left = (window.innerWidth-this.offsetWidth)/2 +"px";
-				canvas.style.top = (window.innerHeight-this.offsetHeight)/2 +"px";
+				canvas.style.left = (window.innerWidth-canvas.offsetWidth)/2 +"px";
+				canvas.style.top = (window.innerHeight-canvas.offsetHeight)/2 +"px";
 
 				canvas.style.backgroundImage="url('../img/bg.png')";
 				prev.x = 0;
