@@ -32,7 +32,24 @@ $(function()
 	var prev = {};
 	var windowsSizeX ;
 	var windowsSizeY ;
-	
+	function doOnOrientationChange()
+  {
+    switch(window.orientation) 
+    {  
+      case -90:
+      case 90:
+
+		windowsSizeY = window.screen.availWidth;
+		windowsSizeX = window.screen.availHeight;          
+		break; 
+      default:
+		windowsSizeX = window.screen.availWidth;
+		windowsSizeY = window.screen.availHeight;          
+        break; 
+    }
+  }
+
+  window.addEventListener('onorientationchange', doOnOrientationChange);
 	doc.ready(function() {
 
 				windowsSizeX = window.screen.availWidth;
