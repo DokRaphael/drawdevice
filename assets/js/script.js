@@ -125,8 +125,8 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': prev.x,
-				'y': prev.y,
+				'x': prev.x/5,
+				'y': prev.y/5,
 				'drawing': false,
 				'id': id
 			});
@@ -141,8 +141,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': e.pageX - document.getElementById('paper').offsetLeft,
-				'y': e.pageY - document.getElementById('paper').offsetTop,
+				'x': (e.pageX - document.getElementById('paper').offsetLeft)*5,
+				'y': (e.pageY - document.getElementById('paper').offsetTop)*5,
 				'drawing': drawing,
 				'id': id
 			});
