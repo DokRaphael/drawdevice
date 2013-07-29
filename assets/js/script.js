@@ -49,7 +49,7 @@ $(function()
     		
 	socket.on('moving', function (data) 
 	{
-		
+		console.log(" //ID : "+id + " // X : " + data.x + " // Y : " +data.y );
 		if(! (data.id in clients))
 		{
 			// a new user has come online. create a cursor for them
