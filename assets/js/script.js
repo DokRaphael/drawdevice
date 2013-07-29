@@ -56,20 +56,20 @@ $(function()
 				prev.y = 0;
     		});
 	function doOnOrientationChange()
-  {
-    switch(window.orientation) 
-    {  
-      case -90:
-      case 90:
-		canvas.width = windowsSizeY*0.8;
-		canvas.height = windowsSizeX*0.8;            
-		break; 	
-      default:
-      	canvas.width = windowsSizeX*0.8;
-		canvas.height = windowsSizeY*0.8;     
-        break; 
-    }
-  }
+  	{
+    	switch(window.orientation) 
+    	{  
+			case -90:
+			case 90:
+			canvas.width = windowsSizeY*0.8;
+			canvas.height = windowsSizeX*0.8;            
+			break; 	
+			default:
+			canvas.width = windowsSizeX*0.8;
+			canvas.height = windowsSizeY*0.8;     
+			break; 
+    	}
+  	}
 
   window.addEventListener('onorientationchange', doOnOrientationChange);	
     		
