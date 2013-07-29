@@ -54,6 +54,7 @@ app.get('/', function (req, res)
 
 	//res.redirect( '/' +randurl);
 	myData[newserver] = randurl;
+	res.sendfile(__dirname + '/assets/index.html' );    
 
 	//ECRIRE JSONFILE
      fs.writeFile(outputFilename, JSON.stringify(myData, null, 4), function(err) {
@@ -77,7 +78,7 @@ app.get('/', function (req, res)
     });
 
 	servernb+=1;
-    roomhandler ();  
+    //roomhandler ();  
 });
 
 /*app.use(function(req, res, next){
@@ -99,11 +100,11 @@ app.get('/'+myData[newserver], function(req, res) {
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
 });*/
-
+/*
 app.get('/', function (req, res)
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
-});
+});*/
 
 app.use(express.static(path.join(__dirname, 'assets')));
 
