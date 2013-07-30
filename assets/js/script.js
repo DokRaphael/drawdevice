@@ -104,8 +104,8 @@ $(function()
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x =(e.pageX - document.getElementById('paper').offsetLeft)* $(window).width()/100;
-		prev.y =(e.pageY - document.getElementById('paper').offsetTop)* $(window).width()/100;
+		prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
+		prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').width();
 		drawing = true;
 
 		// Hide the instructions
@@ -117,8 +117,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x = (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft)* $(window).width()/100;
-		prev.y = (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop)* $(window).width()/100;
+		prev.x = 100 * (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
+		prev.y = 100 * (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop)/ $('paper').width();
 		console.log(prev.x);
 		drawing = true;
 
@@ -140,8 +140,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.pageX - document.getElementById('paper').offsetLeft) * $(window).width()/100,
-				'y': (e.pageY - document.getElementById('paper').offsetTop) * $(window).width()/100,
+				'x':100* (e.pageX - document.getElementById('paper').offsetLeft) * $('paper').width(),
+				'y':100* (e.pageY - document.getElementById('paper').offsetTop) * $('paper').width(),
 				'drawing': drawing,
 				'id': id
 			});
@@ -175,8 +175,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft) * $(window).width()/100,
-				'y': (e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop) * $(window).height()/100,
+				'x': 100*(e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft) * $('paper').width(),
+				'y': 100*(e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop) * $('paper').height(),
 				'drawing': drawing,
 				'id': id
 			});
