@@ -56,7 +56,7 @@ $(function()
 				var ratio1 = window.innerWidth / window.innerHeight;
 				var ratio2 = canvas.width / canvas.height;
 				
-				if (ratio1 > ratio2) {
+				if (ratio1 < ratio2) {
 					canvas.width = window.innerWidth*0.7;
 					canvas.height = canvas.width * 0.8;
 				}
