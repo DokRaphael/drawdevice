@@ -20,7 +20,7 @@ $(function()
 	
 	// Generate an unique ID
 	var id = Math.round($.now()*Math.random());
-	
+	console.log(canvas.width);
 	// A flag for drawing activity
 	var drawing = false;
 	var clients = {};
@@ -247,6 +247,6 @@ $(function()
 		ctx.moveTo(fromx, fromy);
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
-		console.log(tox + "//" + toy);
+		//console.log(tox + "//" + toy);
 	}
 });
