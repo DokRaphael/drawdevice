@@ -50,8 +50,8 @@ $(function()
 					canvas.height = windowsSizeY*0.8;          
 					break; 
 				}*/
-				canvas.width = window.innerWidth*0.6;
-				canvas.height = canvas.width * 0.7;
+				canvas.width = window.innerWidth*0.7;
+				canvas.height = canvas.width * 0.8;
 				//canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
 				//canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
@@ -84,12 +84,9 @@ $(function()
 		}
 		if(data.drawing && clients[data.id])
 		{
-			
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
-			
 			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
-
 		}
 		/*if(up)
 		{
@@ -105,7 +102,7 @@ $(function()
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
 		prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
-		prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').width();
+		prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
 		drawing = true;
 
 		// Hide the instructions
@@ -118,7 +115,7 @@ $(function()
 		up = false;
 		e.preventDefault();
 		prev.x = 100 * (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
-		prev.y = 100 * (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop)/ $('paper').width();
+		prev.y = 100 * (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
 		console.log(prev.x);
 		drawing = true;
 
@@ -141,7 +138,7 @@ $(function()
 			socket.emit('move',
 			{
 				'x':100* (e.pageX - document.getElementById('paper').offsetLeft) * $('paper').width(),
-				'y':100* (e.pageY - document.getElementById('paper').offsetTop) * $('paper').width(),
+				'y':100* (e.pageY - document.getElementById('paper').offsetTop) * $('paper').height(),
 				'drawing': drawing,
 				'id': id
 			});
