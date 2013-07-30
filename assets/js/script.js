@@ -57,6 +57,9 @@ $(function()
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
+				
+				
+				console.log($('paper').width() + "//" +	$(window).width());
     		});
     		
 	
