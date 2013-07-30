@@ -101,8 +101,10 @@ $(function()
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
-		prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
+		//prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
+		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
+		prev.x =  (e.pageX - document.getElementById('paper').offsetLeft);
+		prev.y = (e.pageY - document.getElementById('paper').offsetTop);
 		drawing = true;
 
 		// Hide the instructions
