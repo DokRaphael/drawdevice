@@ -74,6 +74,8 @@ $(function()
 				//INIT
 				prev.x = 0;
 				prev.y = 0;
+				prevac.x = 0;
+				prevac.y = 0;
     		});
     		
     		
