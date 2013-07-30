@@ -123,8 +123,8 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': prev.x * $(window).width(),
-				'y': prev.y * $(window).height(),
+				'x': 100 * prev.x / $('paper').width(),
+				'y': 100 * prev.y / $('paper').height(),
 				'drawing': false,
 				'id': id
 			});
