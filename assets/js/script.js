@@ -186,7 +186,7 @@ $(function()
 		if(drawing)
 		{		
 			drawLine( prev.x,  prev.y, e.pageX/ canvas.width(), e.pageY/ canvas.height());	
-			drawLine(prevac.x, prevac.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+			drawLine(prevac.x, prevac.y, e.pageX, e.pageY);
 			prevac.x = e.pageX;
 			prevac.y = e.pageY;
 			prev.x = e.pageX/ canvas.width();
