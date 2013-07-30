@@ -36,6 +36,8 @@ $(function()
 	doc.ready(function() 
 	{
     			var canvas = document.getElementById('paper');
+    			papier = this.document.getElementById('paper'); 
+
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
     			/*switch(window.orientation) 
@@ -124,7 +126,6 @@ $(function()
 		prev.y =  (e.originalEvent.touches[0].pageY );
 		console.log(prev.x);
 		drawing = true;
-		papier = this.document.getElementById('paper'); 
 
 		socket.emit('move',
 			{
@@ -147,7 +148,6 @@ $(function()
 		{
 				w = canvas.width;
 				h=canvas.height;
-				papier = this.document.getElementById('paper'); 
 
 			socket.emit('move',
 			{
@@ -184,7 +184,6 @@ $(function()
 		down = false;
 		up = false;
 		e.preventDefault();
-		papier = this.document.getElementById('paper'); 
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('move',
