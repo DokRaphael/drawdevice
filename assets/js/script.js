@@ -105,7 +105,7 @@ $(function()
 		e.preventDefault();
 		//prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
 		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
-		prev.x =  (e.pageX );
+		prev.x =  (e.pageX);
 		prev.y = (e.pageY);
 		drawing = true;
 
@@ -129,8 +129,8 @@ $(function()
 			{
 				/*'x': 100 * prev.x / document.getElementById('paper').width,
 				'y': 100 * prev.y / document.getElementById('paper').height,*/
-				'x':  prev.x/w,
-				'y':  prev.y/h,
+				'x':  this.document.getElementById('paper').width * prev.x/w,
+				'y':  this.document.getElementById('paper').height * prev.y/h,
 				'drawing': false,
 				'id': id,
 			
@@ -150,8 +150,8 @@ $(function()
 			{
 				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
 				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x': e.pageX/w,
-				'y': e.pageY/h,
+				'x':this.document.getElementById('paper').width * e.pageX/w,
+				'y': this.document.getElementById('paper').height *e.pageY/h,
 				'drawing': drawing,
 				'id': id,
 				
@@ -188,8 +188,8 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': e.originalEvent.touches[0].pageX/w,
-				'y': e.originalEvent.touches[0].pageY/h,
+				'x': this.document.getElementById('paper').width * e.originalEvent.touches[0].pageX/w,
+				'y': this.document.getElementById('paper').height *e.originalEvent.touches[0].pageY/h,
 				'drawing': drawing,
 				'id': id,
 			});
