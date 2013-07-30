@@ -30,6 +30,8 @@ $(function()
 	var socket = io.connect(url);
 	var up = false;
 	var prev = {};
+	var prevac = {};
+
 	var windowsSizeX ;
 	var windowsSizeY ;
 
@@ -121,6 +123,8 @@ $(function()
 		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
 		prev.x =  (e.pageX / canvas.width());
 		prev.y = (e.pageY)/ canvas.height();
+		prevac.x =  (e.pageX );
+		prevac.y = (e.pageY);
 		drawing = true;
 
 		// Hide the instructions
@@ -135,6 +139,8 @@ $(function()
 		e.preventDefault();
 		prev.x =  (e.originalEvent.touches[0].pageX / canvas.width());
 		prev.y =  (e.originalEvent.touches[0].pageY / canvas.height());
+		prevac.x = e.originalEvent.touches[0].pageX;
+		prevac.y = e.originalEvent.touches[0].pageY;
 		console.log(prev.x);
 		drawing = true;
 
@@ -177,7 +183,10 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine( prev.x,  prev.y, e.pageX/ canvas.width(), e.pageY/ canvas.height());		
+			drawLine( prev.x,  prev.y, e.pageX/ canvas.width(), e.pageY/ canvas.height());	
+			drawLine(prevac.x, prevac.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+			prevac.x = e.pageX;
+			prevac.y = e.pageY;
 			prev.x = e.pageX/ canvas.width();
 			prev.y =e.pageY/ canvas.height();
 		}
@@ -214,7 +223,10 @@ $(function()
 		if(drawing)
 		{	
 			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX/ canvas.width(), e.originalEvent.touches[0].pageY/ canvas.height());
+			drawLine(prevac.x, prevac.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
 
+			prevac.x = e.originalEvent.touches[0].pageX;
+			prevac.y = e.originalEvent.touches[0].pageY;
 			prev.x = e.originalEvent.touches[0].pageX/ canvas.width();
 			prev.y = e.originalEvent.touches[0].pageY/ canvas.height();
 			
