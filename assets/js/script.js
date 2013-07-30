@@ -36,7 +36,7 @@ $(function()
 	doc.ready(function() 
 	{
     			var canvas = document.getElementById('paper');
-    			papier = this.document.getElementById('paper'); 
+    			var papier = this.document.getElementById('paper'); 
 
 				windowsSizeX = window.screen.availWidth;
 				windowsSizeY = window.screen.availHeight;
