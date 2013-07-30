@@ -116,8 +116,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x = 100 * (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
-		prev.y = 100 * (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
+		prev.x =  (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft);
+		prev.y =  (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop);
 		console.log(prev.x);
 		drawing = true;
 
