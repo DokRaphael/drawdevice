@@ -169,7 +169,7 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, e.pageX/ canvas.width, e.pageY/ canvas.height);		
+			drawLine( prev.x,  prev.y, e.pageX/ canvas.width, e.pageY/ canvas.height);		
 			prev.x = e.pageX/ canvas.width;
 			prev.y =e.pageY/ canvas.height;
 		}
@@ -181,8 +181,7 @@ $(function()
 	
 	doc.on('touchmove',function(e)
 	{
-		w = canvas.width;
-		h = canvas.height;
+		
 		down = false;
 		up = false;
 		e.preventDefault();
@@ -248,5 +247,6 @@ $(function()
 		ctx.moveTo(fromx, fromy);
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
+		console.log(tox + "//" + toy);
 	}
 });
