@@ -20,7 +20,7 @@ $(function()
 	
 	// Generate an unique ID
 	var id = Math.round($.now()*Math.random());
-	console.log(canvas.width);
+	console.log(canvas.width());
 	// A flag for drawing activity
 	var drawing = false;
 	var clients = {};
