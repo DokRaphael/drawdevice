@@ -127,8 +127,8 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': 100 * prev.x / $('paper').width(),
-				'y': 100 * prev.y / $('paper').height(),
+				'x': 100 * prev.x / document.getElementById('paper').width,
+				'y': 100 * prev.y / document.getElementById('paper').height,
 				'drawing': false,
 				'id': id
 			});
@@ -143,8 +143,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x':100* (e.pageX ) / $('paper').width(),
-				'y':100* (e.pageY) / $('paper').height(),
+				'x':100* (e.pageX ) / document.getElementById('paper').width,
+				'y':100* (e.pageY) / document.getElementById('paper').height,
 				'drawing': drawing,
 				'id': id
 			});
@@ -178,8 +178,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': 100*(e.originalEvent.touches[0].pageX) / $('paper').width(),
-				'y': 100*(e.originalEvent.touches[0].pageY) / $('paper').height(),
+				'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
+				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,
 				'drawing': drawing,
 				'id': id
 			});
