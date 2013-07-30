@@ -62,7 +62,7 @@ $(function()
 				}
 				else {
 					canvas.height = window.innerHeight*0.7;
-					canvas.width = canvas.height * 0.8;
+					canvas.width = canvas.height / 0.8;
 				}
 				
 				//CENTER CANVAS
