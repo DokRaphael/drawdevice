@@ -90,7 +90,7 @@ $(function()
 		{
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
-			drawLine(canvas.width * clients[data.id].x,canvas.height * clients[data.id].y, data.x * canvas.width, data.y * canvas.height);
+			drawLine(canvas.width() * clients[data.id].x,canvas.height() * clients[data.id].y, data.x * canvas.width(), data.y * canvas.height());
 		}
 		/*if(up)
 		{
@@ -110,8 +110,8 @@ $(function()
 		e.preventDefault();
 		//prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
 		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
-		prev.x =  (e.pageX / canvas.width);
-		prev.y = (e.pageY)/ canvas.height;
+		prev.x =  (e.pageX / canvas.width());
+		prev.y = (e.pageY)/ canvas.height();
 		drawing = true;
 
 		// Hide the instructions
@@ -124,8 +124,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x =  (e.originalEvent.touches[0].pageX / canvas.width);
-		prev.y =  (e.originalEvent.touches[0].pageY / canvas.height);
+		prev.x =  (e.originalEvent.touches[0].pageX / canvas.width());
+		prev.y =  (e.originalEvent.touches[0].pageY / canvas.height());
 		console.log(prev.x);
 		drawing = true;
 
@@ -148,15 +148,14 @@ $(function()
 		
 		if($.now() - lastEmit > 3)
 		{
-				w = canvas.width;
-				h=canvas.height;
+				
 
 			socket.emit('move',
 			{
 				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
 				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x':e.pageX/ canvas.width,
-				'y': e.pageY/ canvas.height,
+				'x':e.pageX/ canvas.width(),
+				'y': e.pageY/ canvas.height(),
 				'drawing': drawing,
 				'id': id,
 				
@@ -169,9 +168,9 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine( prev.x,  prev.y, e.pageX/ canvas.width, e.pageY/ canvas.height);		
-			prev.x = e.pageX/ canvas.width;
-			prev.y =e.pageY/ canvas.height;
+			drawLine( prev.x,  prev.y, e.pageX/ canvas.width(), e.pageY/ canvas.height());		
+			prev.x = e.pageX/ canvas.width();
+			prev.y =e.pageY/ canvas.height();
 		}
 	});
 		
@@ -191,8 +190,8 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': e.originalEvent.touches[0].pageX/ canvas.width,
-				'y': e.originalEvent.touches[0].pageY/ canvas.height,
+				'x': e.originalEvent.touches[0].pageX/ canvas.width(),
+				'y': e.originalEvent.touches[0].pageY/ canvas.height(),
 				'drawing': drawing,
 				'id': id,
 			});
@@ -205,10 +204,10 @@ $(function()
 
 		if(drawing)
 		{	
-			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX/ canvas.width, e.originalEvent.touches[0].pageY/ canvas.height);
+			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX/ canvas.width(), e.originalEvent.touches[0].pageY/ canvas.height());
 
-			prev.x = e.originalEvent.touches[0].pageX/ canvas.width;
-			prev.y = e.originalEvent.touches[0].pageY/ canvas.height;
+			prev.x = e.originalEvent.touches[0].pageX/ canvas.width();
+			prev.y = e.originalEvent.touches[0].pageY/ canvas.height();
 			
 		}
 	});
