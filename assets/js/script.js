@@ -98,8 +98,8 @@ $(function()
 			clients[data.id].y = prev.y;
 
 		} */
-		clients[data.id].w = document.getElementById('paper').width;
-		clients[data.id].h = document.getElementById('paper').height;
+	/*	clients[data.id].w = document.getElementById('paper').width;
+		clients[data.id].h = document.getElementById('paper').height;*/
 
 		clients[data.id] = data;
 		// Saving the current client state
@@ -134,11 +134,11 @@ $(function()
 			{
 				/*'x': 100 * prev.x / document.getElementById('paper').width,
 				'y': 100 * prev.y / document.getElementById('paper').height,*/
-				'x': clients[data.id].w * prev.x/w,
-				'y':  clients[data.id].h* prev.y/h,
+				'x':  prev.x,
+				'y':  prev.y,
 				'drawing': false,
 				'id': id,
-			
+
 			});
 		// Hide the instructions
 		instructions.fadeOut();
@@ -156,8 +156,8 @@ $(function()
 			{
 				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
 				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x':clients[data.id].w * e.pageX/w,
-				'y': clients[data.id].h *e.pageY/h,
+				'x':e.pageX,
+				'y': e.pageY,
 				'drawing': drawing,
 				'id': id,
 				
@@ -193,8 +193,8 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': clients[data.id].w * e.originalEvent.touches[0].pageX/w,
-				'y': clients[data.id].h *e.originalEvent.touches[0].pageY/h,
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
 				'drawing': drawing,
 				'id': id,
 			});
