@@ -103,8 +103,8 @@ $(function()
 		e.preventDefault();
 		//prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
 		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
-		prev.x =  (e.pageX - document.getElementById('paper').offsetLeft);
-		prev.y = (e.pageY - document.getElementById('paper').offsetTop);
+		prev.x =  (e.pageX );
+		prev.y = (e.pageY);
 		drawing = true;
 
 		// Hide the instructions
@@ -116,8 +116,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x =  (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft);
-		prev.y =  (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop);
+		prev.x =  (e.originalEvent.touches[0].pageX );
+		prev.y =  (e.originalEvent.touches[0].pageY );
 		console.log(prev.x);
 		drawing = true;
 
@@ -139,8 +139,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x':100* (e.pageX - document.getElementById('paper').offsetLeft) / $('paper').width(),
-				'y':100* (e.pageY - document.getElementById('paper').offsetTop) / $('paper').height(),
+				'x':100* (e.pageX ) / $('paper').width(),
+				'y':100* (e.pageY) / $('paper').height(),
 				'drawing': drawing,
 				'id': id
 			});
@@ -174,8 +174,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': 100*(e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft) / $('paper').width(),
-				'y': 100*(e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop) / $('paper').height(),
+				'x': 100*(e.originalEvent.touches[0].pageX) / $('paper').width(),
+				'y': 100*(e.originalEvent.touches[0].pageY) / $('paper').height(),
 				'drawing': drawing,
 				'id': id
 			});
