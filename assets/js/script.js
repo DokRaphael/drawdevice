@@ -100,7 +100,7 @@ $(function()
 		clients[data.id] = data;
 		// Saving the current client state
 		clients[data.id].updated = $.now();
-		console.log(canvas.width + "//" +	$(window).width());
+		console.log(document.getElementById('paper').width + "//" +	$(window).width());
 	});
 	
 	canvas.on('mousedown',function(e){
