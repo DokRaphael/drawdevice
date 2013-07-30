@@ -32,7 +32,6 @@ $(function()
 	var prev = {};
 	var windowsSizeX ;
 	var windowsSizeY ;
-	var h,w;
 
 	doc.ready(function() 
 	{
@@ -74,6 +73,7 @@ $(function()
 				prev.x = 0;
 				prev.y = 0;
     		});
+    		
     		
 	socket.on('moving', function (data) 
 	{
@@ -145,7 +145,7 @@ $(function()
 				'x':  prev.x,
 				'y':  prev.y,
 				'drawing': false,
-				'id': id,
+				'id': id
 
 			});
 		// Hide the instructions
@@ -166,7 +166,7 @@ $(function()
 				'x':e.pageX/ canvas.width(),
 				'y': e.pageY/ canvas.height(),
 				'drawing': drawing,
-				'id': id,
+				'id': id
 				
 			});
 			lastEmit = $.now();
@@ -202,7 +202,7 @@ $(function()
 				'x': e.originalEvent.touches[0].pageX/ canvas.width(),
 				'y': e.originalEvent.touches[0].pageY/ canvas.height(),
 				'drawing': drawing,
-				'id': id,
+				'id': id
 			});
 			lastEmit = $.now();
 		}
