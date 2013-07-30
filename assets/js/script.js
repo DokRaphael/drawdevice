@@ -124,13 +124,14 @@ $(function()
 		prev.y =  (e.originalEvent.touches[0].pageY );
 		console.log(prev.x);
 		drawing = true;
+		papier = this.document.getElementById('paper'); 
 
 		socket.emit('move',
 			{
 				/*'x': 100 * prev.x / document.getElementById('paper').width,
 				'y': 100 * prev.y / document.getElementById('paper').height,*/
-				'x':  this.document.getElementById('paper').width * prev.x/w,
-				'y':  this.document.getElementById('paper').height * prev.y/h,
+				'x':  papier.width * prev.x/w,
+				'y':  papier.height * prev.y/h,
 				'drawing': false,
 				'id': id,
 			
@@ -146,12 +147,14 @@ $(function()
 		{
 				w = canvas.width;
 				h=canvas.height;
+				papier = this.document.getElementById('paper'); 
+
 			socket.emit('move',
 			{
 				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
 				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x':this.document.getElementById('paper').width * e.pageX/w,
-				'y': this.document.getElementById('paper').height *e.pageY/h,
+				'x':papier.width * e.pageX/w,
+				'y': papier.height *e.pageY/h,
 				'drawing': drawing,
 				'id': id,
 				
@@ -181,15 +184,15 @@ $(function()
 		down = false;
 		up = false;
 		e.preventDefault();
-		
+		papier = this.document.getElementById('paper'); 
 		if($.now() - lastEmit > 3)
 		{
 			socket.emit('move',
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': this.document.getElementById('paper').width * e.originalEvent.touches[0].pageX/w,
-				'y': this.document.getElementById('paper').height *e.originalEvent.touches[0].pageY/h,
+				'x': papier.width * e.originalEvent.touches[0].pageX/w,
+				'y': papier.height *e.originalEvent.touches[0].pageY/h,
 				'drawing': drawing,
 				'id': id,
 			});
