@@ -59,7 +59,7 @@ $(function()
 				prev.y = 0;
 				
 				
-				console.log(canvas.width + "//" +	$(window).width());
+				
     		});
     		
 	
@@ -100,6 +100,7 @@ $(function()
 		clients[data.id] = data;
 		// Saving the current client state
 		clients[data.id].updated = $.now();
+		console.log(canvas.width + "//" +	$(window).width());
 	});
 	
 	canvas.on('mousedown',function(e){
