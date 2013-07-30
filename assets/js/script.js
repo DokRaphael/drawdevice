@@ -175,8 +175,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft) * $(window).width()/100,
-				'y': (e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop) * $(window).height()/100,
+				'x':100* (e.originalEvent.touches[0].pageX- document.getElementById('paper').offsetLeft) / $(window).width(),
+				'y':100* (e.originalEvent.touches[0].pageY- document.getElementById('paper').offsetTop) / $(window).height(),
 				'drawing': drawing,
 				'id': id
 			});
