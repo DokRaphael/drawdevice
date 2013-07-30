@@ -76,8 +76,8 @@ $(function()
 		// Move the mouse pointer
 		cursors[data.id].css(
 		{
-			'left' : data.x,
-			'top' : data.y
+			'left' : data.x/this.document.getElementById('paper').width,
+			'top' : data.y/this.document.getElementById('paper').height
 		});
 		
 		// Is the user drawing?
