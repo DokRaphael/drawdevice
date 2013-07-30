@@ -59,7 +59,7 @@ $(function()
 				prev.y = 0;
 				
 				
-				console.log($('paper').width() + "//" +	$(window).width());
+				console.log(canvas.width() + "//" +	$(window).width());
     		});
     		
 	
