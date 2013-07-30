@@ -140,8 +140,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.pageX - document.getElementById('paper').offsetLeft) * $(window).width()/100,
-				'y': (e.pageY - document.getElementById('paper').offsetTop) * $(window).height()/100,
+				'x': (e.pageX - document.getElementById('paper').offsetLeft),// * $(window).width()/100,
+				'y': (e.pageY - document.getElementById('paper').offsetTop),// * $(window).height()/100,
 				'drawing': drawing,
 				'id': id
 			});
