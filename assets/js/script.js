@@ -57,12 +57,31 @@ $(function()
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
-
+				this.getDimensions();
     		});
     		
 	
 
-    		
+    this.getDimensions = function() {
+    var response = {};
+    response.width = 0;
+    response.height = clients[0].scrn.h; //first screen height
+    response.screens = [];
+    
+    for (var i = 0; i < clients.length; i++) 
+    {
+        var player = clients[i];
+        response.width += player.scrn.w;
+        if (player.scrn.h < response.height) 
+        {
+            //find the smallest screen height
+            response.height = player.scrn.h;
+        }
+        	response.screens.push(player.scrn);
+    	}
+    	console.log(response.width);
+    	return response;
+	}	
     		
 	socket.on('moving', function (data) 
 	{
@@ -115,7 +134,7 @@ $(function()
 	});
 	
 	canvas.on("touchstart", function(e)
-	{
+	{	
 		down = true;
 		up = false;
 		e.preventDefault();
