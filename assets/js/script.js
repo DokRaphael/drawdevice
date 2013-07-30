@@ -53,8 +53,17 @@ $(function()
 					break; 
 				}*/
 				//RATIO ECRAN
-				canvas.width = window.innerWidth*0.7;
-				canvas.height = canvas.width * 0.8;
+				var ratio1 = window.innerWidth / window.innerHeight;
+				var ratio2 = canvas.width() / canvas.height();
+				
+				if (ratio1 < ratio2) {
+					canvas.width = window.innerWidth*0.7;
+					canvas.height = canvas.width * 0.8;
+				}
+				else {
+					canvas.height = window.innerHeight*0.7;
+					canvas.width = canvas.height * 0.8;
+				}
 				
 				//CENTER CANVAS
 				//canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
@@ -130,7 +139,7 @@ $(function()
 		drawing = true;
 
 		socket.emit('move',
-			{
+		{
 				/*'x': 100 * prev.x / document.getElementById('paper').width,
 				'y': 100 * prev.y / document.getElementById('paper').height,*/
 				'x':  prev.x,
