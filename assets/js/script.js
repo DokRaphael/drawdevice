@@ -50,8 +50,8 @@ $(function()
 					canvas.height = windowsSizeY*0.8;          
 					break; 
 				}*/
-				canvas.width = window.innerWidth;
-				canvas.height = canvas.width * 0.9;
+				canvas.width = window.innerWidth*0.6;
+				canvas.height = canvas.width * 0.7;
 				//canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
 				//canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
