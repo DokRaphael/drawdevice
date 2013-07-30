@@ -126,8 +126,8 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': prev.x,
-				'y': prev.y,
+				'x': 200*prev.x/$(window).width(),
+				'y': 200*prev.y/$(window).height(),
 				'drawing': false,
 				'id': id
 			});
