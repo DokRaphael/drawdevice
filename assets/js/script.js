@@ -58,11 +58,11 @@ $(function()
 				var ratio2 = canvas.width / canvas.height;
 				
 				if (ratio1 < ratio2) {
-					canvas.width = window.innerWidth*0.7;
+					canvas.width = window.innerWidth*0.9;
 					canvas.height = canvas.width * 0.8;
 				}
 				else {
-					canvas.height = window.innerHeight*0.7;
+					canvas.height = window.innerHeight*0.9;
 					canvas.width = canvas.height / 0.8;
 				}
 				
