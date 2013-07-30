@@ -89,7 +89,7 @@ $(function()
 		{
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
-			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
+			drawLine(clients[data.id].x/document.getElementById('paper').width, clients[data.id].y/document.getElementById('paper').height, data.x/document.getElementById('paper').width, data.y/document.getElementById('paper').height);
 		}
 		/*if(up)
 		{
@@ -100,7 +100,6 @@ $(function()
 		clients[data.id] = data;
 		// Saving the current client state
 		clients[data.id].updated = $.now();
-		console.log(document.getElementById('paper').width + "//" +	$(window).width());
 	});
 	
 	canvas.on('mousedown',function(e){
@@ -127,8 +126,10 @@ $(function()
 
 		socket.emit('move',
 			{
-				'x': 100 * prev.x / document.getElementById('paper').width,
-				'y': 100 * prev.y / document.getElementById('paper').height,
+				/*'x': 100 * prev.x / document.getElementById('paper').width,
+				'y': 100 * prev.y / document.getElementById('paper').height,*/
+				'x':  prev.x,
+				'y':  prev.y,
 				'drawing': false,
 				'id': id
 			});
@@ -143,8 +144,10 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x':100* (e.pageX ) / document.getElementById('paper').width,
-				'y':100* (e.pageY) / document.getElementById('paper').height,
+				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
+				'y':100* (e.pageY) / document.getElementById('paper').height,*/
+				'x': e.pageX,
+				'y': e.pageY,
 				'drawing': drawing,
 				'id': id
 			});
@@ -178,8 +181,10 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
-				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,
+				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
+				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
+				'x': e.originalEvent.touches[0].pageX,
+				'y': e.originalEvent.touches[0].pageY,
 				'drawing': drawing,
 				'id': id
 			});
