@@ -89,7 +89,7 @@ $(function()
 		{
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
-			drawLine(clients[data.id].x/document.getElementById('paper').width, clients[data.id].y/document.getElementById('paper').height, data.x/document.getElementById('paper').width, data.y/document.getElementById('paper').height);
+			drawLine(clients[data.id].x/this.document.getElementById('paper').width, clients[data.id].y/this.document.getElementById('paper').height, data.x/this.document.getElementById('paper').width, data.y/this.document.getElementById('paper').height);
 		}
 		/*if(up)
 		{
