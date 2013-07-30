@@ -33,7 +33,6 @@ $(function()
 	var windowsSizeX ;
 	var windowsSizeY ;
 	var h,w;
-	var papier = this.document.getElementById('paper'); 
 
 	doc.ready(function() 
 	{
@@ -99,6 +98,9 @@ $(function()
 			clients[data.id].y = prev.y;
 
 		} */
+		clients[data.id].w = document.getElementById('paper').width;
+		clients[data.id].h = document.getElementById('paper').height;
+
 		clients[data.id] = data;
 		// Saving the current client state
 		clients[data.id].updated = $.now();
@@ -132,8 +134,8 @@ $(function()
 			{
 				/*'x': 100 * prev.x / document.getElementById('paper').width,
 				'y': 100 * prev.y / document.getElementById('paper').height,*/
-				'x':  papier.width * prev.x/w,
-				'y':  papier.height * prev.y/h,
+				'x': clients[data.id].w * prev.x/w,
+				'y':  clients[data.id].h* prev.y/h,
 				'drawing': false,
 				'id': id,
 			
@@ -154,8 +156,8 @@ $(function()
 			{
 				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
 				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x':papier.width * e.pageX/w,
-				'y': papier.height *e.pageY/h,
+				'x':clients[data.id].w * e.pageX/w,
+				'y': clients[data.id].h *e.pageY/h,
 				'drawing': drawing,
 				'id': id,
 				
@@ -191,8 +193,8 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': papier.width * e.originalEvent.touches[0].pageX/w,
-				'y': papier.height *e.originalEvent.touches[0].pageY/h,
+				'x': clients[data.id].w * e.originalEvent.touches[0].pageX/w,
+				'y': clients[data.id].h *e.originalEvent.touches[0].pageY/h,
 				'drawing': drawing,
 				'id': id,
 			});
