@@ -32,7 +32,7 @@ $(function()
 	var prev = {};
 	var windowsSizeX ;
 	var windowsSizeY ;
-
+	var h,w;
 	doc.ready(function() 
 	{
     			var canvas = document.getElementById('paper');
@@ -50,11 +50,16 @@ $(function()
 					canvas.height = windowsSizeY*0.8;          
 					break; 
 				}*/
+				//RATIO ECRAN
 				canvas.width = window.innerWidth*0.7;
 				canvas.height = canvas.width * 0.8;
+				
+				//CENTER CANVAS
 				//canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
 				//canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
+				
+				//INIT
 				prev.x = 0;
 				prev.y = 0;
     		});
@@ -110,6 +115,8 @@ $(function()
 	
 	canvas.on("touchstart", function(e)
 	{	
+		w = canvas.width;
+		h=canvas.height;
 		down = true;
 		up = false;
 		e.preventDefault();
@@ -122,10 +129,11 @@ $(function()
 			{
 				/*'x': 100 * prev.x / document.getElementById('paper').width,
 				'y': 100 * prev.y / document.getElementById('paper').height,*/
-				'x':  prev.x,
-				'y':  prev.y,
+				'x':  prev.x/w,
+				'y':  prev.y/h,
 				'drawing': false,
-				'id': id
+				'id': id,
+			
 			});
 		// Hide the instructions
 		instructions.fadeOut();
@@ -136,14 +144,17 @@ $(function()
 		
 		if($.now() - lastEmit > 3)
 		{
+				w = canvas.width;
+				h=canvas.height;
 			socket.emit('move',
 			{
 				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
 				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x': e.pageX,
-				'y': e.pageY,
+				'x': e.pageX/w,
+				'y': e.pageY/h,
 				'drawing': drawing,
-				'id': id
+				'id': id,
+				
 			});
 			lastEmit = $.now();
 		}
@@ -165,6 +176,8 @@ $(function()
 	
 	doc.on('touchmove',function(e)
 	{
+		w = canvas.width;
+		h = canvas.height;
 		down = false;
 		up = false;
 		e.preventDefault();
@@ -175,10 +188,10 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': e.originalEvent.touches[0].pageX,
-				'y': e.originalEvent.touches[0].pageY,
+				'x': e.originalEvent.touches[0].pageX/w,
+				'y': e.originalEvent.touches[0].pageY/h,
 				'drawing': drawing,
-				'id': id
+				'id': id,
 			});
 			lastEmit = $.now();
 		}
