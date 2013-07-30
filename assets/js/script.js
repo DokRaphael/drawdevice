@@ -104,8 +104,8 @@ $(function()
 	
 	canvas.on('mousedown',function(e){
 		e.preventDefault();
-		prev.x =e.pageX - document.getElementById('paper').offsetLeft;
-		prev.y =e.pageY - document.getElementById('paper').offsetTop;
+		prev.x =(e.pageX - document.getElementById('paper').offsetLeft)* $(window).width()/100;
+		prev.y =(e.pageY - document.getElementById('paper').offsetTop)* $(window).width()/100;
 		drawing = true;
 
 		// Hide the instructions
@@ -117,8 +117,8 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x = e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft;
-		prev.y = e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop;
+		prev.x = (e.originalEvent.touches[0].pageX - document.getElementById('paper').offsetLeft)* $(window).width()/100;
+		prev.y = (e.originalEvent.touches[0].pageY - document.getElementById('paper').offsetTop)* $(window).width()/100;
 		console.log(prev.x);
 		drawing = true;
 
@@ -141,7 +141,7 @@ $(function()
 			socket.emit('move',
 			{
 				'x': (e.pageX - document.getElementById('paper').offsetLeft) * $(window).width()/100,
-				'y': (e.pageY - document.getElementById('paper').offsetTop) * $(window).height()/100,
+				'y': (e.pageY - document.getElementById('paper').offsetTop) * $(window).width()/100,
 				'drawing': drawing,
 				'id': id
 			});
