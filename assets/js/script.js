@@ -57,13 +57,7 @@ $(function()
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
 				prev.x = 0;
 				prev.y = 0;
-				
-				
-				
     		});
-    		
-	
-
     		
 	socket.on('moving', function (data) 
 	{
@@ -76,8 +70,8 @@ $(function()
 		// Move the mouse pointer
 		cursors[data.id].css(
 		{
-			'left' : data.x/this.document.getElementById('paper').width,
-			'top' : data.y/this.document.getElementById('paper').height
+			'left' : data.x,
+			'top' : data.y
 		});
 		
 		// Is the user drawing?
@@ -89,7 +83,7 @@ $(function()
 		{
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
-			drawLine(clients[data.id].x/this.document.getElementById('paper').width, clients[data.id].y/this.document.getElementById('paper').height, data.x/this.document.getElementById('paper').width, data.y/this.document.getElementById('paper').height);
+			drawLine(clients[data.id].x, clients[data.id].y, data.x, data.y);
 		}
 		/*if(up)
 		{
@@ -159,8 +153,7 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine(prev.x, prev.y, e.pageX, e.pageY);
-			
+			drawLine(prev.x, prev.y, e.pageX, e.pageY);		
 			prev.x = e.pageX;
 			prev.y =e.pageY;
 		}
@@ -172,8 +165,7 @@ $(function()
 	
 	doc.on('touchmove',function(e)
 	{
-	down = false;
-
+		down = false;
 		up = false;
 		e.preventDefault();
 		
