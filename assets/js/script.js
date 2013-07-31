@@ -10,8 +10,8 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+	var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -20,7 +20,6 @@ $(function()
 	
 	// Generate an unique ID
 	var id = Math.round($.now()*Math.random());
-	console.log(canvas.width());
 	// A flag for drawing activity
 	var drawing = false;
 	var clients = {};
@@ -34,9 +33,13 @@ $(function()
 
 	var windowsSizeX ;
 	var windowsSizeY ;
-
+	var mobile   = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent); 
+	var start = mobile ? "touchstart" : "mousedown";
+	//example touch + click (android takes both so .bind('touchstart' 'mousedown') fire twice on android).
+	//$("#roll").bind(start, function(event){
 	doc.ready(function() 
 	{
+
     			var canvas = document.getElementById('paper');
 
 				windowsSizeX = window.screen.availWidth;
@@ -76,9 +79,28 @@ $(function()
 				prev.y = 0;
 				prevac.x = 0;
 				prevac.y = 0;
-    		});
-    		
-    		
+				
+			
+    });
+  
+  
+  
+  	//AFFICHER CODE
+  	/*
+    socket.on("initialize", function(gameCode)
+    {
+        $("#gameConnect").show();
+        $("#gameCode").html(gameCode);
+ 	});	
+    socket.emit(
+    			"device", 
+    			{	
+    				"type":"controller", 
+    				"gameCode":gameCode
+    			}
+    			);
+
+    */
 	socket.on('moving', function (data) 
 	{
 		if(! (data.id in clients))
@@ -119,7 +141,8 @@ $(function()
 		clients[data.id].updated = $.now();
 	});
 	
-	canvas.on('mousedown',function(e){
+	canvas.on('mousedown',function(e)
+	{
 		e.preventDefault();
 		//prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
 		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();

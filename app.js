@@ -7,7 +7,9 @@ var express = require('express'),
 	path = require('path'),
 	url = require('url'),
 	fs = require('fs'),
-    io = require('socket.io').listen(server); 
+	crypto = require('crypto'),
+    io = require('socket.io').listen(server);
+
 	
 var mimeTypes = {
     "html": "text/html",
@@ -19,11 +21,11 @@ var mimeTypes = {
     
 var servernb = 0;
 var outputFilename = 'my.json';
-var myData = {
-}
+var myData = {};
 var roomname='';
 var urlparsed='';
-
+//var socketCodes = {};
+var rooms = ['room1','room2','room3'];
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
 	static = require('node-static'); // for serving files*/
@@ -140,7 +142,54 @@ io.set('log level', 1);
 // Listen for incoming connections from clients
 io.sockets.on('connection', function (socket) 
 {
-//randurl= Math.floor((Math.random()*10)+1);    
+	socket.emit("welcome", {});
+	socket.on('adduser', function(data){
+		// store the username in the socket session for this client
+		socket.data = data;
+		// store the room name in the socket session for this client
+		socket.room = 'room1';
+		// add the client's username to the global list
+		usernames[data] = data.id;
+		// send client to room 1
+		socket.join('room1');
+		// echo to client they've connected
+		socket.emit('updatechat', 'SERVER', 'you have connected to room1');
+		// echo to room 1 that a person has connected to their room
+		socket.broadcast.to('room1').emit('updatechat', 'SERVER', data.id + ' has connected to this room');
+		socket.emit('updaterooms', rooms, 'room1');
+	});
+
+	//PAIR WITH CODE
+   	/*socket.emit("welcome", {});
+   	var gameCode = crypto.randomBytes(3).toString('hex');
+	while(gameCode in socketCodes)
+    {
+       gameCode = crypto.randomBytes(3).toString('hex');
+    }
+    socketCodes[gameCode] = io.sockets.sockets[socket.id];
+	socket.gameCode = gameCode;
+    socket.emit("initialize", gameCode);
+	if(device.gameCode in socketCodes)
+	{
+            // save the game code for controller commands
+       socket.gameCode = device.gameCode
+ 
+            // initialize the controller
+       socket.emit("connected", {});
+ 
+            // start the game
+    	socketCodes[device.gameCode].emit("connected", {});
+    }
+    
+         // else game code is invalid,
+      //  send fail message and disconnect
+    else
+	{
+        socket.emit("fail", {});
+        socket.disconnect();
+    }*/
+    
+	//randurl= Math.floor((Math.random()*10)+1);    
 	// Start listening for mouse move events
 	socket.on('move', function (data) 
 	{
