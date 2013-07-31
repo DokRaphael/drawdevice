@@ -10,8 +10,8 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+	var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -81,7 +81,7 @@ $(function()
 				prevac.x = 0;
 				prevac.y = 0;
 				elYpos = document.getElementById('paper').offsetTop; 
-				console.log(elYpos + ' // ' + document.getElementById('paper').style.top);
+				console.log('elYpos : '  + elYpos + ' // (paper)styleTop : ' + document.getElementById('paper').style.top);
 				elXpos = document.getElementById('paper').offsetLeft; 
 				console.log(elYpos);
     });
@@ -145,7 +145,7 @@ $(function()
 	canvas.on('mousedown',function(e)
 	{
 		e.preventDefault();
-		
+		console.log("canvas.width() : " +canvas.width());
 		prev.x =  (e.pageX) / canvas.width() - elXpos;
 		prev.y = (e.pageY)/ canvas.height() - elYpos;
 		prevac.x = e.pageX - elXpos;
@@ -190,8 +190,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.pageX)/ canvas.width()  ,
-				'y': (e.pageY)/ canvas.height() ,
+				'x': (e.pageX)/ canvas.width(),//  - elXpos,
+				'y': (e.pageY)/ canvas.height(),// - elYpos,
 				'drawing': drawing,
 				'id': id
 				
@@ -241,8 +241,8 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': (e.originalEvent.touches[0].pageX )/ canvas.width() ,
-				'y': (e.originalEvent.touches[0].pageY )/ canvas.height(),
+				'x': (e.originalEvent.touches[0].pageX )/ canvas.width() -  elXpos ,
+				'y': (e.originalEvent.touches[0].pageY )/ canvas.height()- elYpos,
 				'drawing': drawing,
 				'id': id
 			});
