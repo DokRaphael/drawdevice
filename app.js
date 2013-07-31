@@ -102,7 +102,8 @@ app.get('/'+myData[newserver], function(req, res) {
 /*app.get('/', function (req, res)
 {
 	res.sendfile(__dirname + '/draw/assets/index.html' );    
-});*/
+});*/ 
+
 app.get('/', function (req, res)
 {
 	res.sendfile(__dirname + '/assets/index.html' );    
