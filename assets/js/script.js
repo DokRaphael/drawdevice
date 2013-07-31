@@ -10,8 +10,8 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+	var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -30,7 +30,8 @@ $(function()
 	var up = false;
 	var prev = {};
 	var prevac = {};
-
+var elYpos;
+var elXpos
 	var windowsSizeX ;
 	var windowsSizeY ;
 	var mobile   = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent); 
@@ -70,8 +71,8 @@ $(function()
 				}
 				
 				//CENTER CANVAS
-				//canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
-				//canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";
+				canvas.style.left = (window.innerWidth-document.getElementById('paper').offsetWidth)/2 +"px";
+				canvas.style.top = (window.innerHeight-document.getElementById('paper').offsetHeight)/2 +"px";				
 				canvas.style.backgroundImage = "url('../../img/bg.png')";
 				
 				//INIT
@@ -79,10 +80,12 @@ $(function()
 				prev.y = 0;
 				prevac.x = 0;
 				prevac.y = 0;
-				
-			
+				elYpos = document.getElementById('paper').offsetTop; 
+				elXpos = document.getElementById('paper').offsetLeft; 
+				console.log(elYpos);
     });
-  
+ 				
+
   
   
   	//AFFICHER CODE
@@ -125,16 +128,13 @@ $(function()
 		{
 			// Draw a line on the canvas. clients[data.id] holds
 			// the previous position of this user's mouse pointer
-			drawLine(canvas.width() * clients[data.id].x,canvas.height() * clients[data.id].y, data.x * canvas.width(), data.y * canvas.height());
+			drawLine(
+				canvas.width() * clients[data.id].x - elXpos,
+				canvas.height() * clients[data.id].y - elYpos, 
+				data.x * canvas.width() - elXpos, 
+				data.y * canvas.height() - elYpos
+			);
 		}
-		/*if(up)
-		{
-			clients[data.id].x = prev.x;
-			clients[data.id].y = prev.y;
-
-		} */
-	/*	clients[data.id].w = document.getElementById('paper').width;
-		clients[data.id].h = document.getElementById('paper').height;*/
 
 		clients[data.id] = data;
 		// Saving the current client state
@@ -144,12 +144,11 @@ $(function()
 	canvas.on('mousedown',function(e)
 	{
 		e.preventDefault();
-		//prev.x =100 * (e.pageX - document.getElementById('paper').offsetLeft)/ $('paper').width();
-		//prev.y =100 * (e.pageY - document.getElementById('paper').offsetTop)/ $('paper').height();
-		prev.x =  (e.pageX / canvas.width());
-		prev.y = (e.pageY)/ canvas.height();
-		prevac.x =  (e.pageX );
-		prevac.y = (e.pageY);
+		
+		prev.x =  (e.pageX) / canvas.width() - elXpos;
+		prev.y = (e.pageY)/ canvas.height() - elYpos;
+		prevac.x = e.pageX - elXpos;
+		prevac.y = e.pageY - elYpos;
 		drawing = true;
 
 		// Hide the instructions
@@ -162,17 +161,19 @@ $(function()
 		down = true;
 		up = false;
 		e.preventDefault();
-		prev.x =  (e.originalEvent.touches[0].pageX / canvas.width());
-		prev.y =  (e.originalEvent.touches[0].pageY / canvas.height());
-		prevac.x = e.originalEvent.touches[0].pageX;
-		prevac.y = e.originalEvent.touches[0].pageY;
+		prev.x =  (e.originalEvent.touches[0].pageX ) / canvas.width() - elXpos;
+		prev.y =  (e.originalEvent.touches[0].pageY ) / canvas.height() - elYpos;
+		prevac.x = e.originalEvent.touches[0].pageX - elXpos;
+		prevac.y = e.originalEvent.touches[0].pageY - elYpos;
+		
+		
+		
 		console.log(prev.x);
 		drawing = true;
 
 		socket.emit('move',
 		{
-				/*'x': 100 * prev.x / document.getElementById('paper').width,
-				'y': 100 * prev.y / document.getElementById('paper').height,*/
+			
 				'x':  prev.x,
 				'y':  prev.y,
 				'drawing': false,
@@ -185,17 +186,12 @@ $(function()
 	
 	doc.on('mousemove',function(e)
 	{
-		
 		if($.now() - lastEmit > 3)
 		{
-				
-
 			socket.emit('move',
 			{
-				/*'x':100* (e.pageX ) / document.getElementById('paper').width,
-				'y':100* (e.pageY) / document.getElementById('paper').height,*/
-				'x':e.pageX/ canvas.width(),
-				'y': e.pageY/ canvas.height(),
+				'x': (e.pageX)/ canvas.width()  ,
+				'y': (e.pageY)/ canvas.height() ,
 				'drawing': drawing,
 				'id': id
 				
@@ -208,12 +204,24 @@ $(function()
 		
 		if(drawing)
 		{		
-			drawLine( prev.x,  prev.y, e.pageX/ canvas.width(), e.pageY/ canvas.height());	
-			drawLine(prevac.x, prevac.y, e.pageX, e.pageY);
-			prevac.x = e.pageX;
-			prevac.y = e.pageY;
-			prev.x = e.pageX/ canvas.width();
-			prev.y =e.pageY/ canvas.height();
+			drawLine( 
+				prev.x,  
+				prev.y, 
+				(e.pageX)/ canvas.width() - elXpos, 
+				(e.pageY)/ canvas.height() - elYpos
+				);	
+					
+			drawLine(
+				prevac.x, 
+				prevac.y, 
+				e.pageX-elXpos, 
+				e.pageY-elYpos
+				);
+				
+			prevac.x = e.pageX - elXpos;
+			prevac.y = e.pageY - elYpos;
+			prev.x = (e.pageX) / canvas.width() - elXpos;
+			prev.y =(e.pageY) / canvas.height() - elYpos;
 		}
 	});
 		
@@ -233,8 +241,8 @@ $(function()
 			{
 				/*'x': 100*(e.originalEvent.touches[0].pageX) / document.getElementById('paper').width,
 				'y': 100*(e.originalEvent.touches[0].pageY) / document.getElementById('paper').height,*/
-				'x': e.originalEvent.touches[0].pageX/ canvas.width(),
-				'y': e.originalEvent.touches[0].pageY/ canvas.height(),
+				'x': (e.originalEvent.touches[0].pageX )/ canvas.width() ,
+				'y': (e.originalEvent.touches[0].pageY )/ canvas.height(),
 				'drawing': drawing,
 				'id': id
 			});
@@ -247,13 +255,23 @@ $(function()
 
 		if(drawing)
 		{	
-			drawLine(prev.x, prev.y, e.originalEvent.touches[0].pageX/ canvas.width(), e.originalEvent.touches[0].pageY/ canvas.height());
-			drawLine(prevac.x, prevac.y, e.originalEvent.touches[0].pageX, e.originalEvent.touches[0].pageY);
+			drawLine(
+				prev.x, 
+				prev.y, 
+				(e.originalEvent.touches[0].pageX )/ canvas.width()- elXpos, 
+				(e.originalEvent.touches[0].pageY )/ canvas.height()- elYpos
+				);
+				
+			drawLine(
+				prevac.x, 
+				prevac.y, 
+				(e.originalEvent.touches[0].pageX - elXpos), 
+				e.originalEvent.touches[0].pageY - elYpos);
 
-			prevac.x = e.originalEvent.touches[0].pageX;
-			prevac.y = e.originalEvent.touches[0].pageY;
-			prev.x = e.originalEvent.touches[0].pageX/ canvas.width();
-			prev.y = e.originalEvent.touches[0].pageY/ canvas.height();
+			prevac.x = e.originalEvent.touches[0].pageX - elXpos;
+			prevac.y = e.originalEvent.touches[0].pageY - elYpos;
+			prev.x = (e.originalEvent.touches[0].pageX)/ canvas.width() - elXpos;
+			prev.y = (e.originalEvent.touches[0].pageY)/ canvas.height() - elYpos;
 			
 		}
 	});
@@ -276,10 +294,8 @@ $(function()
 		{
 			if($.now() - clients[ident].updated > 10000)
 			{
-				
 				// Last update was more than 10 seconds ago. 
 				// This user has probably closed the page
-				
 				cursors[ident].remove();
 				delete clients[ident];
 				delete cursors[ident];
