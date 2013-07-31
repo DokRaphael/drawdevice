@@ -143,7 +143,7 @@ io.set('log level', 1);
 io.sockets.on('connection', function (socket) 
 {
 	socket.emit("welcome", {});
-	/*socket.on('adduser', function(data){
+	socket.on('adduser', function(data){
 		// store the username in the socket session for this client
 		socket.data = data;
 		// store the room name in the socket session for this client
@@ -157,7 +157,7 @@ io.sockets.on('connection', function (socket)
 		// echo to room 1 that a person has connected to their room
 		socket.broadcast.to('room1').emit('updatechat', 'SERVER', data.id + ' has connected to this room');
 		socket.emit('updaterooms', rooms, 'room1');
-	});*/
+	});
 
 	//PAIR WITH CODE
    	/*socket.emit("welcome", {});
