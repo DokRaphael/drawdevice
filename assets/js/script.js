@@ -80,9 +80,9 @@ $(function()
 				prev.y = 0;
 				prevac.x = 0;
 				prevac.y = 0;
-				elYpos = document.getElementById('paper').offsetTop; 
+				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				console.log('elYpos : '  + elYpos + ' // (paper)styleTop : ' + document.getElementById('paper').style.top);
-				elXpos = document.getElementById('paper').offsetLeft; 
+				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
 				console.log(elYpos);
     });
  				
@@ -148,8 +148,8 @@ $(function()
 		console.log("canvas.width() : " +canvas.width());
 		prev.x =  (e.pageX) / canvas.width() - elXpos;
 		prev.y = (e.pageY)/ canvas.height() - elYpos;
-		prevac.x = e.pageX - elXpos;
-		prevac.y = e.pageY - elYpos;
+		prevac.x = e.pageX - elXpos * document.getElementById('paper').offsetWidth;
+		prevac.y = e.pageY - elYpos * document.getElementById('paper').offsetHeight; 
 		drawing = true;
 
 		// Hide the instructions
@@ -164,8 +164,8 @@ $(function()
 		e.preventDefault();
 		prev.x =  (e.originalEvent.touches[0].pageX ) / canvas.width() - elXpos;
 		prev.y =  (e.originalEvent.touches[0].pageY ) / canvas.height() - elYpos;
-		prevac.x = e.originalEvent.touches[0].pageX - elXpos;
-		prevac.y = e.originalEvent.touches[0].pageY - elYpos;
+		prevac.x = e.originalEvent.touches[0].pageX - elXpos * document.getElementById('paper').offsetWidth;
+		prevac.y = e.originalEvent.touches[0].pageY - elYpos * document.getElementById('paper').offsetHeight;
 		
 		
 		
@@ -190,8 +190,8 @@ $(function()
 		{
 			socket.emit('move',
 			{
-				'x': (e.pageX)/ canvas.width(),//  - elXpos,
-				'y': (e.pageY)/ canvas.height(),// - elYpos,
+				'x': (e.pageX)/ canvas.width()  - elXpos,
+				'y': (e.pageY)/ canvas.height() - elYpos,
 				'drawing': drawing,
 				'id': id
 				
@@ -214,12 +214,12 @@ $(function()
 			drawLine(
 				prevac.x, 
 				prevac.y, 
-				e.pageX-elXpos, 
-				e.pageY-elYpos
+				e.pageX- elXpos * document.getElementById('paper').offsetWidth, 
+				e.pageY- elYpos * document.getElementById('paper').offsetHeight
 				);
 				
-			prevac.x = e.pageX - elXpos;
-			prevac.y = e.pageY - elYpos;
+			prevac.x = e.pageX - elXpos * document.getElementById('paper').offsetWidth;
+			prevac.y = e.pageY - elYpos * document.getElementById('paper').offsetHeight;
 			prev.x = (e.pageX) / canvas.width() - elXpos;
 			prev.y =(e.pageY) / canvas.height() - elYpos;
 		}
@@ -265,11 +265,11 @@ $(function()
 			drawLine(
 				prevac.x, 
 				prevac.y, 
-				(e.originalEvent.touches[0].pageX - elXpos), 
-				e.originalEvent.touches[0].pageY - elYpos);
+				(e.originalEvent.touches[0].pageX - elXpos * document.getElementById('paper').offsetWidth), 
+				e.originalEvent.touches[0].pageY - elYpos * document.getElementById('paper').offsetHeight);
 
-			prevac.x = e.originalEvent.touches[0].pageX - elXpos;
-			prevac.y = e.originalEvent.touches[0].pageY - elYpos;
+			prevac.x = e.originalEvent.touches[0].pageX - elXpos * document.getElementById('paper').offsetWidth;
+			prevac.y = e.originalEvent.touches[0].pageY - elYpos * document.getElementById('paper').offsetHeight;
 			prev.x = (e.originalEvent.touches[0].pageX)/ canvas.width() - elXpos;
 			prev.y = (e.originalEvent.touches[0].pageY)/ canvas.height() - elYpos;
 			
