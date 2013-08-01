@@ -90,12 +90,26 @@ $(function()
 				$('#paper').hide();
 				window.scrollTo(0, 1); 
     });
-    
+    var focus = function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        var clone = input.cloneNode(true);
+        var parent = input.parentElement;
+        parent.appendChild(clone);
+        parent.replaceChild(clone, input);
+        input = clone;
+        window.setTimeout(function() {
+          input.value = input.value || "";
+          input.focus();
+        }, 0);
+      }
  	$("#entercode").bind(start, function(event)
   	{			
+  		$("#entercode").focus();
 	});
  	$("#usernamebox").bind(start, function(event)
-  	{			
+  	{	
+  		$("#usernamebox").focus();		
 	});
   	$("#joinbutton").bind(start, function(event)
   	{		
@@ -379,7 +393,6 @@ $(function()
 		ctx.moveTo(fromx, fromy);
 		ctx.lineTo(tox, toy);
 		ctx.stroke();
-		//console.log(tox + "//" + toy);
 	}
 
 });
