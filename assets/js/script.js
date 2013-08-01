@@ -88,14 +88,13 @@ $(function()
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
 				$('#paper').hide();
-				socket.emit('username',  username = $('#usernamebox').val());
 				window.scrollTo(0, 1); 
     });
     
- 	$("#entercode").bind("touchstart", function(event)
+ 	$("#entercode").bind(start, function(event)
   	{			
 	});
- 	$("#usernamebox").bind("touchstart", function(event)
+ 	$("#usernamebox").bind(start, function(event)
   	{			
 	});
   	$("#joinbutton").bind(start, function(event)
