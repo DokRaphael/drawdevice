@@ -85,6 +85,7 @@ $(function()
 				prevac.y = 0;
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
+				$('#paper').css({ position: "relative"});
 				$('#paper').hide();
 				socket.emit('username',  username = $('#usernamebox').val());
     });
