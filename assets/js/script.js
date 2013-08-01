@@ -44,7 +44,7 @@ $(function()
 	//$("#roll").bind(start, function(event){
 	doc.ready(function() 
 	{
-							$('#baniere').hide();
+				$('#baniere').hide();
 
     			var canvas = document.getElementById('paper');
 
@@ -87,16 +87,15 @@ $(function()
 				prevac.y = 0;
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
-			//	$('#paper').css({ position: "relative"});
 				$('#paper').hide();
 				socket.emit('username',  username = $('#usernamebox').val());
 				window.scrollTo(0, 1); 
     });
     
- 	$("#entercode").bind(start, function(event)
+ 	$("#entercode").bind("touchstart", function(event)
   	{			
 	});
- 	$("#usernamebox").bind(start, function(event)
+ 	$("#usernamebox").bind("touchstart", function(event)
   	{			
 	});
   	$("#joinbutton").bind(start, function(event)
