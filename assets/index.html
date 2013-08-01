@@ -59,7 +59,6 @@
 		#or
 		{
 			position : absolute;
-
 			top : 50%;
 			left:50%;
 		}
@@ -78,7 +77,7 @@
 			padding: 0px 10px;
 			width: 280px;
 			-webkit-appearance:none;
-			text-transform:uppercase;
+			/*text-transform:uppercase;*/
 		}
 		#leftHalf 
 		{
@@ -94,6 +93,11 @@
 		   right: 0px;
 		   height: 100%;
 		}
+		#paper
+		{
+			
+			display:hidden;
+		}
         </style>
         
         
@@ -105,31 +109,38 @@
     </head>
     
     <body>
-    		<script src="/socket.io/socket.io.js"></script>
+    	<script src="/socket.io/socket.io.js"></script>
  		<script src="http://code.jquery.com/jquery-1.8.0.min.js"></script>
 		<script src="js/script.js"></script>
 		<div id="cursors">
 	    	<!-- The mouse pointers will be created here -->
 		</div>
-		<!--div id=init>
+		<div id=init>
 			<div id="leftHalf">
-				<div id="create"><button onclick="createRoom()" class="btn btn-1 btn-1a">Create new</button></div>
+				<div id="create"><button id="createbutton"" class="btn btn-1 btn-1a">Create new</button></div>
 			</div>
 			<div id="or">- OR -</div>
     		<div id="rightHalf">
-				<div id="join">	<input type="text" value="CODE HERE"/><button onclick="joinRoom()" class="btn btn-1 btn-1a">Join</button></div>
+				<div id="join">	
+					<form name=form1>
+					<input id="entercode" onclick="make_blank()" type="text" name = "type" value="CODE HERE"/>
+					<button id="joinbutton" class="btn btn-1 btn-1a">Join</button>
+					</form>
+				</div>
 			</div>
-		</div-->
+		</div>
 		<canvas id="paper"></canvas>
-		
+<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+	<div id="conversation"></div>
+</div>
 		<div id="gameConnect"></div>
         <div id="gameCode"></div>
 		<div id="controller" style="display:none">
-         <div id="socket">
-            <input type="text" name="socketId"/>
-            <input type="button" id="connect" value="Connect"/>
-
-         </div>
+        	<div id="socket">
+        		<input type="text" name="socketId"/>
+            	<input type="button" id="connect" value="Connect"/>
+			</div>
+        </div>
         <!-- JavaScript includes. Notice that socket.io.js is served by node.js -->
 
        	

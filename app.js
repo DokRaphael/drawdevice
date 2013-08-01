@@ -24,8 +24,10 @@ var outputFilename = 'my.json';
 var myData = {};
 var roomname='';
 var urlparsed='';
-//var socketCodes = {};
+var socketCodes = {};
+var usernames = {};
 var rooms = ['room1','room2','room3'];
+
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
 	static = require('node-static'); // for serving files*/
@@ -36,6 +38,7 @@ var rooms = ['room1','room2','room3'];
 	
 // This is the port for our web server. you will need to go to http://localhost:8080 to see it
 //app.listen(8080);
+
 var randurl = '';
 var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz123456789";
 var requestedurl = '';
@@ -143,21 +146,77 @@ io.set('log level', 1);
 io.sockets.on('connection', function (socket) 
 {
 	socket.emit("welcome", {});
-	socket.on('adduser', function(data){
+
+	/*socket.on('create', function(username)
+	{
+		
+		var roomCode = crypto.randomBytes(3).toString('hex');
+		while(roomCode in socketCodes)
+    	{
+       		roomCode = crypto.randomBytes(3).toString('hex');
+    	}
+		socketCodes[roomCode] = io.sockets.sockets[socket.id];
+		socket.roomCode = roomCode;
+
 		// store the username in the socket session for this client
-		socket.data = data;
+		socket.username = username;
 		// store the room name in the socket session for this client
-		socket.room = 'room1';
+		socket.room = roomCode;
 		// add the client's username to the global list
-		usernames[data] = data.id;
+		usernames[username] = username;
 		// send client to room 1
-		socket.join('room1');
+		socket.join(roomCode);
 		// echo to client they've connected
-		socket.emit('updatechat', 'SERVER', 'you have connected to room1');
+		socket.emit('updatechat', 'SERVER', 'you have connected to ' + roomCode);
 		// echo to room 1 that a person has connected to their room
-		socket.broadcast.to('room1').emit('updatechat', 'SERVER', data.id + ' has connected to this room');
-		socket.emit('updaterooms', rooms, 'room1');
+		socket.broadcast.to(roomCode).emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.emit('updaterooms', rooms, roomCode);
+		socket.emit("roomCodeIs", roomCode);
+		
+	});*/
+	socket.on('username', function(username)
+	{
+		// store the username in the socket session for this client
+		socket.username = username;
+		// add the client's username to the global list
+		usernames[username] = username;
 	});
+	
+	socket.on('create', function(username)
+	{
+		
+		var roomCode = crypto.randomBytes(3).toString('hex');
+		while(roomCode in socketCodes)
+    	{
+       		roomCode = crypto.randomBytes(3).toString('hex');
+    	}
+		socketCodes[roomCode] = io.sockets.sockets[socket.id];
+		socket.roomCode = roomCode;
+		// store the room name in the socket session for this client
+		socket.room = roomCode;
+	
+		// send client to room "roomCode"
+		socket.join(roomCode);
+		// echo to client they've connected
+		socket.emit('updatechat', 'SERVER', 'you have connected to ' + roomCode);
+		// echo to room 1 that a person has connected to their room
+		socket.broadcast.to(roomCode).emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.emit('updaterooms', rooms, roomCode);
+		socket.emit("roomCodeIs", roomCode);
+		
+	});
+	
+	
+	socket.on('join', function(joincode,username)
+	{
+		
+		socket.join(joincode);
+		socket.emit('updatechat', 'SERVER', 'you have connected to ' + joincode);
+		socket.broadcast.to(joincode).emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.emit('updaterooms', rooms, joincode);
+		
+	});	
+
 
 	//PAIR WITH CODE
    	/*socket.emit("welcome", {});
@@ -191,12 +250,11 @@ io.sockets.on('connection', function (socket)
     
 	//randurl= Math.floor((Math.random()*10)+1);    
 	// Start listening for mouse move events
-	socket.on('move', function (data) 
+	socket.on('move', function (data,room) 
 	{
-		
 		// This line sends the event (broadcasts it)
 		// to everyone except the originating client.
-		socket.broadcast.emit('moving', data);
+		socket.broadcast.to(room).emit('moving', data);
 	});
 
 });

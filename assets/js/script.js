@@ -10,8 +10,8 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+	var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -36,11 +36,14 @@ $(function()
 	var windowsSizeY ;
 	var mobile   = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent); 
 	var start = mobile ? "touchstart" : "mousedown";
+	var roomcreated = false;
+	var roomjoined = false;
+	var username = '';
+	var roomName ='';
 	//example touch + click (android takes both so .bind('touchstart' 'mousedown') fire twice on android).
 	//$("#roll").bind(start, function(event){
 	doc.ready(function() 
 	{
-
     			var canvas = document.getElementById('paper');
 
 				windowsSizeX = window.screen.availWidth;
@@ -81,13 +84,51 @@ $(function()
 				prevac.x = 0;
 				prevac.y = 0;
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
-				console.log('elYpos : '  + elYpos + ' // (paper)styleTop : ' + document.getElementById('paper').style.top);
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
-				console.log(elYpos);
+				$('#paper').hide();
+				socket.emit('username',  username = prompt("username ?"));
+
+
     });
  				
 
-  
+  	$("#joinbutton").bind(start, function(event)
+  	{		
+  	
+  		var joincode = $('#entercode').val();
+		
+  		$('#init').hide();
+  		$('#paper').show();
+  		socket.emit('join',joincode,username);
+  		roomName = joincode;
+  	});
+  	$("#createbutton").bind(start, function(event)
+  	{
+  		roomcreated = true;
+  		$('#init').hide();
+  		$('#paper').show();		
+  		// listener, whenever the server emits 'updaterooms', this updates the room the client is in
+  		//socket.emit('create',  prompt("ID"));
+  		socket.emit('create',username);
+  	});
+  	socket.on("roomCodeIs", function(roomCode)
+    {	
+    	console.log("code");
+        $("#gameConnect").show();
+     	$("#socketId").html(roomCode);
+     	$("#gameConnect").html("CODE : " + roomCode);
+     	roomName = roomCode;
+  	});
+	
+ 	socket.on('updatechat', function (username, data) 
+  	{
+		$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+	});
+	socket.on('updaterooms', function(rooms, current_room) 
+	{
+		$('#rooms').empty();
+	});
+  	
   
   	//AFFICHER CODE
   	/*
@@ -173,13 +214,11 @@ $(function()
 
 		socket.emit('move',
 		{
-			
-				'x':  prev.x,
-				'y':  prev.y,
-				'drawing': false,
-				'id': id
-
-			});
+			'x':  prev.x,
+			'y':  prev.y,
+			'drawing': false,
+			'id': id
+		},roomName);
 		// Hide the instructions
 		instructions.fadeOut();
 	});
@@ -195,7 +234,7 @@ $(function()
 				'drawing': drawing,
 				'id': id
 				
-			});
+			},roomName);
 			lastEmit = $.now();
 		}
 		
@@ -245,7 +284,7 @@ $(function()
 				'y': (e.originalEvent.touches[0].pageY )/ canvas.height()- elYpos,
 				'drawing': drawing,
 				'id': id
-			});
+			},roomName);
 			lastEmit = $.now();
 		}
 	
@@ -310,4 +349,9 @@ $(function()
 		ctx.stroke();
 		//console.log(tox + "//" + toy);
 	}
+
 });
+function make_blank()
+{
+	document.form1.type.value ="";
+}
