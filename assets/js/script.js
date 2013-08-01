@@ -183,15 +183,15 @@ $(function()
 		if(! (data.id in clients))
 		{
 			// a new user has come online. create a cursor for them
-			cursors[data.id] = $('<div class="cursor">').appendTo('#cursors');
+			//cursors[data.id] = $('<div class="cursor">').appendTo('#cursors');
 		}
 		
 		// Move the mouse pointer
-		cursors[data.id].css(
+	/*	cursors[data.id].css(
 		{
 			'left' : data.x,
 			'top' : data.y
-		});
+		});*/
 		
 		// Is the user drawing?
 		if(down)
@@ -367,9 +367,9 @@ $(function()
 			{
 				// Last update was more than 10 seconds ago. 
 				// This user has probably closed the page
-				cursors[ident].remove();
+				//cursors[ident].remove();
 				delete clients[ident];
-				delete cursors[ident];
+				//delete cursors[ident];
 			}
 		}
 	},10000);
