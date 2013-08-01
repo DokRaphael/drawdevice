@@ -88,9 +88,7 @@ $(function()
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
 				$('#paper').hide();
-				setTimeout(function () {
-  				window.scrollTo(0, 1);
-					}, 2000);    
+				
 	});
     var focus = function(e) {
         e.stopPropagation();
@@ -119,9 +117,7 @@ $(function()
 
   		if(username != '' && username != 'USERNAME')
   		{	
-  				setTimeout(function () {
-  				window.scrollTo(0, 1);
-					}, 2000);
+  			
 			var joincode = $('#entercode').val();
 			$('#init').hide();
 			$('#paper').show();
@@ -148,9 +144,7 @@ $(function()
 
   		if(username != '' && username != 'USERNAME')
   		{
-  			setTimeout(function () {
-  				window.scrollTo(0, 1);
-					}, 2000);
+  			
 			roomcreated = true;
 			$('#init').hide();
 			$('#paper').show();		
