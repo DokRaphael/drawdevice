@@ -88,8 +88,10 @@ $(function()
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
 				$('#paper').hide();
-				//window.scrollTo(0, 1); 
-    });
+				setTimeout(function () {
+  				window.scrollTo(0, 1);
+					}, 1000);    
+	});
     var focus = function(e) {
         e.stopPropagation();
         e.preventDefault();
