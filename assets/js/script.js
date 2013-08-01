@@ -35,8 +35,7 @@ $(function()
 	var windowsSizeX ;
 	var windowsSizeY ;
 	var mobile   = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent); 
-//	var start = mobile ? "touchstart" : "mousedown";
-	var start = "touchstart";
+	var start = mobile ? "touchstart" : "mousedown";
 	var roomcreated = false;
 	var roomjoined = false;
 	var username = '';
@@ -87,10 +86,10 @@ $(function()
 				prevac.y = 0;
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
-				$('#paper').css({ position: "relative"});
+			//	$('#paper').css({ position: "relative"});
 				$('#paper').hide();
 				socket.emit('username',  username = $('#usernamebox').val());
-			//	window.scrollTo(0, 1); 
+				window.scrollTo(0, 1); 
     });
  				
 
