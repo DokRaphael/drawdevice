@@ -89,6 +89,7 @@ $(function()
 				$('#paper').css({ position: "relative"});
 				$('#paper').hide();
 				socket.emit('username',  username = $('#usernamebox').val());
+				window.scrollTo(0, 1); 
     });
  				
 
