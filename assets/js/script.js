@@ -101,7 +101,7 @@ $(function()
 			var joincode = $('#entercode').val();
 			$('#init').hide();
 			$('#paper').show();
-			if(joincode != "CODE HERE")
+			if(joincode != "CODE HERE" && joincode !="")
 			{
 				socket.emit('join',joincode,username);
 				roomName = joincode;
