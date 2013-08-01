@@ -44,9 +44,7 @@ $(function()
 	//$("#roll").bind(start, function(event){
 	doc.ready(function() 
 	{
-	setTimeout(function () {
-  window.scrollTo(0, 1);
-}, 1000);
+
     			var canvas = document.getElementById('paper');
 
 				windowsSizeX = window.screen.availWidth;
