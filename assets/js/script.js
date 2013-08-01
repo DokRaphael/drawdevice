@@ -95,10 +95,10 @@ $(function()
     
  	$("#entercode").bind(start, function(event)
   	{			
-	}
+	});
  	$("#usernamebox").bind(start, function(event)
   	{			
-	}
+	});
   	$("#joinbutton").bind(start, function(event)
   	{		
   		socket.emit('username',  username = $('#usernamebox').val());
