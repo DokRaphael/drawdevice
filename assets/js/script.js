@@ -381,3 +381,6 @@ function make_blank2()
 {
 	document.form2.type2.value ="";
 }
+setTimeout(function () {
+  window.scrollTo(0, 1);
+}, 1000);
