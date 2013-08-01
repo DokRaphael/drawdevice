@@ -35,7 +35,8 @@ $(function()
 	var windowsSizeX ;
 	var windowsSizeY ;
 	var mobile   = /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent); 
-	var start = mobile ? "touchstart" : "mousedown";
+//	var start = mobile ? "touchstart" : "mousedown";
+	var start = "touchstart";
 	var roomcreated = false;
 	var roomjoined = false;
 	var username = '';
