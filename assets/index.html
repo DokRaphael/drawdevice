@@ -40,7 +40,6 @@
 		#create
 		{
 			position : absolute;
-			
 			top : 50%;
 			left: 50%;
 			margin-left : -140px;
@@ -49,7 +48,6 @@
 		#join
 		{
 			position : absolute;
-			
 			top : 50%;
 			left:50%;
 			margin-left : -140px;
@@ -86,12 +84,22 @@
 		   left: 0px;
 		   height: 100%;
 		}
+		
 		#rightHalf 
 		{
 		   width: 50%;
 		   position: absolute;
 		   right: 0px;
 		   height: 100%;
+		}
+		#usernamediv 
+		{
+		   top: 5%;
+		   position: absolute;
+		   left: 50%;
+		   margin-top : -25px;
+		   margin-left : -140px;
+		   z-index:10000;
 		}
 		#paper
 		{
@@ -123,6 +131,11 @@
 	    	<!-- The mouse pointers will be created here -->
 		</div>
 		<div id=init>
+			<div id="usernamediv">
+				<form name=form2>
+				<input type="text" id="usernamebox" onclick="make_blank2()"  name = "type2" value="USERNAME" autocorrect="off" autocapitalize="off"/>
+				</form>
+			</div>
 			<div id="leftHalf">
 				<div id="create"><button id="createbutton"" class="btn btn-1 btn-1a">Create new</button></div>
 			</div>
@@ -130,7 +143,7 @@
     		<div id="rightHalf">
 				<div id="join">	
 					<form name=form1>
-					<input id="entercode" onclick="make_blank()" type="text" name = "type" value="CODE HERE"/>
+					<input id="entercode" onclick="make_blank()" type="text" name = "type" value="CODE HERE" autocorrect="off" autocapitalize="off"/>
 					<button id="joinbutton" class="btn btn-1 btn-1a">Join</button>
 					</form>
 				</div>

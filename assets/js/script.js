@@ -86,30 +86,51 @@ $(function()
 				elYpos = document.getElementById('paper').offsetTop/document.getElementById('paper').offsetHeight ; 
 				elXpos = document.getElementById('paper').offsetLeft/document.getElementById('paper').offsetWidth; 
 				$('#paper').hide();
-				socket.emit('username',  username = prompt("username ?"));
-
-
+				socket.emit('username',  username = $('#usernamebox').val());
     });
  				
 
   	$("#joinbutton").bind(start, function(event)
   	{		
-  	
-  		var joincode = $('#entercode').val();
-		
-  		$('#init').hide();
-  		$('#paper').show();
-  		socket.emit('join',joincode,username);
-  		roomName = joincode;
+  		socket.emit('username',  username = $('#usernamebox').val());
+
+  		if(username != '' && username != 'USERNAME')
+  		{
+			var joincode = $('#entercode').val();
+			$('#init').hide();
+			$('#paper').show();
+			if(joincode != "CODE HERE")
+			{
+				socket.emit('join',joincode,username);
+				roomName = joincode;
+			}
+			else
+			{
+				alert('enter a valid code');
+			}
+		}
+  		else
+  		{
+  			alert("enter username");
+  		}
   	});
   	$("#createbutton").bind(start, function(event)
   	{
-  		roomcreated = true;
-  		$('#init').hide();
-  		$('#paper').show();		
-  		// listener, whenever the server emits 'updaterooms', this updates the room the client is in
-  		//socket.emit('create',  prompt("ID"));
-  		socket.emit('create',username);
+  		socket.emit('username',  username = $('#usernamebox').val());
+
+  		if(username != '' && username != 'USERNAME')
+  		{
+			roomcreated = true;
+			$('#init').hide();
+			$('#paper').show();		
+			// listener, whenever the server emits 'updaterooms', this updates the room the client is in
+			//socket.emit('create',  prompt("ID"));
+			socket.emit('create',username);
+  		}
+  		else
+  		{
+  			alert("enter username");
+  		}
   	});
   	socket.on("roomCodeIs", function(roomCode)
     {	
@@ -354,4 +375,8 @@ $(function()
 function make_blank()
 {
 	document.form1.type.value ="";
+}
+function make_blank2()
+{
+	document.form2.type2.value ="";
 }
