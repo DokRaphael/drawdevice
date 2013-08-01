@@ -150,3 +150,24 @@ footer a i b{
 	color:#c92020;
 	font-weight: normal;
 }
+#one
+{
+
+background:url('../img/one.png') no-repeat;
+background-size:43px 43px;
+color : #f9ce2b;
+width : 43px;
+height: 43px;
+}
+#all
+{
+	display:inline-block;
+}
+#usermini
+{	
+	position:relative;
+	left:10%;
+	color:black;
+	font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}

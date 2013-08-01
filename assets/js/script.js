@@ -127,6 +127,7 @@ $(function()
 			{
 				socket.emit('join',joincode,username);
 				roomName = joincode;
+				console.log(clients[data.id]);
 			}
 			else
 			{
@@ -161,7 +162,6 @@ $(function()
   	});
   	socket.on("roomCodeIs", function(roomCode)
     {	
-    	console.log("code");
         $("#gameConnect").show();
      	$("#socketId").html(roomCode);
      	$("#gameConnect").html("CODE : " + roomCode);
@@ -170,30 +170,18 @@ $(function()
 	
  	socket.on('updatechat', function (username, data) 
   	{
-		$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+  		//affiche le flux de connexion des personnes
+		//$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+		$('#connectedPeople').append('<h id="all"><h1 id="one"><h2 id="usermini">'+username+'<h2></h1></h>');
+
 	});
 	socket.on('updaterooms', function(rooms, current_room) 
 	{
 		$('#rooms').empty();
+		//$('<div id="one">').appendTo('#connectedPeople');
+
 	});
   	
-  
-  	//AFFICHER CODE
-  	/*
-    socket.on("initialize", function(gameCode)
-    {
-        $("#gameConnect").show();
-        $("#gameCode").html(gameCode);
- 	});	
-    socket.emit(
-    			"device", 
-    			{	
-    				"type":"controller", 
-    				"gameCode":gameCode
-    			}
-    			);
-
-    */
 	socket.on('moving', function (data) 
 	{
 		if(! (data.id in clients))

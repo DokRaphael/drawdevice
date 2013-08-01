@@ -175,7 +175,7 @@ io.sockets.on('connection', function (socket)
 		
 	});*/
 	socket.on('username', function(username)
-	{
+	{ 
 		// store the username in the socket session for this client
 		socket.username = username;
 		// add the client's username to the global list
@@ -184,7 +184,6 @@ io.sockets.on('connection', function (socket)
 	
 	socket.on('create', function(username)
 	{
-		
 		var roomCode = crypto.randomBytes(3).toString('hex');
 		while(roomCode in socketCodes)
     	{
@@ -192,15 +191,16 @@ io.sockets.on('connection', function (socket)
     	}
 		socketCodes[roomCode] = io.sockets.sockets[socket.id];
 		socket.roomCode = roomCode;
+		
 		// store the room name in the socket session for this client
 		socket.room = roomCode;
 	
 		// send client to room "roomCode"
 		socket.join(roomCode);
 		// echo to client they've connected
-		socket.emit('updatechat', 'SERVER', 'you have connected to ' + roomCode);
+		socket.emit('updatechat', username, 'you have connected to ' + roomCode);
 		// echo to room 1 that a person has connected to their room
-		socket.broadcast.to(roomCode).emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.broadcast.to(roomCode).emit('updatechat', username, username + ' has connected to this room');
 		socket.emit('updaterooms', rooms, roomCode);
 		socket.emit("roomCodeIs", roomCode);
 		
@@ -209,12 +209,12 @@ io.sockets.on('connection', function (socket)
 	
 	socket.on('join', function(joincode,username)
 	{
-		
 		socket.join(joincode);
-		socket.emit('updatechat', 'SERVER', 'you have connected to ' + joincode);
-		socket.broadcast.to(joincode).emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.emit('updatechat', username, 'you have connected to ' + joincode);
+		socket.broadcast.to(joincode).emit('updatechat', username, username + ' has connected to this room');
 		socket.emit('updaterooms', rooms, joincode);
-		
+		socket.emit("roomCodeIs", joincode);
+
 	});	
 
 
