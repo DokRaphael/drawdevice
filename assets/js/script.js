@@ -44,6 +44,7 @@ $(function()
 	//$("#roll").bind(start, function(event){
 	doc.ready(function() 
 	{
+							$('#baniere').hide();
 
     			var canvas = document.getElementById('paper');
 
@@ -91,8 +92,13 @@ $(function()
 				socket.emit('username',  username = $('#usernamebox').val());
 				window.scrollTo(0, 1); 
     });
- 				
-
+    
+ 	$("#entercode").bind(start, function(event)
+  	{			
+	}
+ 	$("#usernamebox").bind(start, function(event)
+  	{			
+	}
   	$("#joinbutton").bind(start, function(event)
   	{		
   		socket.emit('username',  username = $('#usernamebox').val());
@@ -102,6 +108,8 @@ $(function()
 			var joincode = $('#entercode').val();
 			$('#init').hide();
 			$('#paper').show();
+			$('#baniere').show();
+
 			if(joincode != "CODE HERE" && joincode !="")
 			{
 				socket.emit('join',joincode,username);
@@ -126,6 +134,8 @@ $(function()
 			roomcreated = true;
 			$('#init').hide();
 			$('#paper').show();		
+			$('#baniere').show();
+
 			// listener, whenever the server emits 'updaterooms', this updates the room the client is in
 			//socket.emit('create',  prompt("ID"));
 			socket.emit('create',username);
