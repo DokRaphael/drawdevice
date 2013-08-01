@@ -383,7 +383,7 @@ $(function()
 	}
 
 });
-function make_blank()
+/*function make_blank()
 {
 	document.form1.type.value ="";
 }
@@ -391,3 +391,4 @@ function make_blank2()
 {
 	document.form2.type2.value ="";
 }
+*/
