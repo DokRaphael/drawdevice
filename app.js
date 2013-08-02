@@ -116,11 +116,14 @@ app.get('/', function (req, res)
 });
 app.use(express.static(path.join(__dirname, '/assets')));
 
-app.get('/img/bg.png', function (req, res)
+app.get('/img', function (req, res)
 {
-	res.sendfile(__dirname + '/assets/img/bg.png' );    
+	res.sendfile(__dirname + '/assets/img' );    
 	
-});// If the URL of the socket server is opened in a browser
+});
+
+
+// If the URL of the socket server is opened in a browser
 /*function handler (request, response)
 {
 

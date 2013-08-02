@@ -10,11 +10,12 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+	var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
+		validator = $('#validator'),
 		ctx = canvas[0].getContext('2d'),
 		instructions = $('#instructions');
 	
@@ -103,6 +104,12 @@ $(function()
           input.focus();
         }, 0);
       }
+    $('#usernamebox').keypress(function(e) { 
+    	if($('#usernamebox').val().length >0)
+    	{
+			validator.css("background-image", "url(../../img/valid.png)"); 
+    	}
+    });
  	$("#entercode").bind(start, function(event)
   	{			
   		$("#entercode").focus();
@@ -131,12 +138,14 @@ $(function()
 			}
 			else
 			{
-				alert('enter a valid code');
+				validator.css("background-image", "url(../../img/unvalid.png)"); 
+				//alert('enter a valid code');
 			}
 		}
   		else
   		{
-  			alert("enter username");
+  			validator.css("background-image", "url(../../img/unvalid.png)"); 
+  			//alert("enter username");
   		}
   	});
   	$("#createbutton").bind(start, function(event)
@@ -157,7 +166,8 @@ $(function()
   		}
   		else
   		{
-  			alert("enter username");
+  			validator.css("background-image", "url(../../img/unvalid.png)"); 
+  			//alert("enter username");
   		}
   	});
   	socket.on("roomCodeIs", function(roomCode)

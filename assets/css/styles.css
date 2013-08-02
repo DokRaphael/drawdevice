@@ -96,6 +96,21 @@ h3{
 	height:22px;
 	background:url('../img/pointer.png') no-repeat -4px 0;
 }
+#validator
+{
+	display : inline-block;
+	position: absolute;
+	top:10%;
+	width:43px;
+	height:43px;
+	/*background:url('../img/unvalid.png') no-repeat;*/
+	background-repeat:no-repeat;
+	background-size:43px 43px;
+}
+#withvalidator
+{
+	display:inline-block;
+}
 
 
 
