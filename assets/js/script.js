@@ -257,7 +257,6 @@ $(function()
 	canvas.on('mousedown',function(e)
 	{
 		e.preventDefault();
-		console.log("canvas.width() : " +canvas.width());
 		prev.x =  (e.pageX) / canvas.width() - elXpos;
 		prev.y = (e.pageY)/ canvas.height() - elYpos;
 		prevac.x = e.pageX - elXpos * document.getElementById('paper').offsetWidth;
