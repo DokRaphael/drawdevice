@@ -26,7 +26,12 @@ var roomname='';
 var urlparsed='';
 var socketCodes = {};
 var usernames = {};
-var rooms = ['room1','room2','room3'];
+/*var roomsusers = {
+    room: [],
+    name: []
+};*/
+var roomsusers = [];
+var rooms = {};//['room1','room2','room3'];
 
 /*var app = require('http').createServer(handler),
 	io = require('socket.io').listen(app),
@@ -206,18 +211,37 @@ io.sockets.on('connection', function (socket)
 		socket.broadcast.to(roomCode).emit('updatechat', username, username + ' has connected to this room');
 		socket.emit('updaterooms', rooms, roomCode);
 		socket.emit("roomCodeIs", roomCode);
-		
 	});
 	
+	socket.on('adduser',function(roomCode,username)
+	{
+		/*roomsusers.room.push(roomCode);
+		roomsusers.name.push(username);
+		//roomsusers.roomCode.push(username);	
+		console.log(roomsusers);	
+		console.log(roomsusers["room"]);
+		for(var i = 0; i<roomsusers["room"].length,i++)
+		{
+			if(roomusers.room[i]==roomCode)
+			{
+				console.log(roomusers.name[i]);
+			}
+		}*/
+		//roomsusers[roomCode]='';
+
+		roomsusers[roomCode] += ','+username;
+		socket.emit('useradded',roomsusers[roomCode]);
+	//	console.log(roomsusers);
+	});
 	
 	socket.on('join', function(joincode,username)
 	{
+		
 		socket.join(joincode);
 		socket.emit('updatechat', username, 'you have connected to ' + joincode);
 		socket.broadcast.to(joincode).emit('updatechat', username, username + ' has connected to this room');
 		socket.emit('updaterooms', rooms, joincode);
 		socket.emit("roomCodeIs", joincode);
-
 	});	
 
 

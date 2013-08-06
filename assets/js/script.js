@@ -10,8 +10,8 @@ $(function()
         
 	// The URL of your web server (the port is set in app.js)
 	
-	var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
-	//var url = 'http://127.0.0.1/';
+	//var url = 'http://ec2-54-229-102-239.eu-west-1.compute.amazonaws.com/';
+	var url = 'http://127.0.0.1/';
 	var doc = $(document),
 		win = $(window),
 		canvas = $('#paper'),
@@ -41,6 +41,7 @@ $(function()
 	var roomjoined = false;
 	var username = '';
 	var roomName ='';
+	var toolong = false;
 	//example touch + click (android takes both so .bind('touchstart' 'mousedown') fire twice on android).
 	//$("#roll").bind(start, function(event){
 	doc.ready(function() 
@@ -105,9 +106,17 @@ $(function()
         }, 0);
       }
     $('#usernamebox').keypress(function(e) { 
-    	if($('#usernamebox').val().length >0)
+    	if($('#usernamebox').val().length >0 && $('#usernamebox').val().length <5)
     	{
 			validator.css("background-image", "url(../../img/valid.png)"); 
+			toolong = false;
+    	}
+    	if($('#usernamebox').val().length >5)
+    	{
+    		validator.css("background-image", "url(../../img/unvalid.png)"); 
+    		$('#lengthError').remove();
+    		$('#validator').append('<h2 id="lengthError">too long</h2>&nbsp;&nbsp;');
+    		toolong = true;
     	}
     });
  	$("#entercode").bind(start, function(event)
@@ -121,8 +130,8 @@ $(function()
   	$("#joinbutton").bind(start, function(event)
   	{		
   		socket.emit('username',  username = $('#usernamebox').val());
-
-  		if(username != '' && username != 'USERNAME')
+		
+  		if(username != '' && username != 'USERNAME' && !toolong )
   		{	
   			
 			var joincode = $('#entercode').val();
@@ -130,11 +139,10 @@ $(function()
 			$('#paper').show();
 			$('#baniere').show();
 
-			if(joincode != "CODE HERE" && joincode !="")
+			if(joincode != "CODE HERE" && joincode !="" && !toolong)
 			{
 				socket.emit('join',joincode,username);
 				roomName = joincode;
-				console.log(clients[data.id]);
 			}
 			else
 			{
@@ -152,7 +160,7 @@ $(function()
   	{
   		socket.emit('username',  username = $('#usernamebox').val());
 
-  		if(username != '' && username != 'USERNAME')
+  		if(username != '' && username != 'USERNAME' && !toolong)
   		{
   			
 			roomcreated = true;
@@ -163,11 +171,26 @@ $(function()
 			// listener, whenever the server emits 'updaterooms', this updates the room the client is in
 			//socket.emit('create',  prompt("ID"));
 			socket.emit('create',username);
+
   		}
   		else
   		{
   			validator.css("background-image", "url(../../img/unvalid.png)"); 
   			//alert("enter username");
+  		}
+  	});
+  	
+  	socket.on('useradded',function(roomsusers,roomCode)
+  	{
+  		var arr = {};
+  		arr = roomsusers.split(",");
+  		console.log(arr);
+  		for(var i = 0; i<arr.length-1; i++)
+  		{
+  			if(i>0)
+  			{
+  				$('#connectedPeople').append('<h id="all"><h1 id="one"><h2 id="usermini">'+arr[i]+'<h2></h1></h>');
+  			}
   		}
   	});
   	socket.on("roomCodeIs", function(roomCode)
@@ -176,6 +199,8 @@ $(function()
      	$("#socketId").html(roomCode);
      	$("#gameConnect").html("CODE : " + roomCode);
      	roomName = roomCode;
+     	socket.emit('adduser',roomCode,username);
+
   	});
 	
  	socket.on('updatechat', function (username, data) 
