@@ -126,7 +126,11 @@ app.get('/img', function (req, res)
 	res.sendfile(__dirname + '/assets/img' );    
 	
 });
-
+app.get('/', function (req, res)
+{
+	res.setHeader('Content-Type', 'text/plain');
+    res.send(404, 'Page introuvable !');
+});
 
 // If the URL of the socket server is opened in a browser
 /*function handler (request, response)
